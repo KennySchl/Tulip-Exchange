@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Root } from "./components/root";
 
-
-document.addEventListener('DOMContentLoaded', ()=> {
-  ReactDOM.render(<h1>REACTING</h1>, document.getElementById('root'))
-})
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.render(<Root />, document.getElementById("root"));
+});
