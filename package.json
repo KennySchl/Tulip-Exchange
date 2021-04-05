@@ -1,5 +1,39 @@
 {
-  "name": "Tulip_Exchange",
+  "name": "tulip_exchange",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "description": "Tulip Exchange, a Robinhood clone.  A financial application that allows you to buy and sell stocks, options, and funds as well as different cryptocurrencies.",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KennySchl/Tulip-Exchange.git"
+  },
+  "author": "Kenneth Schlappkohl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KennySchl/Tulip-Exchange/issues"
+  },
+  "homepage": "https://github.com/KennySchl/Tulip-Exchange#readme"
 }
