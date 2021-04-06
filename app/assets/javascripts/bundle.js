@@ -290,6 +290,12 @@ var SessionForm = function SessionForm(_ref) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     signUp(user);
+    setUser({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    });
   };
 
   console.log(errors);

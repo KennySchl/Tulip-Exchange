@@ -19,6 +19,12 @@ const SessionForm = ({ errors, formType, signUp }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     signUp(user);
+    setUser({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    })
   };
 
   console.log(errors);
