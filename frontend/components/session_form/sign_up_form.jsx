@@ -29,9 +29,9 @@ const SignUpForm = ({ errors, signUp }) => {
 
   const renderErrors = () => {
     return (
-      <ul>
+      <ul className="sign-up-errors">
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li key={idx} className="sign-up-error">{error}</li>
         ))}
       </ul>
     );
@@ -88,7 +88,7 @@ const SignUpForm = ({ errors, signUp }) => {
           onChange={handleChange}
           name="password"
         />
-        <input type="submit" value="Sign Up" className="signup-input" />
+        <input type="submit" value="Sign Up" className="signup-input-button" />
       </form>
       {renderErrors()}
     </div>

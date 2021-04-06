@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch, Link } from "react-router-dom";
 
 import SignUpFormContainer from './session_form/signup_form_container'
+import LoginFormContainer from './session_form/login_form_container'
+
 
 export const App = () => (
   <div>
@@ -11,5 +13,6 @@ export const App = () => (
       </Link>
     </header>
     <Route path="/signup" component={SignUpFormContainer}/>
+    <Route path="/login" component={LoginFormContainer} />
   </div>
 )
