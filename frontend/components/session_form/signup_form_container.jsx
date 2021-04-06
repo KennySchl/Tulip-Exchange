@@ -6,9 +6,6 @@ import SignUpForm from "./sign_up_form";
 
 const mSTP = ({ errors }) => ({
   errors: errors.session,
-  //Link to login instead
-  //Already started?
-  //<Link ... "Log in instea"
 });
 
 const mDTP = (dispatch) => ({

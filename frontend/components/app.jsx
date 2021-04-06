@@ -12,7 +12,9 @@ export const App = () => (
       <h1>Tulip Exchange</h1>
       </Link>
     </header>
+    <Switch>
     <Route path="/signup" component={SignUpFormContainer}/>
     <Route path="/login" component={LoginFormContainer} />
+    </Switch>
   </div>
 )

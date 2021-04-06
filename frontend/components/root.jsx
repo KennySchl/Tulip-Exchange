@@ -8,7 +8,6 @@ export const Root = ({ store }) => (
   <Provider store={store}>
     <HashRouter>
       <App />
-      {/* {console.log(store.getState())} */}
     </HashRouter>
   </Provider>
 );
