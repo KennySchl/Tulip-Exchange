@@ -231,9 +231,9 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
-/***/ "./frontend/components/session_form/session_form.jsx":
+/***/ "./frontend/components/session_form/sign_up_form.jsx":
 /*!***********************************************************!*\
-  !*** ./frontend/components/session_form/session_form.jsx ***!
+  !*** ./frontend/components/session_form/sign_up_form.jsx ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -263,9 +263,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var SessionForm = function SessionForm(_ref) {
+var SignUpForm = function SignUpForm(_ref) {
   var errors = _ref.errors,
-      formType = _ref.formType,
       signUp = _ref.signUp;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
@@ -298,10 +297,18 @@ var SessionForm = function SessionForm(_ref) {
     });
   };
 
-  console.log(errors);
-  console.log(formType);
-  console.log(signUp);
-  console.log(user);
+  var renderErrors = function renderErrors() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, errors.map(function (error, idx) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        key: idx
+      }, error);
+    }));
+  }; // console.log(errors);
+  // console.log(formType);
+  // console.log(signUp);
+  // console.log(user);
+
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "signup-form-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -339,10 +346,10 @@ var SessionForm = function SessionForm(_ref) {
     type: "submit",
     value: "Sign Up",
     className: "signup-input"
-  })));
+  })), renderErrors());
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SignUpForm);
 
 /***/ }),
 
@@ -360,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_form */ "./frontend/components/session_form/session_form.jsx");
+/* harmony import */ var _sign_up_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sign_up_form */ "./frontend/components/session_form/sign_up_form.jsx");
 
 
 
@@ -385,7 +392,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(_session_form__WEBPACK_IMPORTED_MODULE_3__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(_sign_up_form__WEBPACK_IMPORTED_MODULE_3__.default));
 
 /***/ }),
 

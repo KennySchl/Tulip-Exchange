@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SessionForm = ({ errors, formType, signUp }) => {
+const SignUpForm = ({ errors, signUp }) => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -24,13 +24,24 @@ const SessionForm = ({ errors, formType, signUp }) => {
       lastName: "",
       email: "",
       password: "",
-    })
+    });
   };
 
-  console.log(errors);
-  console.log(formType);
-  console.log(signUp);
-  console.log(user);
+  const renderErrors = () => {
+    return (
+      <ul>
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
+    );
+  };
+
+  // console.log(errors);
+  // console.log(formType);
+  // console.log(signUp);
+  // console.log(user);
+
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleSubmit}>
@@ -79,8 +90,9 @@ const SessionForm = ({ errors, formType, signUp }) => {
         />
         <input type="submit" value="Sign Up" className="signup-input" />
       </form>
+      {renderErrors()}
     </div>
   );
 };
 
-export default SessionForm;
+export default SignUpForm;
