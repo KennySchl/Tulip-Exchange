@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   validates :email, :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
-  validates :password, length: { minimum: 6, allow_nil: true }, confirmation: { case_sensitive: true}
-
-  after_initialize :ensure_session_token
+  validates :password, length: { minimum: 6 },allow_nil: true, confirmation: { case_sensitive: true}
 
   attr_reader :password
+
+  after_initialize :ensure_session_token
 
   def password=(password)
     @password = password
