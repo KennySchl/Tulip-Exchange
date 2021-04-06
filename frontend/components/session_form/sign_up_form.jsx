@@ -31,7 +31,9 @@ const SignUpForm = ({ errors, signUp }) => {
     return (
       <ul className="sign-up-errors">
         {errors.map((error, idx) => (
-          <li key={idx} className="sign-up-error">{error}</li>
+          <li key={idx} className="sign-up-error">
+            {error}
+          </li>
         ))}
       </ul>
     );
