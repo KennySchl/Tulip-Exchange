@@ -6,3 +6,5 @@ import { configureStore } from "./store/store";
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(<Root store={configureStore()} />, document.getElementById("root"));
 });
+ 
+window.store = configureStore()
