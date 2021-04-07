@@ -1,3 +1,99 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.signup-form-container {
+  display: flex;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  // flex-flow: row wrap;
+  // justify-content: flex-start;
+  margin: 40px;
+}
+.signup-form-headers {
+  margin-top: 40px;
+  justify-items: center;
+}
+.sign-up-header {
+  font-size: 24px;
+  font-weight: 500;
+}
+.sign-up-text {
+  font-size: 15px;
+  font-weight: 400;
+  padding-top: 16px;
+  padding-bottom: 18px;
+}
+.sign-up-text-2 {
+  font-size: 13px;
+  font-weight: 700;
+  padding-bottom: 16px;
+}
+.signup-inputs{
+  display: flex;
+  flex-flow: row wrap;
+}
+.signup-input {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  text-indent: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 200ms ease 0s;
+  background-color: rgb(245, 248, 250);
+  border-radius: 4px;
+  border: solid 1px rgb(245, 248, 250);
+  margin: 10px 0px;
+  font-size: 13px;
+  height: 36px;
+}
+@media (max-width: 730px){
+  input{
+    width: 100%;
+    display: inline-block;
+  }
+}
+@media (min-width: 730px) {
+  .signup-fname {
+    width: 46%;
+    margin-right: 26px;
+  }
+  .signup-lname{
+    width: 50%;
+    margin-right: 0;
+  }
+}
+.signup-input:hover {
+  background-color: #ffffff;
+  border: solid 1px rgb(245, 248, 250);
+}
+.signup-input:focus {
+  outline: solid 0.5px rgb(0, 200, 5);
+}
+.signup-input::placeholder {
+  color: rgb(180, 189, 194);
+  padding: 0px 6px;
+}
+.signup-input-button {
+  padding: 0 48px;
+  display: inline-flex;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 70px;
+  max-width: 210px;
+  cursor: pointer;
+  align-items: center;
+  height: 48px;
+  border: none;
+  background-color: rgb(0, 200, 5);
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 20px;
+}
+.signup-input-button:hover {
+  background-color: rgb(0, 180, 5);
+}

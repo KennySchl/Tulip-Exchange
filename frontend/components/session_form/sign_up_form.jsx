@@ -47,21 +47,24 @@ const SignUpForm = ({ errors, signUp }) => {
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleSubmit}>
-        <h1>Make Your Money Move</h1>
-        <p>
+        <div className="signup-form-headers">
+        <h1 className="sign-up-header">Make Your Money Move</h1>
+        <p className="sign-up-text">
           Tulip Exchange lets you invest in companies you love, commission-free.
         </p>
         <br />
-        <p>
-          <strong>
+        <p className="sign-up-text-2">
+          <strong >
             Please enter your full legal name. Your legal name should match any
             form of government ID.
           </strong>
         </p>
+        </div>
+        <div className="signup-inputs">
         <input
           type="text"
           placeholder="First name"
-          className="signup-input"
+          className="signup-input signup-fname"
           value={user.firstName}
           onChange={handleChange}
           name="firstName"
@@ -69,7 +72,7 @@ const SignUpForm = ({ errors, signUp }) => {
         <input
           type="text"
           placeholder="Last name"
-          className="signup-input"
+          className="signup-input signup-lname"
           value={user.lastName}
           onChange={handleChange}
           name="lastName"
@@ -90,6 +93,7 @@ const SignUpForm = ({ errors, signUp }) => {
           onChange={handleChange}
           name="password"
         />
+        </div>
         <input type="submit" value="Sign Up" className="signup-input-button" />
       </form>
       {renderErrors()}
