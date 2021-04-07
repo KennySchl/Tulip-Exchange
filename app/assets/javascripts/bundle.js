@@ -10017,15 +10017,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
+/* harmony export */   "CLEAR_SESSION_ERRORS": () => (/* binding */ CLEAR_SESSION_ERRORS),
 /* harmony export */   "signUp": () => (/* binding */ signUp),
 /* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "clearErrors": () => (/* binding */ clearErrors)
 /* harmony export */ });
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
@@ -10044,6 +10047,12 @@ var receiveSessionErrors = function receiveSessionErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
+  };
+};
+
+var clearSessionErrors = function clearSessionErrors() {
+  return {
+    type: CLEAR_SESSION_ERRORS
   };
 };
 
@@ -10070,6 +10079,11 @@ var logout = function logout() {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.logout().then(function () {
       return dispatch(logoutCurrentUser());
     });
+  };
+};
+var clearErrors = function clearErrors() {
+  return function (dispatch) {
+    return dispatch(clearSessionErrors());
   };
 };
 
@@ -10193,7 +10207,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var LoginForm = function LoginForm(_ref) {
   var errors = _ref.errors,
-      login = _ref.login;
+      login = _ref.login,
+      clearErrors = _ref.clearErrors;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     email: "",
@@ -10220,6 +10235,12 @@ var LoginForm = function LoginForm(_ref) {
       password: ""
     });
   };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return function () {
+      clearErrors();
+    };
+  }, []);
 
   var renderErrors = function renderErrors() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
@@ -10317,6 +10338,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     login: function login(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearErrors)());
     }
   };
 };
@@ -10365,7 +10389,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SignUpForm = function SignUpForm(_ref) {
   var errors = _ref.errors,
-      signUp = _ref.signUp;
+      signUp = _ref.signUp,
+      clearErrors = _ref.clearErrors;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     firstName: "",
@@ -10396,6 +10421,12 @@ var SignUpForm = function SignUpForm(_ref) {
       password: ""
     });
   };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return function () {
+      clearErrors();
+    };
+  }, []);
 
   var renderErrors = function renderErrors() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
@@ -10503,6 +10534,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     signUp: function signUp(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.signUp)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearErrors)());
     }
   };
 };
@@ -10607,6 +10641,9 @@ __webpack_require__.r(__webpack_exports__);
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SESSION_ERRORS:
       return action.errors;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_SESSION_ERRORS:
+      return [];
 
     default:
       return state;
