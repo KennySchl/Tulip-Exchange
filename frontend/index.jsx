@@ -5,7 +5,6 @@ import { configureStore } from "./store/store";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-  console.log(window.currentUser);
   if (window.currentUser) {
     const preloadedState = {
       entities: { users: window.currentUser },

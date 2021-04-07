@@ -29,7 +29,7 @@ const SignUpForm = ({ errors, signUp }) => {
 
   const renderErrors = () => {
     return (
-      <ul className="sign-up-errors">
+      <ul className="sign-up-errors-list">
         {errors.map((error, idx) => (
           <li key={idx} className="sign-up-error">
             {error}
@@ -39,64 +39,60 @@ const SignUpForm = ({ errors, signUp }) => {
     );
   };
 
-  // console.log(errors);
-  // console.log(formType);
-  // console.log(signUp);
-  // console.log(user);
-
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleSubmit}>
         <div className="signup-form-headers">
-        <h1 className="sign-up-header">Make Your Money Move</h1>
-        <p className="sign-up-text">
-          Tulip Exchange lets you invest in companies you love, commission-free.
-        </p>
-        <br />
-        <p className="sign-up-text-2">
-          <strong >
-            Please enter your full legal name. Your legal name should match any
-            form of government ID.
-          </strong>
-        </p>
+          <h1 className="sign-up-header">Make Your Money Move</h1>
+          <p className="sign-up-text">
+            Tulip Exchange lets you invest in companies you love,
+            commission-free.
+          </p>
+          <br />
+          <p className="sign-up-text-2">
+            <strong>
+              Please enter your full legal name. Your legal name should match
+              any form of government ID.
+            </strong>
+          </p>
         </div>
         <div className="signup-inputs">
-        <input
-          type="text"
-          placeholder="First name"
-          className="signup-input signup-fname"
-          value={user.firstName}
-          onChange={handleChange}
-          name="firstName"
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          className="signup-input signup-lname"
-          value={user.lastName}
-          onChange={handleChange}
-          name="lastName"
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          className="signup-input"
-          value={user.email}
-          onChange={handleChange}
-          name="email"
-        />
-        <input
-          type="password"
-          placeholder="Password (min. 6 character)"
-          className="signup-input"
-          value={user.password}
-          onChange={handleChange}
-          name="password"
-        />
+          <input
+            type="text"
+            placeholder="First name"
+            className="signup-input signup-fname"
+            value={user.firstName}
+            onChange={handleChange}
+            name="firstName"
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            className="signup-input signup-lname"
+            value={user.lastName}
+            onChange={handleChange}
+            name="lastName"
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            className="signup-input"
+            value={user.email}
+            onChange={handleChange}
+            name="email"
+          />
+          <input
+            type="password"
+            placeholder="Password (min. 6 character)"
+            className="signup-input"
+            value={user.password}
+            onChange={handleChange}
+            name="password"
+          />
         </div>
         <input type="submit" value="Sign Up" className="signup-input-button" />
       </form>
-      {renderErrors()}
+      <div className="sign-up-errors">{renderErrors()}</div>
     </div>
   );
 };

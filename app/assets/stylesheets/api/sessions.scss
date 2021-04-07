@@ -1,6 +1,9 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//SIGN UP FORM
+
 .signup-form-container {
   display: flex;
 }
@@ -30,7 +33,7 @@
   font-weight: 700;
   padding-bottom: 16px;
 }
-.signup-inputs{
+.signup-inputs {
   display: flex;
   flex-flow: row wrap;
 }
@@ -48,10 +51,10 @@
   font-size: 13px;
   height: 36px;
 }
-@media (max-width: 730px){
-  input{
+@media (max-width: 730px) {
+  input {
     width: 100%;
-    display: inline-block;
+    // display: inline-block;
   }
 }
 @media (min-width: 730px) {
@@ -59,7 +62,7 @@
     width: 46%;
     margin-right: 26px;
   }
-  .signup-lname{
+  .signup-lname {
     width: 50%;
     margin-right: 0;
   }
@@ -69,7 +72,9 @@
   border: solid 1px rgb(245, 248, 250);
 }
 .signup-input:focus {
-  outline: solid 0.5px rgb(0, 200, 5);
+  border: solid 0.5px rgb(0, 200, 5);
+  border-radius: 4px;
+  outline: none;
 }
 .signup-input::placeholder {
   color: rgb(180, 189, 194);
@@ -96,4 +101,101 @@
 }
 .signup-input-button:hover {
   background-color: rgb(0, 180, 5);
+  border-radius: 4px;
+}
+
+//LOGIN FORM
+
+.login-form-container {
+  display: flex;
+}
+
+@media (max-width: 1130px){
+  .login-form{
+    width: 460px;
+  }
+}
+@media (min-width: 768px){
+  .login-form{
+    width: 460px;
+  }
+}
+// .login-contain {
+//   flex: 1 1 50%;
+// }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+}
+
+.login-form-header {
+  font-size: 22px;
+  line-height: 20px;
+  font-weight: 500;
+  margin: 70px 0 20px 0;
+}
+.login-input-label {
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 300;
+}
+.login-label-bar {
+  padding: 9px 0px;
+}
+.login-inputs {
+  display: flex;
+  flex-flow: column wrap;
+}
+.login-input {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  text-indent: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 200ms ease 0s;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  border: solid 1px rgb(245, 248, 250);
+  margin: 10px 0px;
+  font-size: 13px;
+  height: 36px;
+  padding: 0px 12px;
+}
+.login-input:hover {
+  border: solid 1px rgba(191, 199, 203, 1);
+  border-radius: 4px;
+}
+.login-input:focus {
+  border: solid 1px rgb(0, 200, 5);
+  border-radius: 4px;
+  outline: none;
+}
+
+.login-input-button {
+  padding: 0 48px;
+  display: inline-flex;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 70px;
+  max-width: 210px;
+  cursor: pointer;
+  align-items: center;
+  height: 48px;
+  border: none;
+  background-color: rgb(0, 200, 5);
+  color: white;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 20px;
+}
+.login-input-button:hover {
+  background-color: rgb(0, 180, 5);
+}
+.login-errors {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
 }
