@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const SignUpForm = ({ errors, signUp }) => {
   const [user, setUser] = useState({
@@ -42,6 +45,11 @@ const SignUpForm = ({ errors, signUp }) => {
   return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleSubmit}>
+        <Link to="/">
+          <h1 className="website-name">
+            Tulip Exchange <FontAwesomeIcon icon={faLeaf} />
+          </h1>
+        </Link>
         <div className="signup-form-headers">
           <h1 className="sign-up-header">Make Your Money Move</h1>
           <p className="sign-up-text">
@@ -91,8 +99,9 @@ const SignUpForm = ({ errors, signUp }) => {
           />
         </div>
         <input type="submit" value="Sign Up" className="signup-input-button" />
+        <div className="sign-up-errors">{renderErrors()}</div>
       </form>
-      <div className="sign-up-errors">{renderErrors()}</div>
+      <div className="test-space-signup"></div>
     </div>
   );
 };

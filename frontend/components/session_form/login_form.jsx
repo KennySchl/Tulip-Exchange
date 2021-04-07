@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 const LoginForm = ({ errors, login }) => {
   const [user, setUser] = useState({
@@ -30,7 +30,7 @@ const LoginForm = ({ errors, login }) => {
       <ul className="login-errors-list">
         {errors.map((error, idx) => (
           <li key={idx} className="login-error">
-           <FontAwesomeIcon icon={faExclamationCircle} /> {error}
+            <FontAwesomeIcon icon={faExclamationCircle} /> {error}
           </li>
         ))}
       </ul>
@@ -39,9 +39,10 @@ const LoginForm = ({ errors, login }) => {
 
   return (
     <div className="login-form-container">
+      <div className="test-space"></div>
       <div className="login-contain">
         <form className="login-form" onSubmit={handleSubmit}>
-          <h1 className="login-form-header">Welcome to Robinhood</h1>
+          <h1 className="login-form-header">Welcome to Tulip Exchange</h1>
           <div className="login-inputs">
             <label htmlFor="login-email">
               <div className="login-label-bar">
@@ -72,7 +73,6 @@ const LoginForm = ({ errors, login }) => {
             <div className="login-errors">{renderErrors()}</div>
           </div>
           <input type="submit" value="Sign In" className="login-input-button" />
-         
         </form>
       </div>
     </div>

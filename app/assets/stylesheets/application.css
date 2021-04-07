@@ -63,3 +63,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+a:visited {
+  color: transparent;
+  background-color: transparent;
+  text-decoration: none;
+}

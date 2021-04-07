@@ -13,6 +13,13 @@
   // flex-flow: row wrap;
   // justify-content: flex-start;
   margin: 40px;
+  width: 60%;
+  justify-content: flex-start;
+}
+.website-name {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 45px;
 }
 .signup-form-headers {
   margin-top: 40px;
@@ -51,16 +58,15 @@
   font-size: 13px;
   height: 36px;
 }
-@media (max-width: 730px) {
+@media (max-width: 768px) {
   input {
     width: 100%;
-    // display: inline-block;
   }
 }
-@media (min-width: 730px) {
+@media (min-width: 768px) {
   .signup-fname {
-    width: 46%;
-    margin-right: 26px;
+    width: 44%;
+    margin-right: 6%;
   }
   .signup-lname {
     width: 50%;
@@ -97,11 +103,23 @@
   font-size: 13px;
   font-weight: 700;
   line-height: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .signup-input-button:hover {
   background-color: rgb(0, 180, 5);
   border-radius: 4px;
+}
+
+.sign-up-errors-list {
+  list-style-type: disc;
+  padding-left: 0;
+  list-style-position: inside;
+  padding-top: 24px;
+}
+.sign-up-error {
+  color: #ff5000;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 //LOGIN FORM
@@ -110,13 +128,13 @@
   display: flex;
 }
 
-@media (max-width: 1130px){
-  .login-form{
+@media (max-width: 1130px) {
+  .login-form {
     width: 460px;
   }
 }
-@media (min-width: 768px){
-  .login-form{
+@media (min-width: 768px) {
+  .login-form {
     width: 460px;
   }
 }
@@ -177,8 +195,8 @@
   display: inline-flex;
   justify-content: center;
   box-sizing: border-box;
-  min-width: 70px;
-  max-width: 210px;
+  min-width: 65px;
+  max-width: 160px;
   cursor: pointer;
   align-items: center;
   height: 48px;
@@ -198,4 +216,28 @@
   font-size: 13px;
   font-weight: bold;
   line-height: 20px;
+  margin: 15px 0 40px 0;
+}
+.test-space {
+  background-color: rgb(245, 248, 250);
+  padding-bottom: 100%;
+  flex: 1 1 50%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+.test-space-signup {
+  background-color: rgb(245, 248, 250);
+  padding-bottom: 100%;
+  // flex: 1 1 50%;
+  // height: 100%;
+  // object-fit: cover;
+  overflow: hidden;
+  // order:2;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  order: 2;
+  width: 40%;
 }
