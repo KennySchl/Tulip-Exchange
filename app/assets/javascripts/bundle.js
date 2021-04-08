@@ -10089,6 +10089,47 @@ var clearErrors = function clearErrors() {
 
 /***/ }),
 
+/***/ "./frontend/actions/stocks_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/stocks_actions.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_STOCK": () => (/* binding */ RECEIVE_STOCK),
+/* harmony export */   "fetchStock": () => (/* binding */ fetchStock),
+/* harmony export */   "fetchStockAPI": () => (/* binding */ fetchStockAPI)
+/* harmony export */ });
+/* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
+
+var RECEIVE_STOCK = "RECEIVE_STOCK";
+
+var receiveStock = function receiveStock(stock) {
+  return {
+    type: RECEIVE_STOCK,
+    stock: stock
+  };
+};
+
+var fetchStock = function fetchStock(stockSymbol) {
+  return function (dispatch) {
+    return _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchStock(stockSymbol).then(function (stock) {
+      return dispatch(receiveStock(stock));
+    });
+  };
+};
+var fetchStockAPI = function fetchStockAPI(stockSymbol) {
+  return function (dispatch) {
+    return _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchStockAPI(stockSymbol).then(function (stock) {
+      return dispatch(receiveStock(stock));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -10556,13 +10597,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _stocks_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stocks_reducer */ "./frontend/reducers/stocks_reducer.js");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default //stocks
-  //watchlists
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  stocks: _stocks_reducer__WEBPACK_IMPORTED_MODULE_1__.default //watchlists
 
 }));
 
@@ -10691,6 +10734,45 @@ var sessionReducer = function sessionReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sessionReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/stocks_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/stocks_reducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_stocks_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/stocks_actions */ "./frontend/actions/stocks_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var stocksReducer = function stocksReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_stocks_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_STOCK:
+      return _objectSpread(_objectSpread({}, newState), action.stock);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stocksReducer);
 
 /***/ }),
 
@@ -10858,6 +10940,31 @@ var logout = function logout() {
   return $.ajax({
     url: "/api/session",
     method: "DELETE"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/stocks_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/stocks_api_util.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchStock": () => (/* binding */ fetchStock),
+/* harmony export */   "fetchStockAPI": () => (/* binding */ fetchStockAPI)
+/* harmony export */ });
+var fetchStock = function fetchStock(stockSymbol) {
+  return $.ajax({
+    url: "/api/stocks/".concat(stockSymbol)
+  });
+};
+var fetchStockAPI = function fetchStockAPI(stockSymbol) {
+  return $.ajax({
+    url: "https://api.tiingo.com/tiingo/daily/".concat(stockSymbol, "/prices?token=57b76ded246e717563e0ddb12ef673f00f8f31b0")
   });
 };
 
@@ -47301,6 +47408,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
+
 
 
 
@@ -47328,6 +47437,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }), document.getElementById("root"));
 });
 window.store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.configureStore)();
+console.log((0,_util_stocks_api_util__WEBPACK_IMPORTED_MODULE_4__.fetchStockAPI)('aapl').then(function () {
+  return console.log('yes');
+}).fail(function () {
+  return console.log('omg');
+}));
 })();
 
 /******/ })()

@@ -29,7 +29,6 @@ gem 'bcrypt'
 gem 'jquery-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -51,7 +50,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-end
+  end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
