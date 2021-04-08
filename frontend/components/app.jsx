@@ -3,6 +3,7 @@ import { Route, Switch, Link } from "react-router-dom";
 
 import SignUpFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
+import StocksContainer from "./stocks/stocks_container"
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import {logout} from '../util/session_api_util'
 
@@ -19,6 +20,7 @@ export const App = () => (
     <Switch>
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
+      <Route path="/stocks" component={StocksContainer} />
       <Route exact path="/" />
     </Switch>
   </div>

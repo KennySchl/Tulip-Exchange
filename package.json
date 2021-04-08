@@ -8,6 +8,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -45,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/KennySchl/Tulip-Exchange/issues"
   },
-  "homepage": "https://github.com/KennySchl/Tulip-Exchange#readme"
+  "homepage": "https://github.com/KennySchl/Tulip-Exchange#readme",
+  "proxy": "http://localhost:3000"
 }

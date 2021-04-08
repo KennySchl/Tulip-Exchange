@@ -20,4 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.store = configureStore();
 
 
-console.log(fetchStockAPI('aapl').then(()=>console.log('yes')).fail(()=> console.log('omg')));
+// console.log(fetchStockAPI('aapl').then(()=>console.log('yes')).fail(()=> console.log('omg')));
