@@ -10645,16 +10645,23 @@ var Stocks = function Stocks(_ref) {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      filterStock = _useState4[0],
-      setfilterStock = _useState4[1];
+      filterStocks = _useState4[0],
+      setfilterStocks = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchAllStocksAPI(window.finnhubAPIKey);
     setAllStocks(stocks);
+    console.log(stocks);
   }, []);
-  console.log(allStocks);
   console.log(stocks);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "TESTING");
+  console.log(allStocks); // const handleFilterChange = (e) => setfilterStocks(e.target.value);
+  // const filteredStocks = allStocks.filter(stock => {
+  //   return stock.description.toLowerCase().indexOf(filterStocks) !== -1
+  // })
+  // console.log(filterStocks);
+  // console.log(allStocks);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stocks);
@@ -10682,10 +10689,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(_ref) {
-  var stocks = _ref.stocks;
+  var entities = _ref.entities;
   return {
     //not sure if needed
-    stocks: stocks
+    stocks: entities.stocks
   };
 };
 
@@ -11090,7 +11097,7 @@ var fetchStock = function fetchStock(stockSymbol) {
 
 var fetchAllStocksAPI = function fetchAllStocksAPI(APIKey) {
   return $.ajax({
-    url: "https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNYS&token=".concat(APIKey)
+    url: "https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=".concat(APIKey)
   });
 };
 var fetchStockCompanyProfileAPI = function fetchStockCompanyProfileAPI(stockSymbol, APIKey) {

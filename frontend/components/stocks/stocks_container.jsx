@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { fetchAllStocksAPI } from "../../actions/stocks_actions";
 import Stocks from "./stocks";
 
-const mSTP = ({stocks}) => ({
+const mSTP = ({entities}) => ({
   //not sure if needed
-  stocks: stocks
+  stocks : entities.stocks
 });
 
 const mDTP = (dispatch) => ({
