@@ -10620,6 +10620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10634,9 +10635,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Stocks = function Stocks(_ref) {
   var stocks = _ref.stocks,
-      fetchAllStocksAPI = _ref.fetchAllStocksAPI;
+      fetchStocks = _ref.fetchStocks;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -10649,19 +10651,32 @@ var Stocks = function Stocks(_ref) {
       setfilterStocks = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchAllStocksAPI(window.finnhubAPIKey);
-    setAllStocks(stocks);
-    console.log(stocks);
-  }, []);
-  console.log(stocks);
-  console.log(allStocks); // const handleFilterChange = (e) => setfilterStocks(e.target.value);
-  // const filteredStocks = allStocks.filter(stock => {
-  //   return stock.description.toLowerCase().indexOf(filterStocks) !== -1
-  // })
-  // console.log(filterStocks);
-  // console.log(allStocks);
+    //Local state
+    (0,_util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchAllStocksAPI)(window.finnhubAPIKey).then(function (stock) {
+      return setAllStocks(stock);
+    }); //Get all stocks into global state
+    // fetchStocks(wi ndow.finnhubAPIKey);
+  }, []); // console.log(allStocks);
+  // console.log(stocks);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+  var handleFilterChange = function handleFilterChange(e) {
+    return setfilterStocks(e.target.value);
+  };
+
+  var filteredStocks = allStocks.filter(function (stock) {
+    return stock.description.toLowerCase().indexOf(filterStocks) !== -1 || stock.symbol.toLowerCase().indexOf(filterStocks) !== -1;
+  });
+  console.log(filterStocks); // console.log(allStocks);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    value: filterStocks,
+    onChange: handleFilterChange
+  }), filteredStocks.map(function (stock, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: i
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, stock.symbol, " - ", stock.description));
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stocks);
@@ -10691,14 +10706,13 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(_ref) {
   var entities = _ref.entities;
   return {
-    //not sure if needed
     stocks: entities.stocks
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
-    fetchAllStocksAPI: function fetchAllStocksAPI(APIKey) {
+    fetchStocks: function fetchStocks(APIKey) {
       return dispatch((0,_actions_stocks_actions__WEBPACK_IMPORTED_MODULE_2__.fetchAllStocksAPI)(APIKey));
     }
   };
