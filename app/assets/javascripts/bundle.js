@@ -10621,6 +10621,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
+/* harmony import */ var _stocks_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stocks_search */ "./frontend/components/stocks/stocks_search.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10632,6 +10633,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -10650,33 +10652,37 @@ var Stocks = function Stocks(_ref) {
       filterStocks = _useState4[0],
       setfilterStocks = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loading = _useState6[0],
+      setLoading = _useState6[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     //Local state
-    (0,_util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchAllStocksAPI)(window.finnhubAPIKey).then(function (stock) {
-      return setAllStocks(stock);
+    (0,_util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchAllStocksAPI)(window.finnhubAPIKey).then(function (res) {
+      return setAllStocks(res);
     }); //Get all stocks into global state
-    // fetchStocks(wi ndow.finnhubAPIKey);
-  }, []); // console.log(allStocks);
-  // console.log(stocks);
+    // fetchStocks(window.finnhubAPIKey);
+
+    setLoading(false);
+    render();
+  }, []);
 
   var handleFilterChange = function handleFilterChange(e) {
     return setfilterStocks(e.target.value);
+  }; // console.log(filterStocks);
+  // console.log(allStocks);
+
+
+  var render = function render() {
+    return loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "LOADING") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stocks_search__WEBPACK_IMPORTED_MODULE_2__.default, {
+      handleFilterChange: handleFilterChange,
+      filterStocks: filterStocks,
+      allStocks: allStocks
+    });
   };
 
-  var filteredStocks = allStocks.filter(function (stock) {
-    return stock.description.toLowerCase().indexOf(filterStocks) !== -1 || stock.symbol.toLowerCase().indexOf(filterStocks) !== -1;
-  });
-  console.log(filterStocks); // console.log(allStocks);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-    type: "text",
-    value: filterStocks,
-    onChange: handleFilterChange
-  }), filteredStocks.map(function (stock, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      key: i
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, stock.symbol, " - ", stock.description));
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, render());
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stocks);
@@ -10719,6 +10725,77 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(_stocks__WEBPACK_IMPORTED_MODULE_3__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stocks_list.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/stocks/stocks_list.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var titleize = __webpack_require__(/*! titleize */ "./node_modules/titleize/index.js");
+
+var StocksList = function StocksList(_ref) {
+  var allStocks = _ref.allStocks,
+      filterStocks = _ref.filterStocks;
+  var filteredStocks = allStocks.filter(function (stock) {
+    return stock.description.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1 || stock.symbol.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1;
+  });
+  console.log(filteredStocks);
+  console.log(allStocks);
+  var stockSearchList = filteredStocks === [] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "We were unable to find any results for your search.") : filteredStocks.length > 6 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null) : filteredStocks.map(function (stock, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: i
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, stock.symbol, " - ", titleize(stock.description)));
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, stockSearchList);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StocksList);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stocks_search.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/stocks/stocks_search.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _stocks_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stocks_list */ "./frontend/components/stocks/stocks_list.jsx");
+
+
+
+var StocksSearch = function StocksSearch(_ref) {
+  var filterStocks = _ref.filterStocks,
+      handleFilterChange = _ref.handleFilterChange,
+      allStocks = _ref.allStocks;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    value: filterStocks,
+    onChange: handleFilterChange,
+    placeholder: "Search"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stocks_list__WEBPACK_IMPORTED_MODULE_1__.default, {
+    allStocks: allStocks,
+    filterStocks: filterStocks
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StocksSearch);
 
 /***/ }),
 
@@ -11111,7 +11188,7 @@ var fetchStock = function fetchStock(stockSymbol) {
 
 var fetchAllStocksAPI = function fetchAllStocksAPI(APIKey) {
   return $.ajax({
-    url: "https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=".concat(APIKey)
+    url: "https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&securityType=Common%20Stock&token=".concat(APIKey)
   });
 };
 var fetchStockCompanyProfileAPI = function fetchStockCompanyProfileAPI(stockSymbol, APIKey) {
@@ -47406,6 +47483,29 @@ function warning(condition, message) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (warning);
+
+
+/***/ }),
+
+/***/ "./node_modules/titleize/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/titleize/index.js ***!
+  \****************************************/
+/***/ ((module) => {
+
+"use strict";
+
+const titleize = input => {
+	if (typeof input !== 'string') {
+		throw new TypeError('Expected a string');
+	}
+
+	return input.toLowerCase().replace(/(?:^|\s|-)\S/g, x => x.toUpperCase());
+};
+
+module.exports = titleize;
+// TODO: Remove this for the next major release
+module.exports.default = titleize;
 
 
 /***/ }),

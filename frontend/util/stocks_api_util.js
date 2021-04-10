@@ -12,7 +12,7 @@ export const fetchStock = (stockSymbol) =>
 
 export const fetchAllStocksAPI = (APIKey) =>
   $.ajax({
-    url: `https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&token=${APIKey}`,
+    url: `https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&securityType=Common%20Stock&token=${APIKey}`,
   });
 
 export const fetchStockCompanyProfileAPI = (stockSymbol, APIKey) =>
