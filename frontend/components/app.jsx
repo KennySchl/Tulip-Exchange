@@ -8,7 +8,6 @@ import NavBarContainer from "./nav_bar/nav_bar_container";
 import Main from './main'
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import { logout } from "../util/session_api_util";
 import NavBar from "./nav_bar/nav_bar";
 
 export const App = () => {
@@ -27,7 +26,6 @@ export const App = () => {
         <button onClick={logout}>LOGOUT</button>
         <Link to="/login">Log In</Link>
         <Link to="/signup">Sign Up</Link> */}
-        <button onClick={logout}>LOGOUT</button>
       </header>
       <Switch>
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />

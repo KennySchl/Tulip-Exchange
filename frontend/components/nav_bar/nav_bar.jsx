@@ -2,6 +2,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import StocksContainer from "../stocks/stocks_container";
+import { logout } from "../../util/session_api_util";
+
+
 
 const NavBar = ({ currentUser }) => {
   if (currentUser === null) {
@@ -23,7 +27,17 @@ const NavBar = ({ currentUser }) => {
       </div>
     );
   } else {
-    return <div className="protected-navbar">Hello, {currentUser}</div>;
+    return (
+      <div className="protected-navbar">
+        <Link to="/">
+          <h1 className="website-name-nav">
+            <FontAwesomeIcon icon={faLeaf} />
+          </h1>
+        </Link>
+        <StocksContainer />
+        <button className="logout" onClick={logout}>Log Out</button>
+      </div>
+    );
   }
 };
 

@@ -47,7 +47,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: rgb(195,245,60);
+	/* background-color: rgb(195,245,60); */
 }
 ol, ul {
 	list-style: none;
@@ -107,4 +107,46 @@ a:visited {
 }
 .auth-navbar-signup:hover{
 	background-color: rgb(0,180,5);
+}
+.protected-navbar {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 24px;
+	height: 64px;
+	align-items: center;
+}
+.loupe-icon {
+	font-size: 13px;
+}
+.stocks-search-bar{
+	display: flex;
+	transition: border-color 300ms ease 0s, box-shadow 300ms ease 0s;
+	/* flex-direction: column; */
+	border: solid 1px rgb(227,233,237);
+	color: rgb(133, 140, 145);
+	padding: 0 24px;
+	min-width: 200px;
+	height: 34px;
+	align-items: center;
+}
+.stocks-search{
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 20px;
+	width: 100%;
+	outline: none;
+	border: none;
+	padding: 1px 2px 1px 2px;
+}
+.stocks-search::placeholder {
+  color: rgb(180, 189, 194);
+  padding: 0px 6px;
+}
+.stocks-search-bar:hover{
+	border: none;
+	box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 10%);
+
+}
+.stocks-search-bar:focus {
+	color: #000000;
 }
