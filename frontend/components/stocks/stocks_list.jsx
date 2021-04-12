@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const titleize = require("titleize");
 
 const StocksList = ({ allStocks, filterStocks }) => {
@@ -11,23 +12,39 @@ const StocksList = ({ allStocks, filterStocks }) => {
   });
 
   console.log(filteredStocks);
-  console.log(allStocks);
+  // console.log(allStocks);
   const stockSearchList =
-    filteredStocks === [] ? (
-      <p>We were unable to find any results for your search.</p>
+    filteredStocks.length === 0 ? (
+      <tr>
+        <td>We were unable to find any results for your search.</td>
+      </tr>
     ) : filteredStocks.length > 6 ? (
-      <div></div>
+      <tr>
+        <td></td>
+      </tr>
     ) : (
       filteredStocks.map((stock, i) => (
         <div key={i}>
-          <p>
-            {stock.symbol} - {titleize(stock.description)}
-          </p>
+          <tr>
+            <td><Link to={`/stocks/${stock.symbol}`} />{stock.symbol}</td>
+            <td><Link to={`/stocks/${stock.symbol}`} />{titleize(stock.description)}</td>
+          </tr>
         </div>
       ))
     );
 
-  return <div>{stockSearchList}</div>;
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th colSpan="2"></th>
+          </tr>
+        </thead>
+        <tbody>{stockSearchList}</tbody>
+      </table>
+    </div>
+  );
 };
 
 export default StocksList;
