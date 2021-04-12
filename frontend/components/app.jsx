@@ -5,6 +5,7 @@ import SignUpFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
 import StocksContainer from "./stocks/stocks_container";
 import NavBarContainer from "./nav_bar/nav_bar_container";
+import Main from './main'
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { logout } from "../util/session_api_util";
@@ -14,6 +15,8 @@ export const App = () => {
   return (
     <div>
       <header>
+     
+
         {/* <Switch>
           
 
@@ -24,13 +27,15 @@ export const App = () => {
         <button onClick={logout}>LOGOUT</button>
         <Link to="/login">Log In</Link>
         <Link to="/signup">Sign Up</Link> */}
+        <button onClick={logout}>LOGOUT</button>
       </header>
       <Switch>
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <Route path="/stocks" component={StocksContainer} />
-        <Route exact path="/" component={NavBarContainer} />
+        <Route exact path="/" component={Main} />
       </Switch>
+      {/* <ProtectedRoute path="/stocks" component={StocksContainer} /> */}
+      <Route path="/" />
     </div>
   );
 };
