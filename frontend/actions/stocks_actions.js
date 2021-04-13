@@ -27,3 +27,9 @@ export const fetchAllStocksAPI = (APIKey) => (dispatch) =>
   StocksUtil.fetchAllStocksAPI(APIKey).then((stocks) =>
     dispatch(receiveStocks(stocks))
   );
+
+export const fetchStockCurrentPriceAPI = (stockSymbol, APIKey) =>
+  StocksUtil.fetchStockCurrentPriceAPI(
+    stockSymbol,
+    APIKey
+  ).then((stockPrices) => dispatch(receiveStock(stockPrices)));
