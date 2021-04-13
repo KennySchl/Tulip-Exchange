@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import { signUp, clearErrors } from "../../actions/session_actions";
 

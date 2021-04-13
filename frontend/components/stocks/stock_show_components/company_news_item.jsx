@@ -7,7 +7,7 @@ const CompanyNewsItem = ({ url, source, headline, summary, image }) => {
         <h3>{source}</h3>
         <h2>{headline}</h2>
         <p>{summary.split("").slice(0, 75).join("") + "..."}</p>
-        <img src={image} width="200px" height="135px"/>
+        <img src={image} width="200px" height="135px" />
       </a>
     </div>
   );

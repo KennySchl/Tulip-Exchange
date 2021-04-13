@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import StocksSearch from "./stocks_search";
 
-const Stocks = ({ stocks, fetchStocks }) => {
+const Stocks = ({ stocks }) => {
   const [filterStocks, setfilterStocks] = useState("");
-
-  useEffect(() => {
-    // fetchStocks(window.finnhubAPIKey);
-  }, []);
-  // console.log(stocks);
   const handleFilterChange = (e) => setfilterStocks(e.target.value);
 
   return (

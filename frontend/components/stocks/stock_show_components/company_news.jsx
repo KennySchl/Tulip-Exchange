@@ -18,7 +18,7 @@ const CompanyNews = ({ companyNews }) => {
   return (
     <div>
       <h1>News</h1>
-      {news.slice(0,3)}
+      {news.slice(0, 3)}
     </div>
   );
 };

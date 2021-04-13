@@ -22,18 +22,16 @@ const StocksList = ({ filterStocks, stocks }) => {
       </tr>
     ) : (
       filteredStocks.map((stock, i) => (
-        <div key={i}>
-          <tr>
-            <td>
-              <Link to={`/stocks/${stock.symbol}`} />
-              {stock.symbol}
-            </td>
-            <td>
-              <Link to={`/stocks/${stock.symbol}`} />
+        <tr key={i}>
+          <td>
+            <Link to={`/stocks/${stock.symbol}`}>{stock.symbol}</Link>
+          </td>
+          <td>
+            <Link to={`/stocks/${stock.symbol}`}>
               {titleize(stock.description)}
-            </td>
-          </tr>
-        </div>
+            </Link>
+          </td>
+        </tr>
       ))
     );
 
