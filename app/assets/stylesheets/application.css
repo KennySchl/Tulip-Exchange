@@ -201,12 +201,13 @@ a:visited {
 }
 .stocks-search-bar {
   display: flex;
+  position: relative;
   transition: border-color 300ms ease 0s, box-shadow 300ms ease 0s;
   /* flex-direction: column; */
   border: solid 1px rgb(227, 233, 237);
   color: rgb(133, 140, 145);
   padding: 0 24px;
-  min-width: 200px;
+
   height: 34px;
   align-items: center;
 }
@@ -234,4 +235,29 @@ a:visited {
   position: fixed;
   top: 50%;
   left: 50%;
+}
+.stock-search-list {
+  position: absolute;
+  display: none;
+  /* top:60px;
+  left:50%; */
+  min-width: 200px;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.stocks-search-bar:hover .stock-search-list {
+  display: block;
+}
+.stock-search-list-items {
+}
+.search-list-item {
+  display: flex;
+  padding: 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  color: #000000;
+}
+.search-list-item:hover {
+  background-color: rgb(227, 233, 237);
 }

@@ -40,7 +40,7 @@ const StockShow = ({ stockSymbol }) => {
       oneWeekAgoISO,
       todayISO
     ).then((res) => setCompanyNews(res));
-  }, []);
+  }, [stockSymbol]);
 
   // console.log(stockSymbol);
   // console.log(currentPrice);

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import StockShow from "./stock_show";
 
 const mSTP = (
-  sate,
+  state,
   {
     match: {
       params: { stockSymbol },

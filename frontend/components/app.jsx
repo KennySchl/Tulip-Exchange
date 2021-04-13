@@ -12,16 +12,16 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 export const App = () => {
   return (
     <div>
-      <ProtectedRoute path="/portfolio" component={ProtNavBar} />
-      <ProtectedRoute
-        exact
-        path="/stocks/:stockSymbol"
-        component={StockShowContainer}
-      />
       <Switch>
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/" component={AuthNavBar} />
+        <ProtectedRoute path="/portfolio" component={ProtNavBar} />
+        <ProtectedRoute
+          exact
+          path="/stocks/:stockSymbol"
+          component={StockShowContainer}
+        />
       </Switch>
     </div>
   );
