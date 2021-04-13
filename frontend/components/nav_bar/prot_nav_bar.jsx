@@ -11,7 +11,7 @@ const ProtNavBar = ({ logout, fetchStocks, currentUser }) => {
   useEffect(() => {
     fetchStocks(window.finnhubAPIKey);
     setTimeout(() => {
-      setLoading(false);
+      setLoading(false);``
     }, 1000);
     return () => {
       setLoading(true);

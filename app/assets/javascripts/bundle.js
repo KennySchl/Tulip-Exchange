@@ -10320,6 +10320,7 @@ var ProtNavBar = function ProtNavBar(_ref) {
     fetchStocks(window.finnhubAPIKey);
     setTimeout(function () {
       setLoading(false);
+      "";
     }, 1000);
     return function () {
       setLoading(true);
@@ -10822,8 +10823,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stock_show_components/company_news */ "./frontend/components/stocks/stock_show_components/company_news.jsx");
 /* harmony import */ var _stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stock_show_components/company_about */ "./frontend/components/stocks/stock_show_components/company_about.jsx");
 /* harmony import */ var _nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../nav_bar/prot_nav_bar_container */ "./frontend/components/nav_bar/prot_nav_bar_container.jsx");
-/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-sparklines */ "./node_modules/react-sparklines/build/index.js");
-/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_sparklines__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _stock_show_components_stock_chart_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stock_show_components/stock_chart_container */ "./frontend/components/stocks/stock_show_components/stock_chart_container.jsx");
+/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-sparklines */ "./node_modules/react-sparklines/build/index.js");
+/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_sparklines__WEBPACK_IMPORTED_MODULE_6__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10837,6 +10839,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import { fetchStockCurrentPriceAPI } from "../../util/stocks_api_util";
+
 
 
 
@@ -10876,21 +10879,23 @@ var StockShow = function StockShow(_ref) {
       return setCompanyNews(res);
     });
   }, [stockSymbol]); // console.log(stockSymbol);
-  // console.log(currentPrice);
 
-  console.log(companyProfile); // console.log(companyNews);
+  console.log(currentPrice); // console.log(companyProfile);
+  // console.log(companyNews);
   // console.log(todayISO);
   // console.log(oneWeekAgoISO);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, currentPrice.c), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_5__.Sparklines, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, currentPrice.c), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_6__.Sparklines, {
     data: [5, 10, 5, 20, 8, 15],
     limit: 5,
     width: 1000,
     height: 200,
     margin: 50
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_5__.SparklinesLine, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_6__.SparklinesLine, {
     color: "blue"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__.default, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_stock_chart_container__WEBPACK_IMPORTED_MODULE_5__.default, {
+    currentPrice: currentPrice
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__.default, {
     companyProfile: companyProfile
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__.default, {
     companyNews: companyNews
@@ -10991,6 +10996,81 @@ var CompanyNewsItem = function CompanyNewsItem(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyNewsItem);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stock_show_components/stock_chart.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/stocks/stock_show_components/stock_chart.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_odometerjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-odometerjs */ "./node_modules/react-odometerjs/dist/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var StockChart = function StockChart(_ref) {
+  var currentPrice = _ref.currentPrice;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0.00),
+      _useState2 = _slicedToArray(_useState, 2),
+      odometer = _useState2[0],
+      setOdometer = _useState2[1];
+
+  console.log(currentPrice.c);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setOdometer(currentPrice.c);
+  });
+  console.log(odometer);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_odometerjs__WEBPACK_IMPORTED_MODULE_1__.default, {
+    value: odometer
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StockChart);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stock_show_components/stock_chart_container.jsx":
+/*!************************************************************************************!*\
+  !*** ./frontend/components/stocks/stock_show_components/stock_chart_container.jsx ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _stock_chart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stock_chart */ "./frontend/components/stocks/stock_show_components/stock_chart.jsx");
+
+
+
+var mSTP = function mSTP(state) {
+  return {};
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, null)(_stock_chart__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -12964,6 +13044,666 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 	return to;
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/odometer/odometer.js":
+/*!*******************************************!*\
+  !*** ./node_modules/odometer/odometer.js ***!
+  \*******************************************/
+/***/ (function(module, exports) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function() {
+  var COUNT_FRAMERATE, COUNT_MS_PER_FRAME, DIGIT_FORMAT, DIGIT_HTML, DIGIT_SPEEDBOOST, DURATION, FORMAT_MARK_HTML, FORMAT_PARSER, FRAMERATE, FRAMES_PER_VALUE, MS_PER_FRAME, MutationObserver, Odometer, RIBBON_HTML, TRANSITION_END_EVENTS, TRANSITION_SUPPORT, VALUE_HTML, addClass, createFromHTML, fractionalPart, now, removeClass, requestAnimationFrame, round, transitionCheckStyles, trigger, truncate, wrapJQuery, _jQueryWrapped, _old, _ref, _ref1,
+    __slice = [].slice;
+
+  VALUE_HTML = '<span class="odometer-value"></span>';
+
+  RIBBON_HTML = '<span class="odometer-ribbon"><span class="odometer-ribbon-inner">' + VALUE_HTML + '</span></span>';
+
+  DIGIT_HTML = '<span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner">' + RIBBON_HTML + '</span></span>';
+
+  FORMAT_MARK_HTML = '<span class="odometer-formatting-mark"></span>';
+
+  DIGIT_FORMAT = '(,ddd).dd';
+
+  FORMAT_PARSER = /^\(?([^)]*)\)?(?:(.)(d+))?$/;
+
+  FRAMERATE = 30;
+
+  DURATION = 2000;
+
+  COUNT_FRAMERATE = 20;
+
+  FRAMES_PER_VALUE = 2;
+
+  DIGIT_SPEEDBOOST = .5;
+
+  MS_PER_FRAME = 1000 / FRAMERATE;
+
+  COUNT_MS_PER_FRAME = 1000 / COUNT_FRAMERATE;
+
+  TRANSITION_END_EVENTS = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd';
+
+  transitionCheckStyles = document.createElement('div').style;
+
+  TRANSITION_SUPPORT = (transitionCheckStyles.transition != null) || (transitionCheckStyles.webkitTransition != null) || (transitionCheckStyles.mozTransition != null) || (transitionCheckStyles.oTransition != null);
+
+  requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+  MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+  createFromHTML = function(html) {
+    var el;
+    el = document.createElement('div');
+    el.innerHTML = html;
+    return el.children[0];
+  };
+
+  removeClass = function(el, name) {
+    return el.className = el.className.replace(new RegExp("(^| )" + (name.split(' ').join('|')) + "( |$)", 'gi'), ' ');
+  };
+
+  addClass = function(el, name) {
+    removeClass(el, name);
+    return el.className += " " + name;
+  };
+
+  trigger = function(el, name) {
+    var evt;
+    if (document.createEvent != null) {
+      evt = document.createEvent('HTMLEvents');
+      evt.initEvent(name, true, true);
+      return el.dispatchEvent(evt);
+    }
+  };
+
+  now = function() {
+    var _ref, _ref1;
+    return (_ref = (_ref1 = window.performance) != null ? typeof _ref1.now === "function" ? _ref1.now() : void 0 : void 0) != null ? _ref : +(new Date);
+  };
+
+  round = function(val, precision) {
+    if (precision == null) {
+      precision = 0;
+    }
+    if (!precision) {
+      return Math.round(val);
+    }
+    val *= Math.pow(10, precision);
+    val += 0.5;
+    val = Math.floor(val);
+    return val /= Math.pow(10, precision);
+  };
+
+  truncate = function(val) {
+    if (val < 0) {
+      return Math.ceil(val);
+    } else {
+      return Math.floor(val);
+    }
+  };
+
+  fractionalPart = function(val) {
+    return val - round(val);
+  };
+
+  _jQueryWrapped = false;
+
+  (wrapJQuery = function() {
+    var property, _i, _len, _ref, _results;
+    if (_jQueryWrapped) {
+      return;
+    }
+    if (window.jQuery != null) {
+      _jQueryWrapped = true;
+      _ref = ['html', 'text'];
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        property = _ref[_i];
+        _results.push((function(property) {
+          var old;
+          old = window.jQuery.fn[property];
+          return window.jQuery.fn[property] = function(val) {
+            var _ref1;
+            if ((val == null) || (((_ref1 = this[0]) != null ? _ref1.odometer : void 0) == null)) {
+              return old.apply(this, arguments);
+            }
+            return this[0].odometer.update(val);
+          };
+        })(property));
+      }
+      return _results;
+    }
+  })();
+
+  setTimeout(wrapJQuery, 0);
+
+  Odometer = (function() {
+    function Odometer(options) {
+      var e, k, property, v, _base, _i, _len, _ref, _ref1, _ref2,
+        _this = this;
+      this.options = options;
+      this.el = this.options.el;
+      if (this.el.odometer != null) {
+        return this.el.odometer;
+      }
+      this.el.odometer = this;
+      _ref = Odometer.options;
+      for (k in _ref) {
+        v = _ref[k];
+        if (this.options[k] == null) {
+          this.options[k] = v;
+        }
+      }
+      if ((_base = this.options).duration == null) {
+        _base.duration = DURATION;
+      }
+      this.MAX_VALUES = ((this.options.duration / MS_PER_FRAME) / FRAMES_PER_VALUE) | 0;
+      this.resetFormat();
+      this.value = this.cleanValue((_ref1 = this.options.value) != null ? _ref1 : '');
+      this.renderInside();
+      this.render();
+      try {
+        _ref2 = ['innerHTML', 'innerText', 'textContent'];
+        for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
+          property = _ref2[_i];
+          if (this.el[property] != null) {
+            (function(property) {
+              return Object.defineProperty(_this.el, property, {
+                get: function() {
+                  var _ref3;
+                  if (property === 'innerHTML') {
+                    return _this.inside.outerHTML;
+                  } else {
+                    return (_ref3 = _this.inside.innerText) != null ? _ref3 : _this.inside.textContent;
+                  }
+                },
+                set: function(val) {
+                  return _this.update(val);
+                }
+              });
+            })(property);
+          }
+        }
+      } catch (_error) {
+        e = _error;
+        this.watchForMutations();
+      }
+      this;
+    }
+
+    Odometer.prototype.renderInside = function() {
+      this.inside = document.createElement('div');
+      this.inside.className = 'odometer-inside';
+      this.el.innerHTML = '';
+      return this.el.appendChild(this.inside);
+    };
+
+    Odometer.prototype.watchForMutations = function() {
+      var e,
+        _this = this;
+      if (MutationObserver == null) {
+        return;
+      }
+      try {
+        if (this.observer == null) {
+          this.observer = new MutationObserver(function(mutations) {
+            var newVal;
+            newVal = _this.el.innerText;
+            _this.renderInside();
+            _this.render(_this.value);
+            return _this.update(newVal);
+          });
+        }
+        this.watchMutations = true;
+        return this.startWatchingMutations();
+      } catch (_error) {
+        e = _error;
+      }
+    };
+
+    Odometer.prototype.startWatchingMutations = function() {
+      if (this.watchMutations) {
+        return this.observer.observe(this.el, {
+          childList: true
+        });
+      }
+    };
+
+    Odometer.prototype.stopWatchingMutations = function() {
+      var _ref;
+      return (_ref = this.observer) != null ? _ref.disconnect() : void 0;
+    };
+
+    Odometer.prototype.cleanValue = function(val) {
+      var _ref;
+      if (typeof val === 'string') {
+        val = val.replace((_ref = this.format.radix) != null ? _ref : '.', '<radix>');
+        val = val.replace(/[.,]/g, '');
+        val = val.replace('<radix>', '.');
+        val = parseFloat(val, 10) || 0;
+      }
+      return round(val, this.format.precision);
+    };
+
+    Odometer.prototype.bindTransitionEnd = function() {
+      var event, renderEnqueued, _i, _len, _ref, _results,
+        _this = this;
+      if (this.transitionEndBound) {
+        return;
+      }
+      this.transitionEndBound = true;
+      renderEnqueued = false;
+      _ref = TRANSITION_END_EVENTS.split(' ');
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        event = _ref[_i];
+        _results.push(this.el.addEventListener(event, function() {
+          if (renderEnqueued) {
+            return true;
+          }
+          renderEnqueued = true;
+          setTimeout(function() {
+            _this.render();
+            renderEnqueued = false;
+            return trigger(_this.el, 'odometerdone');
+          }, 0);
+          return true;
+        }, false));
+      }
+      return _results;
+    };
+
+    Odometer.prototype.resetFormat = function() {
+      var format, fractional, parsed, precision, radix, repeating, _ref, _ref1;
+      format = (_ref = this.options.format) != null ? _ref : DIGIT_FORMAT;
+      format || (format = 'd');
+      parsed = FORMAT_PARSER.exec(format);
+      if (!parsed) {
+        throw new Error("Odometer: Unparsable digit format");
+      }
+      _ref1 = parsed.slice(1, 4), repeating = _ref1[0], radix = _ref1[1], fractional = _ref1[2];
+      precision = (fractional != null ? fractional.length : void 0) || 0;
+      return this.format = {
+        repeating: repeating,
+        radix: radix,
+        precision: precision
+      };
+    };
+
+    Odometer.prototype.render = function(value) {
+      var classes, cls, match, newClasses, theme, _i, _len;
+      if (value == null) {
+        value = this.value;
+      }
+      this.stopWatchingMutations();
+      this.resetFormat();
+      this.inside.innerHTML = '';
+      theme = this.options.theme;
+      classes = this.el.className.split(' ');
+      newClasses = [];
+      for (_i = 0, _len = classes.length; _i < _len; _i++) {
+        cls = classes[_i];
+        if (!cls.length) {
+          continue;
+        }
+        if (match = /^odometer-theme-(.+)$/.exec(cls)) {
+          theme = match[1];
+          continue;
+        }
+        if (/^odometer(-|$)/.test(cls)) {
+          continue;
+        }
+        newClasses.push(cls);
+      }
+      newClasses.push('odometer');
+      if (!TRANSITION_SUPPORT) {
+        newClasses.push('odometer-no-transitions');
+      }
+      if (theme) {
+        newClasses.push("odometer-theme-" + theme);
+      } else {
+        newClasses.push("odometer-auto-theme");
+      }
+      this.el.className = newClasses.join(' ');
+      this.ribbons = {};
+      this.formatDigits(value);
+      return this.startWatchingMutations();
+    };
+
+    Odometer.prototype.formatDigits = function(value) {
+      var digit, valueDigit, valueString, wholePart, _i, _j, _len, _len1, _ref, _ref1;
+      this.digits = [];
+      if (this.options.formatFunction) {
+        valueString = this.options.formatFunction(value);
+        _ref = valueString.split('').reverse();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          valueDigit = _ref[_i];
+          if (valueDigit.match(/0-9/)) {
+            digit = this.renderDigit();
+            digit.querySelector('.odometer-value').innerHTML = valueDigit;
+            this.digits.push(digit);
+            this.insertDigit(digit);
+          } else {
+            this.addSpacer(valueDigit);
+          }
+        }
+      } else {
+        wholePart = !this.format.precision || !fractionalPart(value) || false;
+        _ref1 = value.toString().split('').reverse();
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          digit = _ref1[_j];
+          if (digit === '.') {
+            wholePart = true;
+          }
+          this.addDigit(digit, wholePart);
+        }
+      }
+    };
+
+    Odometer.prototype.update = function(newValue) {
+      var diff,
+        _this = this;
+      newValue = this.cleanValue(newValue);
+      if (!(diff = newValue - this.value)) {
+        return;
+      }
+      removeClass(this.el, 'odometer-animating-up odometer-animating-down odometer-animating');
+      if (diff > 0) {
+        addClass(this.el, 'odometer-animating-up');
+      } else {
+        addClass(this.el, 'odometer-animating-down');
+      }
+      this.stopWatchingMutations();
+      this.animate(newValue);
+      this.startWatchingMutations();
+      setTimeout(function() {
+        _this.el.offsetHeight;
+        return addClass(_this.el, 'odometer-animating');
+      }, 0);
+      return this.value = newValue;
+    };
+
+    Odometer.prototype.renderDigit = function() {
+      return createFromHTML(DIGIT_HTML);
+    };
+
+    Odometer.prototype.insertDigit = function(digit, before) {
+      if (before != null) {
+        return this.inside.insertBefore(digit, before);
+      } else if (!this.inside.children.length) {
+        return this.inside.appendChild(digit);
+      } else {
+        return this.inside.insertBefore(digit, this.inside.children[0]);
+      }
+    };
+
+    Odometer.prototype.addSpacer = function(chr, before, extraClasses) {
+      var spacer;
+      spacer = createFromHTML(FORMAT_MARK_HTML);
+      spacer.innerHTML = chr;
+      if (extraClasses) {
+        addClass(spacer, extraClasses);
+      }
+      return this.insertDigit(spacer, before);
+    };
+
+    Odometer.prototype.addDigit = function(value, repeating) {
+      var chr, digit, resetted, _ref;
+      if (repeating == null) {
+        repeating = true;
+      }
+      if (value === '-') {
+        return this.addSpacer(value, null, 'odometer-negation-mark');
+      }
+      if (value === '.') {
+        return this.addSpacer((_ref = this.format.radix) != null ? _ref : '.', null, 'odometer-radix-mark');
+      }
+      if (repeating) {
+        resetted = false;
+        while (true) {
+          if (!this.format.repeating.length) {
+            if (resetted) {
+              throw new Error("Bad odometer format without digits");
+            }
+            this.resetFormat();
+            resetted = true;
+          }
+          chr = this.format.repeating[this.format.repeating.length - 1];
+          this.format.repeating = this.format.repeating.substring(0, this.format.repeating.length - 1);
+          if (chr === 'd') {
+            break;
+          }
+          this.addSpacer(chr);
+        }
+      }
+      digit = this.renderDigit();
+      digit.querySelector('.odometer-value').innerHTML = value;
+      this.digits.push(digit);
+      return this.insertDigit(digit);
+    };
+
+    Odometer.prototype.animate = function(newValue) {
+      if (!TRANSITION_SUPPORT || this.options.animation === 'count') {
+        return this.animateCount(newValue);
+      } else {
+        return this.animateSlide(newValue);
+      }
+    };
+
+    Odometer.prototype.animateCount = function(newValue) {
+      var cur, diff, last, start, tick,
+        _this = this;
+      if (!(diff = +newValue - this.value)) {
+        return;
+      }
+      start = last = now();
+      cur = this.value;
+      return (tick = function() {
+        var delta, dist, fraction;
+        if ((now() - start) > _this.options.duration) {
+          _this.value = newValue;
+          _this.render();
+          trigger(_this.el, 'odometerdone');
+          return;
+        }
+        delta = now() - last;
+        if (delta > COUNT_MS_PER_FRAME) {
+          last = now();
+          fraction = delta / _this.options.duration;
+          dist = diff * fraction;
+          cur += dist;
+          _this.render(Math.round(cur));
+        }
+        if (requestAnimationFrame != null) {
+          return requestAnimationFrame(tick);
+        } else {
+          return setTimeout(tick, COUNT_MS_PER_FRAME);
+        }
+      })();
+    };
+
+    Odometer.prototype.getDigitCount = function() {
+      var i, max, value, values, _i, _len;
+      values = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      for (i = _i = 0, _len = values.length; _i < _len; i = ++_i) {
+        value = values[i];
+        values[i] = Math.abs(value);
+      }
+      max = Math.max.apply(Math, values);
+      return Math.ceil(Math.log(max + 1) / Math.log(10));
+    };
+
+    Odometer.prototype.getFractionalDigitCount = function() {
+      var i, parser, parts, value, values, _i, _len;
+      values = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      parser = /^\-?\d*\.(\d*?)0*$/;
+      for (i = _i = 0, _len = values.length; _i < _len; i = ++_i) {
+        value = values[i];
+        values[i] = value.toString();
+        parts = parser.exec(values[i]);
+        if (parts == null) {
+          values[i] = 0;
+        } else {
+          values[i] = parts[1].length;
+        }
+      }
+      return Math.max.apply(Math, values);
+    };
+
+    Odometer.prototype.resetDigits = function() {
+      this.digits = [];
+      this.ribbons = [];
+      this.inside.innerHTML = '';
+      return this.resetFormat();
+    };
+
+    Odometer.prototype.animateSlide = function(newValue) {
+      var boosted, cur, diff, digitCount, digits, dist, end, fractionalCount, frame, frames, i, incr, j, mark, numEl, oldValue, start, _base, _i, _j, _k, _l, _len, _len1, _len2, _m, _ref, _results;
+      oldValue = this.value;
+      fractionalCount = this.getFractionalDigitCount(oldValue, newValue);
+      if (fractionalCount) {
+        newValue = newValue * Math.pow(10, fractionalCount);
+        oldValue = oldValue * Math.pow(10, fractionalCount);
+      }
+      if (!(diff = newValue - oldValue)) {
+        return;
+      }
+      this.bindTransitionEnd();
+      digitCount = this.getDigitCount(oldValue, newValue);
+      digits = [];
+      boosted = 0;
+      for (i = _i = 0; 0 <= digitCount ? _i < digitCount : _i > digitCount; i = 0 <= digitCount ? ++_i : --_i) {
+        start = truncate(oldValue / Math.pow(10, digitCount - i - 1));
+        end = truncate(newValue / Math.pow(10, digitCount - i - 1));
+        dist = end - start;
+        if (Math.abs(dist) > this.MAX_VALUES) {
+          frames = [];
+          incr = dist / (this.MAX_VALUES + this.MAX_VALUES * boosted * DIGIT_SPEEDBOOST);
+          cur = start;
+          while ((dist > 0 && cur < end) || (dist < 0 && cur > end)) {
+            frames.push(Math.round(cur));
+            cur += incr;
+          }
+          if (frames[frames.length - 1] !== end) {
+            frames.push(end);
+          }
+          boosted++;
+        } else {
+          frames = (function() {
+            _results = [];
+            for (var _j = start; start <= end ? _j <= end : _j >= end; start <= end ? _j++ : _j--){ _results.push(_j); }
+            return _results;
+          }).apply(this);
+        }
+        for (i = _k = 0, _len = frames.length; _k < _len; i = ++_k) {
+          frame = frames[i];
+          frames[i] = Math.abs(frame % 10);
+        }
+        digits.push(frames);
+      }
+      this.resetDigits();
+      _ref = digits.reverse();
+      for (i = _l = 0, _len1 = _ref.length; _l < _len1; i = ++_l) {
+        frames = _ref[i];
+        if (!this.digits[i]) {
+          this.addDigit(' ', i >= fractionalCount);
+        }
+        if ((_base = this.ribbons)[i] == null) {
+          _base[i] = this.digits[i].querySelector('.odometer-ribbon-inner');
+        }
+        this.ribbons[i].innerHTML = '';
+        if (diff < 0) {
+          frames = frames.reverse();
+        }
+        for (j = _m = 0, _len2 = frames.length; _m < _len2; j = ++_m) {
+          frame = frames[j];
+          numEl = document.createElement('div');
+          numEl.className = 'odometer-value';
+          numEl.innerHTML = frame;
+          this.ribbons[i].appendChild(numEl);
+          if (j === frames.length - 1) {
+            addClass(numEl, 'odometer-last-value');
+          }
+          if (j === 0) {
+            addClass(numEl, 'odometer-first-value');
+          }
+        }
+      }
+      if (start < 0) {
+        this.addDigit('-');
+      }
+      mark = this.inside.querySelector('.odometer-radix-mark');
+      if (mark != null) {
+        mark.parent.removeChild(mark);
+      }
+      if (fractionalCount) {
+        return this.addSpacer(this.format.radix, this.digits[fractionalCount - 1], 'odometer-radix-mark');
+      }
+    };
+
+    return Odometer;
+
+  })();
+
+  Odometer.options = (_ref = window.odometerOptions) != null ? _ref : {};
+
+  setTimeout(function() {
+    var k, v, _base, _ref1, _results;
+    if (window.odometerOptions) {
+      _ref1 = window.odometerOptions;
+      _results = [];
+      for (k in _ref1) {
+        v = _ref1[k];
+        _results.push((_base = Odometer.options)[k] != null ? (_base = Odometer.options)[k] : _base[k] = v);
+      }
+      return _results;
+    }
+  }, 0);
+
+  Odometer.init = function() {
+    var el, elements, _i, _len, _ref1, _results;
+    if (document.querySelectorAll == null) {
+      return;
+    }
+    elements = document.querySelectorAll(Odometer.options.selector || '.odometer');
+    _results = [];
+    for (_i = 0, _len = elements.length; _i < _len; _i++) {
+      el = elements[_i];
+      _results.push(el.odometer = new Odometer({
+        el: el,
+        value: (_ref1 = el.innerText) != null ? _ref1 : el.textContent
+      }));
+    }
+    return _results;
+  };
+
+  if ((((_ref1 = document.documentElement) != null ? _ref1.doScroll : void 0) != null) && (document.createEventObject != null)) {
+    _old = document.onreadystatechange;
+    document.onreadystatechange = function() {
+      if (document.readyState === 'complete' && Odometer.options.auto !== false) {
+        Odometer.init();
+      }
+      return _old != null ? _old.apply(this, arguments) : void 0;
+    };
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      if (Odometer.options.auto !== false) {
+        return Odometer.init();
+      }
+    }, false);
+  }
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
+      return Odometer;
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+
+}).call(this);
 
 
 /***/ }),
@@ -42441,6 +43181,91 @@ var Spinner = {
   Watch: _Watch.Watch
 };
 exports.Spinner = Spinner;
+
+/***/ }),
+
+/***/ "./node_modules/react-odometerjs/dist/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-odometerjs/dist/index.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _odometer = __webpack_require__(/*! odometer */ "./node_modules/odometer/odometer.js");
+
+var _odometer2 = _interopRequireDefault(_odometer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ReactOdometer = function (_PureComponent) {
+  _inherits(ReactOdometer, _PureComponent);
+
+  function ReactOdometer(props) {
+    _classCallCheck(this, ReactOdometer);
+
+    var _this = _possibleConstructorReturn(this, (ReactOdometer.__proto__ || Object.getPrototypeOf(ReactOdometer)).call(this, props));
+
+    _this.node = _react2.default.createRef();
+    return _this;
+  }
+  // Information about options can be found here:
+  // http://github.hubspot.com/odometer/
+
+
+  _createClass(ReactOdometer, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props,
+          value = _props.value,
+          options = _objectWithoutProperties(_props, ['value']);
+
+      this.odometer = new _odometer2.default(_extends({
+        el: this.node.current,
+        value: value
+      }, options));
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      var value = this.props.value;
+
+      this.odometer.update(value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('div', {
+        ref: this.node
+      });
+    }
+  }]);
+
+  return ReactOdometer;
+}(_react.PureComponent);
+
+exports.default = ReactOdometer;
 
 /***/ }),
 

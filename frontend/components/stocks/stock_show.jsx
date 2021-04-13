@@ -4,6 +4,7 @@ import * as StockAPI from "../../util/stocks_api_util";
 import CompanyNews from "./stock_show_components/company_news";
 import CompanyAbout from "./stock_show_components/company_about";
 import ProtNavBarContainer from "../nav_bar/prot_nav_bar_container";
+import StockChart from './stock_show_components/stock_chart_container'
 import {
   Sparklines,
   SparklinesLine,
@@ -43,8 +44,8 @@ const StockShow = ({ stockSymbol }) => {
   }, [stockSymbol]);
 
   // console.log(stockSymbol);
-  // console.log(currentPrice);
-  console.log(companyProfile);
+  console.log(currentPrice);
+  // console.log(companyProfile);
   // console.log(companyNews);
   // console.log(todayISO);
   // console.log(oneWeekAgoISO);
@@ -63,6 +64,7 @@ const StockShow = ({ stockSymbol }) => {
         <SparklinesLine color="blue" />
         {/* <SparklinesSpots /> */}
       </Sparklines>
+      <StockChart currentPrice={currentPrice}/>
       <CompanyAbout companyProfile={companyProfile} />
       <CompanyNews companyNews={companyNews} />
     </div>
