@@ -10102,8 +10102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_STOCKS": () => (/* binding */ RECEIVE_STOCKS),
 /* harmony export */   "fetchStock": () => (/* binding */ fetchStock),
 /* harmony export */   "fetchStockAPI": () => (/* binding */ fetchStockAPI),
-/* harmony export */   "fetchAllStocksAPI": () => (/* binding */ fetchAllStocksAPI),
-/* harmony export */   "fetchStockCurrentPriceAPI": () => (/* binding */ fetchStockCurrentPriceAPI)
+/* harmony export */   "fetchAllStocksAPI": () => (/* binding */ fetchAllStocksAPI)
 /* harmony export */ });
 /* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
 
@@ -10144,12 +10143,11 @@ var fetchAllStocksAPI = function fetchAllStocksAPI(APIKey) {
       return dispatch(receiveStocks(stocks));
     });
   };
-};
-var fetchStockCurrentPriceAPI = function fetchStockCurrentPriceAPI(stockSymbol, APIKey) {
-  return _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchStockCurrentPriceAPI(stockSymbol, APIKey).then(function (stockPrices) {
-    return dispatch(receiveStock(stockPrices));
-  });
-};
+}; // export const fetchStockCurrentPriceAPI = (stockSymbol, APIKey) =>
+//   StocksUtil.fetchStockCurrentPriceAPI(
+//     stockSymbol,
+//     APIKey
+//   ).then((stockPrices) => dispatch(receiveStock(stockPrices)));
 
 /***/ }),
 
@@ -10916,8 +10914,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
-/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-sparklines */ "./node_modules/react-sparklines/build/index.js");
-/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_sparklines__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stock_show_components/company_news */ "./frontend/components/stocks/stock_show_components/company_news.jsx");
+/* harmony import */ var _stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stock_show_components/company_about */ "./frontend/components/stocks/stock_show_components/company_about.jsx");
+/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-sparklines */ "./node_modules/react-sparklines/build/index.js");
+/* harmony import */ var react_sparklines__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_sparklines__WEBPACK_IMPORTED_MODULE_4__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10931,6 +10931,8 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import { fetchStockCurrentPriceAPI } from "../../util/stocks_api_util";
+
+
 
 
 
@@ -10954,8 +10956,8 @@ var StockShow = function StockShow(_ref) {
       setCompanyNews = _useState6[1];
 
   var today = new Date();
-  var todayISO = today.toISOString().split('T')[0];
-  var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split('T')[0];
+  var todayISO = today.toISOString().split("T")[0];
+  var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split("T")[0];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(function (res) {
       return setCurrentPrice(res);
@@ -10968,23 +10970,120 @@ var StockShow = function StockShow(_ref) {
     });
   }, []); // console.log(stockSymbol);
   // console.log(currentPrice);
-  // console.log(companyProfile);
 
-  console.log(companyNews); // console.log(todayISO);
+  console.log(companyProfile); // console.log(companyNews);
+  // console.log(todayISO);
   // console.log(oneWeekAgoISO);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, currentPrice.c), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.Sparklines, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, currentPrice.c), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_4__.Sparklines, {
     data: [5, 10, 5, 20, 8, 15],
     limit: 5,
     width: 1000,
     height: 200,
     margin: 50
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.SparklinesLine, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_4__.SparklinesLine, {
     color: "blue"
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__.default, {
+    companyProfile: companyProfile
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__.default, {
+    companyNews: companyNews
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StockShow);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stock_show_components/company_about.jsx":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/stocks/stock_show_components/company_about.jsx ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var CompanyAbout = function CompanyAbout(_ref) {
+  var companyProfile = _ref.companyProfile;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Company Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Ticker"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "URL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Industry"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.ticker), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: companyProfile.weburl
+  }, companyProfile.weburl)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.finnhubIndustry)))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyAbout);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stock_show_components/company_news.jsx":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/stocks/stock_show_components/company_news.jsx ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _company_news_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./company_news_item */ "./frontend/components/stocks/stock_show_components/company_news_item.jsx");
+
+
+
+var CompanyNews = function CompanyNews(_ref) {
+  var companyNews = _ref.companyNews;
+  var news = Object.values(companyNews).map(function (article, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_company_news_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+      key: i,
+      url: article.url,
+      source: article.source,
+      headline: article.headline,
+      summary: article.summary,
+      image: article.image
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "News"), news.slice(0, 3));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyNews);
+
+/***/ }),
+
+/***/ "./frontend/components/stocks/stock_show_components/company_news_item.jsx":
+/*!********************************************************************************!*\
+  !*** ./frontend/components/stocks/stock_show_components/company_news_item.jsx ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var CompanyNewsItem = function CompanyNewsItem(_ref) {
+  var url = _ref.url,
+      source = _ref.source,
+      headline = _ref.headline,
+      summary = _ref.summary,
+      image = _ref.image;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: url
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, source), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, summary.split("").slice(0, 75).join("") + "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: image,
+    width: "200px",
+    height: "135px"
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyNewsItem);
 
 /***/ }),
 
