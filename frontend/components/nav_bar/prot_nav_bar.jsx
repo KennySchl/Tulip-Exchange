@@ -4,7 +4,6 @@ import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 import Loader from "react-loader-spinner";
-import { fetchStock } from "../../util/stocks_api_util";
 
 const ProtNavBar = ({ logout, currentUser, stocks, fetchStocks}) => {
   const [loading, setLoading] = useState(true);
@@ -21,13 +20,13 @@ const ProtNavBar = ({ logout, currentUser, stocks, fetchStocks}) => {
     logout();
     window.location.reload();
   };
-  console.log(logout);
-  console.log(currentUser);
-  console.log(stocks);
+  // console.log(logout);
+  // console.log(currentUser);
+  // console.log(stocks);
 
   if (loading) {
     return (
-      <div>
+      <div className="loader">
         <Loader type="Grid" color="rgb(0,200,5)" height={80} width={80} />
       </div>
     );

@@ -7,7 +7,7 @@ const Stocks = ({ stocks, fetchStocks }) => {
   useEffect(() => {
     // fetchStocks(window.finnhubAPIKey);
   }, []);
-  console.log(stocks);
+  // console.log(stocks);
   const handleFilterChange = (e) => setfilterStocks(e.target.value);
 
   return (
