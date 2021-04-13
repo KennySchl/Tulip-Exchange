@@ -5,22 +5,18 @@ import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 import Loader from "react-loader-spinner";
 
-const ProtNavBar = ({ logout, fetchStocks }) => {
+const ProtNavBar = ({ logout, fetchStocks, currentUser }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchStocks(window.finnhubAPIKey);
-    setLoading(false)
+    // setLoading(false);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [currentUser]);
 
-  const handleLogout = () => {
-    window.location.reload();
-    logout();
-    window.location.reload();
-  };
+const handleLogOut = () => logout()
 
   if (loading) {
     return (
@@ -37,9 +33,9 @@ const ProtNavBar = ({ logout, fetchStocks }) => {
           </h1>
         </Link>
         <StocksContainer />
-        <button className="logout" onClick={handleLogout}>
+        <Link to="/" className="logout" onClick={handleLogOut}>
           Log Out
-        </button>
+        </Link>
       </div>
     );
   }

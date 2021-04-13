@@ -10312,7 +10312,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var ProtNavBar = function ProtNavBar(_ref) {
   var logout = _ref.logout,
-      fetchStocks = _ref.fetchStocks;
+      fetchStocks = _ref.fetchStocks,
+      currentUser = _ref.currentUser;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -10320,17 +10321,15 @@ var ProtNavBar = function ProtNavBar(_ref) {
       setLoading = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchStocks(window.finnhubAPIKey);
-    setLoading(false);
+    fetchStocks(window.finnhubAPIKey); // setLoading(false);
+
     setTimeout(function () {
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [currentUser]);
 
-  var handleLogout = function handleLogout() {
-    window.location.reload();
-    logout();
-    window.location.reload();
+  var handleLogOut = function handleLogOut() {
+    return logout();
   };
 
   if (loading) {
@@ -10351,9 +10350,10 @@ var ProtNavBar = function ProtNavBar(_ref) {
       className: "website-name-nav"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faLeaf
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stocks_stocks_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stocks_stocks_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      to: "/",
       className: "logout",
-      onClick: handleLogout
+      onClick: handleLogOut
     }, "Log Out"));
   }
 };
@@ -11335,7 +11335,7 @@ var sessionReducer = function sessionReducer() {
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGOUT_CURRENT_USER:
-      return newState;
+      return _nullUser;
 
     default:
       return state;
