@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import * as StockAPI from "../../util/stocks_api_util";
 import CompanyNews from "./stock_show_components/company_news";
 import CompanyAbout from "./stock_show_components/company_about";
+import ProtNavBarContainer from '../nav_bar/prot_nav_bar_container'
 import {
   Sparklines,
   SparklinesLine,
@@ -49,6 +50,7 @@ const StockShow = ({ stockSymbol }) => {
   // console.log(oneWeekAgoISO);
   return (
     <div>
+      <ProtNavBarContainer />
       <h1>{companyProfile.name}</h1>
       <h1>{currentPrice.c}</h1>
       <Sparklines
