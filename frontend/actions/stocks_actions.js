@@ -18,10 +18,10 @@ export const fetchStock = (stockSymbol) => (dispatch) =>
     dispatch(receiveStock(stock))
   );
 
-export const fetchStockAPI = (stockSymbol) => (dispatch) =>
-  StocksUtil.fetchStockAPI(stockSymbol).then((stock) =>
-    dispatch(receiveStock(stock))
-  );
+// export const fetchStockAPI = (stockSymbol) => (dispatch) =>
+//   StocksUtil.fetchStockAPI(stockSymbol).then((stock) =>
+//     dispatch(receiveStock(stock))
+//   );
 
 export const fetchAllStocksAPI = (APIKey) => (dispatch) =>
   StocksUtil.fetchAllStocksAPI(APIKey).then((stocks) =>
