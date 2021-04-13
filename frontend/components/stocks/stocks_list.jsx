@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 const titleize = require("titleize");
 
-const StocksList = ({ allStocks, filterStocks }) => {
-  const filteredStocks = allStocks.filter((stock) => {
+const StocksList = ({ filterStocks, stocks }) => {
+  const filteredStocks = Object.values(stocks).filter((stock) => {
     return (
       stock.description.toLowerCase().indexOf(filterStocks.toLowerCase()) !==
         -1 ||
@@ -11,8 +11,6 @@ const StocksList = ({ allStocks, filterStocks }) => {
     );
   });
 
-  console.log(filteredStocks);
-  // console.log(allStocks);
   const stockSearchList =
     filteredStocks.length === 0 ? (
       <tr>
@@ -26,8 +24,14 @@ const StocksList = ({ allStocks, filterStocks }) => {
       filteredStocks.map((stock, i) => (
         <div key={i}>
           <tr>
-            <td><Link to={`/stocks/${stock.symbol}`} />{stock.symbol}</td>
-            <td><Link to={`/stocks/${stock.symbol}`} />{titleize(stock.description)}</td>
+            <td>
+              <Link to={`/stocks/${stock.symbol}`} />
+              {stock.symbol}
+            </td>
+            <td>
+              <Link to={`/stocks/${stock.symbol}`} />
+              {titleize(stock.description)}
+            </td>
           </tr>
         </div>
       ))
