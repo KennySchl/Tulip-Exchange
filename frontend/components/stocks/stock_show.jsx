@@ -8,6 +8,11 @@ const StockShow = ({ stockSymbol }) => {
   const [companyProfile, setCompanyProfile] = useState({});
   const [companyNews, setCompanyNews] = useState({});
 
+  const today = new Date()
+  const todayISO = today.toISOString().split('T')[0]
+  const oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate()-7).toISOString().split('T')[0]
+
+
   useEffect(() => {
     StockAPI.fetchStockCurrentPriceAPI(
       stockSymbol,
@@ -19,20 +24,25 @@ const StockShow = ({ stockSymbol }) => {
     ).then((res) => setCompanyProfile(res));
     StockAPI.fetchStockCompanyNewsAPI(
       stockSymbol,
-      window.finnhubAPIKey
+      window.finnhubAPIKey,
+      oneWeekAgoISO,
+      todayISO
     ).then((res) => setCompanyNews(res));
   }, []);
 
-  console.log(stockSymbol);
-  console.log(currentPrice);
-  console.log(companyProfile);
+  // console.log(stockSymbol);
+  // console.log(currentPrice);
+  // console.log(companyProfile);
   console.log(companyNews);
+  // console.log(todayISO);
+  // console.log(oneWeekAgoISO);
 
   return (
     <div>
-      <Sparklines data={[5, 10, 5, 20, 8, 15]} limit={5} width={100} height={20} margin={5}>
+      <h1>{companyProfile.name}</h1>
+      <h1>{currentPrice.c}</h1>
+      <Sparklines data={[5, 10, 5, 20, 8, 15]} limit={5} width={1000} height={200} margin={50}>
         <SparklinesLine color="blue" />
-        <SparklinesReferenceLine type="mean" />
         {/* <SparklinesSpots /> */}
       </Sparklines>
     </div>

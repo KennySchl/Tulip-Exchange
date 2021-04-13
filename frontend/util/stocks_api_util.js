@@ -20,11 +20,10 @@ export const fetchStockCompanyProfileAPI = (stockSymbol, APIKey) =>
     url: `https://finnhub.io/api/v1/stock/profile2?symbol=${stockSymbol}&token=${APIKey}`,
   });
 
-export const fetchStockCompanyNewsAPI = (stockSymbol, APIKey) =>
+export const fetchStockCompanyNewsAPI = (stockSymbol, APIKey, fromDate, toDate) =>
   $.ajax({
-    url: `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=2021-03-01&to=2021-03-09&token=${APIKey}`,
+    url: `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=${fromDate}&to=${toDate}&token=${APIKey}`,
   });
-//FIX DATE TO BE PRESENT DAY UNTIL ONE WEEK BEFORE^^^^^^^^^^^
 
 export const fetchStockCurrentPriceAPI = (stockSymbol, APIKey) =>
   $.ajax({

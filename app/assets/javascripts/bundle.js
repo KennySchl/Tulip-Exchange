@@ -10953,6 +10953,9 @@ var StockShow = function StockShow(_ref) {
       companyNews = _useState6[0],
       setCompanyNews = _useState6[1];
 
+  var today = new Date();
+  var todayISO = today.toISOString().split('T')[0];
+  var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split('T')[0];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(function (res) {
       return setCurrentPrice(res);
@@ -10960,24 +10963,24 @@ var StockShow = function StockShow(_ref) {
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCompanyProfileAPI(stockSymbol, window.finnhubAPIKey).then(function (res) {
       return setCompanyProfile(res);
     });
-    _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCompanyNewsAPI(stockSymbol, window.finnhubAPIKey).then(function (res) {
+    _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCompanyNewsAPI(stockSymbol, window.finnhubAPIKey, oneWeekAgoISO, todayISO).then(function (res) {
       return setCompanyNews(res);
     });
-  }, []);
-  console.log(stockSymbol);
-  console.log(currentPrice);
-  console.log(companyProfile);
-  console.log(companyNews);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.Sparklines, {
+  }, []); // console.log(stockSymbol);
+  // console.log(currentPrice);
+  // console.log(companyProfile);
+
+  console.log(companyNews); // console.log(todayISO);
+  // console.log(oneWeekAgoISO);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, currentPrice.c), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.Sparklines, {
     data: [5, 10, 5, 20, 8, 15],
     limit: 5,
-    width: 100,
-    height: 20,
-    margin: 5
+    width: 1000,
+    height: 200,
+    margin: 50
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.SparklinesLine, {
     color: "blue"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_sparklines__WEBPACK_IMPORTED_MODULE_2__.SparklinesReferenceLine, {
-    type: "mean"
   })));
 };
 
@@ -11598,12 +11601,11 @@ var fetchStockCompanyProfileAPI = function fetchStockCompanyProfileAPI(stockSymb
     url: "https://finnhub.io/api/v1/stock/profile2?symbol=".concat(stockSymbol, "&token=").concat(APIKey)
   });
 };
-var fetchStockCompanyNewsAPI = function fetchStockCompanyNewsAPI(stockSymbol, APIKey) {
+var fetchStockCompanyNewsAPI = function fetchStockCompanyNewsAPI(stockSymbol, APIKey, fromDate, toDate) {
   return $.ajax({
-    url: "https://finnhub.io/api/v1/company-news?symbol=".concat(stockSymbol, "&from=2021-03-01&to=2021-03-09&token=").concat(APIKey)
+    url: "https://finnhub.io/api/v1/company-news?symbol=".concat(stockSymbol, "&from=").concat(fromDate, "&to=").concat(toDate, "&token=").concat(APIKey)
   });
-}; //FIX DATE TO BE PRESENT DAY UNTIL ONE WEEK BEFORE^^^^^^^^^^^
-
+};
 var fetchStockCurrentPriceAPI = function fetchStockCurrentPriceAPI(stockSymbol, APIKey) {
   return $.ajax({
     url: "https://finnhub.io/api/v1/quote?symbol=".concat(stockSymbol, "&token=").concat(APIKey)
