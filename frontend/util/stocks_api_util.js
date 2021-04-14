@@ -29,3 +29,8 @@ export const fetchStockCurrentPriceAPI = (stockSymbol, APIKey) =>
   $.ajax({
     url: `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=${APIKey}`,
   });
+
+export const fetchStockIntradayAPI = (stockSymbol, from, to, APIKey) =>
+  $.ajax({
+    url: `https://finnhub.io/api/v1/stock/candle?symbol=${stockSymbol}&resolution=5&from=${from}&to=${to}&token=${APIKey}`,
+  });
