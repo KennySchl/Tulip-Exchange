@@ -66,10 +66,11 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   // const oneMin = dateNow - fiveMin / 5;
 
   let data = [];
-  let dataValueAVG = [null];
+  let dataValueAVG = [];
 
   for (let i = 0; i < intraDayData.t.length; i++) {
     data.push({ value: intraDayData.o[i], time: intraDayData.t[i] });
+    dataValueAVG.push(intraDayData.o[i]);
   }
 
   const renderLineChart = (

@@ -11157,13 +11157,14 @@ var StockChart = function StockChart(_ref) {
 
 
   var data = [];
-  var dataValueAVG = [null];
+  var dataValueAVG = [];
 
   for (var i = 0; i < intraDayData.t.length; i++) {
     data.push({
       value: intraDayData.o[i],
       time: intraDayData.t[i]
     });
+    dataValueAVG.push(intraDayData.o[i]);
   }
 
   var renderLineChart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__.LineChart, {
