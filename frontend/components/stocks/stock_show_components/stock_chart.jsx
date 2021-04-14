@@ -20,8 +20,8 @@ const StockChart = ({ currentPrice, intraDayData }) => {
 
   //UNIX TIME CALCULATIONS
   // const dateNow = Math.floor(Date.now() / 1000);
-  const marketOpen = new Date().setHours(3, 0, 0, 0)/1000;
-  const marketClose = new Date().setHours(12, 0, 0, 0)/1000;
+  const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
+  const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
   const currentLineColor = () => {
     if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
@@ -46,8 +46,15 @@ const StockChart = ({ currentPrice, intraDayData }) => {
 
   const handleHoverTime = () => {
     console.log(hoverTime);
-  return <div className="hover-time">{new Date(hoverTime*1000).toLocaleTimeString(["en-US"],{hour: "2-digit", minute: "2-digit"})}</div>;
-  }
+    return (
+      <div className="hover-time">
+        {new Date(hoverTime * 1000).toLocaleTimeString(["en-US"], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}
+      </div>
+    );
+  };
   // const oneDay = 86400;
   // const d = dateNow - oneDay;
   // const w = dateNow - oneDay * 7;
@@ -57,40 +64,12 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   // const fifteenMin = dateNow - oneDay / 96;
   // const fiveMin = dateNow - fifteenMin / 3;
   // const oneMin = dateNow - fiveMin / 5;
-  // const data = [];
 
-  // useEffect(() => {
-  //   //RESOLUTION === 1, 5, 15, 30, 60, D, W, M
-  //   //FROM/TO === UNIX TIMESTAMP
-  //   //CURRENT TIME UNIX ---- Math.floor(Date.now()/1000)
-  //   fetchStockIntradayAPI(
-  //     stockSymbol,
-  //     d,
-  //     dateNow,
-  //     window.finnhubAPIKey
-  //   ).then((res) => response = res);
-  //   lineData()
-  // }, []);
-  // console.log(response);
-  // console.log(data);
-  // useEffect(()=>{
-  //     lineData()
-
-  // },[intraDayData])
-
-  // setTimeout(() => {
-  //   if (typeof intraDayData.o !== "undefined") {
-  //
-  //     }
-  //   }
-  // }, 5000);
-
-  // console.log(data);
   let data = [];
-  let dataValueAVG = [];
+  let dataValueAVG = [null];
+
   for (let i = 0; i < intraDayData.t.length; i++) {
     data.push({ value: intraDayData.o[i], time: intraDayData.t[i] });
-    dataValueAVG.push(intraDayData.o[i]);
   }
 
   const renderLineChart = (
@@ -101,6 +80,7 @@ const StockChart = ({ currentPrice, intraDayData }) => {
       onMouseMove={handleMouseHover}
       onTouchStart={handleMouseHover}
       onMouseLeave={resetHoverPrice}
+      className="stock-line-chart"
     >
       <Line
         type="monotone"
@@ -114,7 +94,12 @@ const StockChart = ({ currentPrice, intraDayData }) => {
         y={dataValueAVG.reduce((a, b) => a + b) / dataValueAVG.length}
         strokeDasharray="2 2"
       />
-      <XAxis dataKey="time" type="number" domain={[marketOpen, marketClose]} hide />
+      <XAxis
+        dataKey="time"
+        type="number"
+        domain={[marketOpen, marketClose]}
+        hide
+      />
       <YAxis
         dataKey="value"
         type="number"
@@ -136,7 +121,7 @@ const StockChart = ({ currentPrice, intraDayData }) => {
 
   return (
     <div>
-      <Odometer value={hoverPrice} />
+      <Odometer value={hoverPrice} className="stocks-chart-price" />
       {renderLineChart}
     </div>
   );

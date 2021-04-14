@@ -10336,10 +10336,7 @@ var ProtNavBar = function ProtNavBar(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchStocks(window.finnhubAPIKey).then(function () {
       return setLoading(false);
-    }); // setTimeout(() => {
-    //   setLoading(false);
-    // }, 1000);
-
+    });
     return function () {
       setLoading(true);
     };
@@ -10842,6 +10839,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stock_show_components/company_about */ "./frontend/components/stocks/stock_show_components/company_about.jsx");
 /* harmony import */ var _nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../nav_bar/prot_nav_bar_container */ "./frontend/components/nav_bar/prot_nav_bar_container.jsx");
 /* harmony import */ var _stock_show_components_stock_chart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stock_show_components/stock_chart */ "./frontend/components/stocks/stock_show_components/stock_chart.jsx");
+/* harmony import */ var react_loader_spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-loader-spinner */ "./node_modules/react-loader-spinner/dist/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -10853,6 +10851,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -10879,7 +10878,7 @@ var StockShow = function StockShow(_ref) {
       companyNews = _useState6[0],
       setCompanyNews = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState8 = _slicedToArray(_useState7, 2),
       intraDayData = _useState8[0],
       setIntraDayData = _useState8[1];
@@ -10891,11 +10890,11 @@ var StockShow = function StockShow(_ref) {
 
   var today = new Date();
   var todayISO = today.toISOString().split("T")[0];
-  var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split("T")[0];
-  var dateNow = Math.floor(Date.now() / 1000);
-  var d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
-  var oneDay = 86400;
-  var w = new Date(dateNow - oneDay * 7).setHours(3, 0, 0, 0) / 1000;
+  var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split("T")[0]; // const dateNow = Math.floor(Date.now() / 1000);
+  // const d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
+  // const oneDay = 86400
+  // const w = new Date(dateNow - oneDay * 7).setHours(3,0,0,0)/1000;
+
   var marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
   var marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -10910,10 +10909,12 @@ var StockShow = function StockShow(_ref) {
     });
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockIntradayAPI(stockSymbol, marketOpen, marketClose, window.finnhubAPIKey).then(function (res) {
       return setIntraDayData(res);
+    }).then(function () {
+      return setLoading(false);
     });
-    setTimeout(function () {
-      setLoading(false);
-    }, 1000);
+    return function () {
+      setLoading(true);
+    };
   }, [stockSymbol]); // console.log(intraDayData);
   // console.log(stockSymbol);
   // console.log(currentPrice);
@@ -10925,15 +10926,29 @@ var StockShow = function StockShow(_ref) {
   // console.log(intraDayTime);
 
   if (loading) {
-    return null;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "loader"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_loader_spinner__WEBPACK_IMPORTED_MODULE_6__.default, {
+      type: "Grid",
+      color: "rgb(0,200,5)",
+      height: 80,
+      width: 80
+    }));
   } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_stock_chart__WEBPACK_IMPORTED_MODULE_5__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "stock-show"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+      className: "company-name"
+    }, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_stock_chart__WEBPACK_IMPORTED_MODULE_5__.default, {
       currentPrice: currentPrice,
-      intraDayData: intraDayData
+      intraDayData: intraDayData,
+      className: "stock-chart"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__.default, {
-      companyProfile: companyProfile
+      companyProfile: companyProfile,
+      className: "company-about"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__.default, {
-      companyNews: companyNews
+      companyNews: companyNews,
+      className: "company-new"
     }));
   }
 };
@@ -11139,42 +11154,16 @@ var StockChart = function StockChart(_ref) {
   // const fifteenMin = dateNow - oneDay / 96;
   // const fiveMin = dateNow - fifteenMin / 3;
   // const oneMin = dateNow - fiveMin / 5;
-  // const data = [];
-  // useEffect(() => {
-  //   //RESOLUTION === 1, 5, 15, 30, 60, D, W, M
-  //   //FROM/TO === UNIX TIMESTAMP
-  //   //CURRENT TIME UNIX ---- Math.floor(Date.now()/1000)
-  //   fetchStockIntradayAPI(
-  //     stockSymbol,
-  //     d,
-  //     dateNow,
-  //     window.finnhubAPIKey
-  //   ).then((res) => response = res);
-  //   lineData()
-  // }, []);
-  // console.log(response);
-  // console.log(data);
-  // useEffect(()=>{
-  //     lineData()
-  // },[intraDayData])
-  // setTimeout(() => {
-  //   if (typeof intraDayData.o !== "undefined") {
-  //
-  //     }
-  //   }
-  // }, 5000);
-  // console.log(data);
 
 
   var data = [];
-  var dataValueAVG = [];
+  var dataValueAVG = [null];
 
   for (var i = 0; i < intraDayData.t.length; i++) {
     data.push({
       value: intraDayData.o[i],
       time: intraDayData.t[i]
     });
-    dataValueAVG.push(intraDayData.o[i]);
   }
 
   var renderLineChart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__.LineChart, {
@@ -11183,7 +11172,8 @@ var StockChart = function StockChart(_ref) {
     data: data,
     onMouseMove: handleMouseHover,
     onTouchStart: handleMouseHover,
-    onMouseLeave: resetHoverPrice
+    onMouseLeave: resetHoverPrice,
+    className: "stock-line-chart"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_3__.Line, (_React$createElement = {
     type: "monotone"
   }, _defineProperty(_React$createElement, "type", "linear"), _defineProperty(_React$createElement, "dataKey", "value"), _defineProperty(_React$createElement, "stroke", lineColor), _defineProperty(_React$createElement, "strokeWidth", 2), _defineProperty(_React$createElement, "dot", false), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_4__.ReferenceLine, {
@@ -11214,7 +11204,8 @@ var StockChart = function StockChart(_ref) {
     }
   }));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_odometerjs__WEBPACK_IMPORTED_MODULE_1__.default, {
-    value: hoverPrice
+    value: hoverPrice,
+    className: "stocks-chart-price"
   }), renderLineChart);
 };
 
