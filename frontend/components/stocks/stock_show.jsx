@@ -22,7 +22,13 @@ const StockShow = ({ stockSymbol }) => {
     .toISOString()
     .split("T")[0];
   const dateNow = Math.floor(Date.now() / 1000);
-  const d = new Date().setHours(3, 0, 0, 0) / 1000;
+  const d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
+  const oneDay = 86400
+  const w = new Date(dateNow - oneDay * 7).setHours(3,0,0,0)/1000;
+  const marketOpen = new Date().setHours(3, 0, 0, 0)/1000;
+  const marketClose = new Date().setHours(12, 0, 0, 0)/1000;
+
+
 
   useEffect(() => {
     StockAPI.fetchStockCurrentPriceAPI(
@@ -41,8 +47,8 @@ const StockShow = ({ stockSymbol }) => {
     ).then((res) => setCompanyNews(res));
     StockAPI.fetchStockIntradayAPI(
       stockSymbol,
-      d,
-      dateNow,
+      marketOpen,
+      marketClose,
       window.finnhubAPIKey
     ).then((res) => setIntraDayData(res));
     setTimeout(() => {

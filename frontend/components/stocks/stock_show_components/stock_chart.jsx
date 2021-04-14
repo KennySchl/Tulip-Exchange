@@ -10,30 +10,44 @@ import {
 import Odometer from "react-odometerjs";
 
 const StockChart = ({ currentPrice, intraDayData }) => {
-  const [odometer, setOdometer] = useState(0.0);
-  const [resolution, setResolution] = useState("D");
-  const [values, setValues] = useState([]);
+  const [lineColor, setLineColor] = useState("");
+  const [hoverTime, setHoverTime] = useState("");
+  const [hoverPrice, setHoverPrice] = useState(currentPrice.c);
 
-  // useEffect(() => {
-  //   let empty = [];
-  //   data.forEach((price) => {
-  //     empty.push({ values: price });
-  //   });
-  //   setValues(empty)
-  // },[]);
-  // const [response, setResponse] = useState({});
-  // const [dateNow, setDateNow] = useState(Math.floor(Date.now() / 1000));
-  // console.log(currentPrice.c);
-  // useEffect(() => {
-  //   setOdometer(currentPrice.c);
-  // });
+  useEffect(() => {
+    currentLineColor();
+  });
 
   //UNIX TIME CALCULATIONS
   // const dateNow = Math.floor(Date.now() / 1000);
-  // let response;
-  const marketOpen = new Date().setHours(3, 0, 0, 0);
-  const marketClose = new Date().setHours(12, 0, 0, 0);
+  const marketOpen = new Date().setHours(3, 0, 0, 0)/1000;
+  const marketClose = new Date().setHours(12, 0, 0, 0)/1000;
 
+  const currentLineColor = () => {
+    if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
+      setLineColor("rgb(0,200,5)");
+    } else {
+      setLineColor("rgb(255,80,0)");
+    }
+  };
+
+  const handleMouseHover = (e) => {
+    if (e.activePayload) {
+      let priceHovered = e.activePayload[0].payload.value;
+      let timeHovered = e.activePayload[0].payload.time;
+      setHoverTime(timeHovered);
+      setHoverPrice(priceHovered);
+    }
+  };
+
+  const resetHoverPrice = () => {
+    setHoverPrice(currentPrice.c);
+  };
+
+  const handleHoverTime = () => {
+    console.log(hoverTime);
+  return <div className="hover-time">{new Date(hoverTime*1000).toLocaleTimeString(["en-US"],{hour: "2-digit", minute: "2-digit"})}</div>;
+  }
   // const oneDay = 86400;
   // const d = dateNow - oneDay;
   // const w = dateNow - oneDay * 7;
@@ -74,49 +88,55 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   // console.log(data);
   let data = [];
   let dataValueAVG = [];
-  // let lineColor = intraDayData.o[0];
-  for (let i = 0; i < intraDayData.o.length; i++) {
+  for (let i = 0; i < intraDayData.t.length; i++) {
     data.push({ value: intraDayData.o[i], time: intraDayData.t[i] });
     dataValueAVG.push(intraDayData.o[i]);
   }
 
-  const none = () => "none";
-
-  console.log(intraDayData.o);
-  console.log(intraDayData.t);
-  console.log(data);
-
   const renderLineChart = (
-    <LineChart width={676} height={196} data={data}>
+    <LineChart
+      width={676}
+      height={196}
+      data={data}
+      onMouseMove={handleMouseHover}
+      onTouchStart={handleMouseHover}
+      onMouseLeave={resetHoverPrice}
+    >
       <Line
         type="monotone"
         type="linear"
         dataKey="value"
-        stroke="GREEN"
-        strokeWidth={1}
+        stroke={lineColor}
+        strokeWidth={2}
         dot={false}
       />
       <ReferenceLine
         y={dataValueAVG.reduce((a, b) => a + b) / dataValueAVG.length}
         strokeDasharray="2 2"
       />
-      <XAxis dataKey="time" domain={[marketOpen, marketClose]} hide />
+      <XAxis dataKey="time" type="number" domain={[marketOpen, marketClose]} hide />
       <YAxis
         dataKey="value"
         type="number"
         domain={[
           intraDayData.o[0] * 0.99,
-          intraDayData.o[data.length - 1] / 0.99,
+          intraDayData.o[intraDayData.o.length - 1] / 0.99,
         ]}
         hide
       />
-      <Tooltip content={none} cursor={{ stroke: "black", strokeWidth: 0.5 }} />
+      <Tooltip
+        content={handleHoverTime}
+        cursor={{ stroke: "black", strokeWidth: 0.5 }}
+        isAnimationActive={false}
+        offset={-20}
+        position={{ y: -25 }}
+      />
     </LineChart>
   );
 
   return (
     <div>
-      <Odometer value={currentPrice.c} />
+      <Odometer value={hoverPrice} />
       {renderLineChart}
     </div>
   );

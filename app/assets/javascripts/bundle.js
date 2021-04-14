@@ -10893,7 +10893,11 @@ var StockShow = function StockShow(_ref) {
   var todayISO = today.toISOString().split("T")[0];
   var oneWeekAgoISO = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7).toISOString().split("T")[0];
   var dateNow = Math.floor(Date.now() / 1000);
-  var d = new Date().setHours(3, 0, 0, 0) / 1000;
+  var d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
+  var oneDay = 86400;
+  var w = new Date(dateNow - oneDay * 7).setHours(3, 0, 0, 0) / 1000;
+  var marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
+  var marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(function (res) {
       return setCurrentPrice(res);
@@ -10904,7 +10908,7 @@ var StockShow = function StockShow(_ref) {
     _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockCompanyNewsAPI(stockSymbol, window.finnhubAPIKey, oneWeekAgoISO, todayISO).then(function (res) {
       return setCompanyNews(res);
     });
-    _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockIntradayAPI(stockSymbol, d, dateNow, window.finnhubAPIKey).then(function (res) {
+    _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_1__.fetchStockIntradayAPI(stockSymbol, marketOpen, marketClose, window.finnhubAPIKey).then(function (res) {
       return setIntraDayData(res);
     });
     setTimeout(function () {
@@ -11074,39 +11078,59 @@ var StockChart = function StockChart(_ref) {
   var currentPrice = _ref.currentPrice,
       intraDayData = _ref.intraDayData;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0.0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      odometer = _useState2[0],
-      setOdometer = _useState2[1];
+      lineColor = _useState2[0],
+      setLineColor = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("D"),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      resolution = _useState4[0],
-      setResolution = _useState4[1];
+      hoverTime = _useState4[0],
+      setHoverTime = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(currentPrice.c),
       _useState6 = _slicedToArray(_useState5, 2),
-      values = _useState6[0],
-      setValues = _useState6[1]; // useEffect(() => {
-  //   let empty = [];
-  //   data.forEach((price) => {
-  //     empty.push({ values: price });
-  //   });
-  //   setValues(empty)
-  // },[]);
-  // const [response, setResponse] = useState({});
-  // const [dateNow, setDateNow] = useState(Math.floor(Date.now() / 1000));
-  // console.log(currentPrice.c);
-  // useEffect(() => {
-  //   setOdometer(currentPrice.c);
-  // });
-  //UNIX TIME CALCULATIONS
+      hoverPrice = _useState6[0],
+      setHoverPrice = _useState6[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    currentLineColor();
+  }); //UNIX TIME CALCULATIONS
   // const dateNow = Math.floor(Date.now() / 1000);
-  // let response;
 
+  var marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
+  var marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
-  var marketOpen = new Date().setHours(3, 0, 0, 0);
-  var marketClose = new Date().setHours(12, 0, 0, 0); // const oneDay = 86400;
+  var currentLineColor = function currentLineColor() {
+    if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
+      setLineColor("rgb(0,200,5)");
+    } else {
+      setLineColor("rgb(255,80,0)");
+    }
+  };
+
+  var handleMouseHover = function handleMouseHover(e) {
+    if (e.activePayload) {
+      var priceHovered = e.activePayload[0].payload.value;
+      var timeHovered = e.activePayload[0].payload.time;
+      setHoverTime(timeHovered);
+      setHoverPrice(priceHovered);
+    }
+  };
+
+  var resetHoverPrice = function resetHoverPrice() {
+    setHoverPrice(currentPrice.c);
+  };
+
+  var handleHoverTime = function handleHoverTime() {
+    console.log(hoverTime);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "hover-time"
+    }, new Date(hoverTime * 1000).toLocaleTimeString(["en-US"], {
+      hour: "2-digit",
+      minute: "2-digit"
+    }));
+  }; // const oneDay = 86400;
   // const d = dateNow - oneDay;
   // const w = dateNow - oneDay * 7;
   // const m = dateNow - oneDay * 30;
@@ -11141,10 +11165,11 @@ var StockChart = function StockChart(_ref) {
   // }, 5000);
   // console.log(data);
 
-  var data = [];
-  var dataValueAVG = []; // let lineColor = intraDayData.o[0];
 
-  for (var i = 0; i < intraDayData.o.length; i++) {
+  var data = [];
+  var dataValueAVG = [];
+
+  for (var i = 0; i < intraDayData.t.length; i++) {
     data.push({
       value: intraDayData.o[i],
       time: intraDayData.t[i]
@@ -11152,42 +11177,44 @@ var StockChart = function StockChart(_ref) {
     dataValueAVG.push(intraDayData.o[i]);
   }
 
-  var none = function none() {
-    return "none";
-  };
-
-  console.log(intraDayData.o);
-  console.log(intraDayData.t);
-  console.log(data);
   var renderLineChart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_2__.LineChart, {
     width: 676,
     height: 196,
-    data: data
+    data: data,
+    onMouseMove: handleMouseHover,
+    onTouchStart: handleMouseHover,
+    onMouseLeave: resetHoverPrice
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_3__.Line, (_React$createElement = {
     type: "monotone"
-  }, _defineProperty(_React$createElement, "type", "linear"), _defineProperty(_React$createElement, "dataKey", "value"), _defineProperty(_React$createElement, "stroke", "GREEN"), _defineProperty(_React$createElement, "strokeWidth", 1), _defineProperty(_React$createElement, "dot", false), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_4__.ReferenceLine, {
+  }, _defineProperty(_React$createElement, "type", "linear"), _defineProperty(_React$createElement, "dataKey", "value"), _defineProperty(_React$createElement, "stroke", lineColor), _defineProperty(_React$createElement, "strokeWidth", 2), _defineProperty(_React$createElement, "dot", false), _React$createElement)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_4__.ReferenceLine, {
     y: dataValueAVG.reduce(function (a, b) {
       return a + b;
     }) / dataValueAVG.length,
     strokeDasharray: "2 2"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_5__.XAxis, {
     dataKey: "time",
+    type: "number",
     domain: [marketOpen, marketClose],
     hide: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_6__.YAxis, {
     dataKey: "value",
     type: "number",
-    domain: [intraDayData.o[0] * 0.99, intraDayData.o[data.length - 1] / 0.99],
+    domain: [intraDayData.o[0] * 0.99, intraDayData.o[intraDayData.o.length - 1] / 0.99],
     hide: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(recharts__WEBPACK_IMPORTED_MODULE_7__.Tooltip, {
-    content: none,
+    content: handleHoverTime,
     cursor: {
       stroke: "black",
       strokeWidth: 0.5
+    },
+    isAnimationActive: false,
+    offset: -20,
+    position: {
+      y: -25
     }
   }));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_odometerjs__WEBPACK_IMPORTED_MODULE_1__.default, {
-    value: currentPrice.c
+    value: hoverPrice
   }), renderLineChart);
 };
 
