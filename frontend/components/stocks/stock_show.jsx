@@ -77,17 +77,18 @@ const StockShow = ({ stockSymbol }) => {
     return (
       <div className="stock-show">
         <ProtNavBarContainer />
-        <h1 className="company-name">{companyProfile.name}</h1>
-        <StockChart
-          currentPrice={currentPrice}
-          intraDayData={intraDayData}
-          className="stock-chart"
-        />
-        <CompanyAbout
-          companyProfile={companyProfile}
-          className="company-about"
-        />
-        <CompanyNews companyNews={companyNews} className="company-new" />
+        <div className="stock-show-contain">
+          <div className="stock-show-box">
+            <h1 className="company-name">{companyProfile.name}</h1>
+            <StockChart
+              currentPrice={currentPrice}
+              intraDayData={intraDayData}
+              className="stock-chart"
+            />
+            <CompanyAbout companyProfile={companyProfile} />
+            <CompanyNews companyNews={companyNews} className="company-new" />
+          </div>
+        </div>
       </div>
     );
   }

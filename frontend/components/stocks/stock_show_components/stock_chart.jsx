@@ -122,7 +122,10 @@ const StockChart = ({ currentPrice, intraDayData }) => {
 
   return (
     <div>
-      <Odometer value={hoverPrice} className="stocks-chart-price" />
+      <div className="stocks-chart-price">
+        $<Odometer value={hoverPrice}  className="stock-chart-price-odometer"/>
+      </div>
+      
       {renderLineChart}
     </div>
   );

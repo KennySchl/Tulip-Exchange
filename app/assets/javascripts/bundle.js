@@ -10937,19 +10937,22 @@ var StockShow = function StockShow(_ref) {
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "stock-show"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "stock-show-contain"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "stock-show-box"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
       className: "company-name"
     }, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_stock_chart__WEBPACK_IMPORTED_MODULE_5__.default, {
       currentPrice: currentPrice,
       intraDayData: intraDayData,
       className: "stock-chart"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_about__WEBPACK_IMPORTED_MODULE_3__.default, {
-      companyProfile: companyProfile,
-      className: "company-about"
+      companyProfile: companyProfile
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_stock_show_components_company_news__WEBPACK_IMPORTED_MODULE_2__.default, {
       companyNews: companyNews,
       className: "company-new"
-    }));
+    }))));
   }
 };
 
@@ -10973,9 +10976,37 @@ __webpack_require__.r(__webpack_exports__);
 
 var CompanyAbout = function CompanyAbout(_ref) {
   var companyProfile = _ref.companyProfile;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Company Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Ticker"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "URL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", null, "Industry"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.ticker), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "company-about-contain"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "company-about-header"
+  }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "company-about-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    className: "company-about-table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    className: "about-table-headers"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    className: "about-header"
+  }, "Company Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    className: "about-header"
+  }, "Ticker"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    className: "about-header"
+  }, "URL"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+    className: "about-header"
+  }, "Industry"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    className: "about-table-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    className: "about-body"
+  }, companyProfile.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    className: "about-body"
+  }, companyProfile.ticker), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    className: "about-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: companyProfile.weburl
-  }, companyProfile.weburl)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, companyProfile.finnhubIndustry)))));
+  }, companyProfile.weburl)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    className: "about-body"
+  }, companyProfile.finnhubIndustry))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyAbout);
@@ -11010,7 +11041,11 @@ var CompanyNews = function CompanyNews(_ref) {
       image: article.image
     });
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "News"), news.slice(0, 3));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "company-news-contain"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "company-news-header"
+  }, "News"), news.slice(0, 3));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CompanyNews);
@@ -11037,12 +11072,24 @@ var CompanyNewsItem = function CompanyNewsItem(_ref) {
       headline = _ref.headline,
       summary = _ref.summary,
       image = _ref.image;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: url
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, source), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, summary.split("").slice(0, 75).join("") + "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "company-news-item-contain"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: url,
+    className: "company-news-item-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "company-news-item-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "company-news-item-source"
+  }, source), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "company-news-item-headline"
+  }, headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "company-news-item-summary"
+  }, summary.split("").slice(0, 75).join("") + "...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: image,
     width: "200px",
-    height: "135px"
+    height: "135px",
+    className: "company-news-item-img"
   })));
 };
 
@@ -11204,10 +11251,12 @@ var StockChart = function StockChart(_ref) {
       y: -25
     }
   }));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_odometerjs__WEBPACK_IMPORTED_MODULE_1__.default, {
-    value: hoverPrice,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "stocks-chart-price"
-  }), renderLineChart);
+  }, "$", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_odometerjs__WEBPACK_IMPORTED_MODULE_1__.default, {
+    value: hoverPrice,
+    className: "stock-chart-price-odometer"
+  })), renderLineChart);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StockChart);
