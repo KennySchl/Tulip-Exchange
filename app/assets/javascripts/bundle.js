@@ -10118,7 +10118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_STOCK": () => (/* binding */ RECEIVE_STOCK),
 /* harmony export */   "RECEIVE_STOCKS": () => (/* binding */ RECEIVE_STOCKS),
 /* harmony export */   "fetchStock": () => (/* binding */ fetchStock),
-/* harmony export */   "fetchAllStocksAPI": () => (/* binding */ fetchAllStocksAPI)
+/* harmony export */   "fetchStocks": () => (/* binding */ fetchStocks)
 /* harmony export */ });
 /* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
 
@@ -10150,9 +10150,9 @@ var fetchStock = function fetchStock(stockSymbol) {
 //     dispatch(receiveStock(stock))
 //   );
 
-var fetchAllStocksAPI = function fetchAllStocksAPI(APIKey) {
+var fetchStocks = function fetchStocks() {
   return function (dispatch) {
-    return _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchAllStocksAPI(APIKey).then(function (stocks) {
+    return _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchStocks().then(function (stocks) {
       return dispatch(receiveStocks(stocks));
     });
   };
@@ -10325,18 +10325,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var ProtNavBar = function ProtNavBar(_ref) {
   var logout = _ref.logout,
-      fetchStocks = _ref.fetchStocks,
       currentUser = _ref.currentUser;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       loading = _useState2[0],
       setLoading = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    fetchStocks(window.finnhubAPIKey).then(function () {
-      return setLoading(false);
-    });
     return function () {
       setLoading(true);
     };
@@ -10390,8 +10386,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _prot_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./prot_nav_bar */ "./frontend/components/nav_bar/prot_nav_bar.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_stocks_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/stocks_actions */ "./frontend/actions/stocks_actions.js");
-
 
 
 
@@ -10409,9 +10403,6 @@ var mDTP = function mDTP(dispatch) {
   return {
     logout: function logout() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.logout)());
-    },
-    fetchStocks: function fetchStocks(APIKey) {
-      return dispatch((0,_actions_stocks_actions__WEBPACK_IMPORTED_MODULE_3__.fetchAllStocksAPI)(APIKey));
     }
   };
 };
@@ -10487,7 +10478,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var LoginForm = function LoginForm(_ref) {
   var errors = _ref.errors,
       login = _ref.login,
-      clearErrors = _ref.clearErrors;
+      clearErrors = _ref.clearErrors,
+      fetchStocks = _ref.fetchStocks;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     email: "",
@@ -10508,6 +10500,7 @@ var LoginForm = function LoginForm(_ref) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    fetchStocks();
     login(user);
     setUser({
       email: "",
@@ -10597,9 +10590,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_stocks_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/stocks_actions */ "./frontend/actions/stocks_actions.js");
 /* harmony import */ var _login_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login_form */ "./frontend/components/session_form/login_form.jsx");
 
 
@@ -10616,15 +10609,18 @@ var mSTP = function mSTP(_ref) {
 var mDTP = function mDTP(dispatch) {
   return {
     login: function login(user) {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.login)(user));
     },
     clearErrors: function clearErrors() {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearErrors)());
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
+    },
+    fetchStocks: function fetchStocks() {
+      return dispatch((0,_actions_stocks_actions__WEBPACK_IMPORTED_MODULE_2__.fetchStocks)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(_login_form__WEBPACK_IMPORTED_MODULE_3__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_login_form__WEBPACK_IMPORTED_MODULE_3__.default));
 
 /***/ }),
 
@@ -10669,7 +10665,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var SignUpForm = function SignUpForm(_ref) {
   var errors = _ref.errors,
       signUp = _ref.signUp,
-      clearErrors = _ref.clearErrors;
+      clearErrors = _ref.clearErrors,
+      fetchStocks = _ref.fetchStocks;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     firstName: "",
@@ -10692,6 +10689,7 @@ var SignUpForm = function SignUpForm(_ref) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    fetchStocks();
     signUp(user);
     setUser({
       firstName: "",
@@ -10795,7 +10793,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _sign_up_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sign_up_form */ "./frontend/components/session_form/sign_up_form.jsx");
+/* harmony import */ var _actions_stocks_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/stocks_actions */ "./frontend/actions/stocks_actions.js");
+/* harmony import */ var _sign_up_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sign_up_form */ "./frontend/components/session_form/sign_up_form.jsx");
+
 
 
 
@@ -10814,11 +10814,14 @@ var mDTP = function mDTP(dispatch) {
     },
     clearErrors: function clearErrors() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.clearErrors)());
+    },
+    fetchStocks: function fetchStocks() {
+      return dispatch((0,_actions_stocks_actions__WEBPACK_IMPORTED_MODULE_2__.fetchStocks)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_sign_up_form__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_sign_up_form__WEBPACK_IMPORTED_MODULE_3__.default));
 
 /***/ }),
 
@@ -11390,7 +11393,7 @@ var StocksList = function StocksList(_ref) {
   var filterStocks = _ref.filterStocks,
       stocks = _ref.stocks;
   var filteredStocks = Object.values(stocks).filter(function (stock) {
-    return stock.description.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1 || stock.symbol.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1;
+    return stock.name.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1 || stock.symbol.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1;
   });
   var stockSearchList = filteredStocks.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, "We were unable to find any results for your search.")) : filteredStocks.length > 6 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null)) : filteredStocks.map(function (stock, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
@@ -11404,7 +11407,7 @@ var StocksList = function StocksList(_ref) {
       className: "search-list-description"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
       to: "/stocks/".concat(stock.symbol)
-    }, titleize(stock.description))));
+    }, titleize(stock.name))));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
     className: "stock-search-list"
@@ -11834,6 +11837,7 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "fetchStock": () => (/* binding */ fetchStock),
+/* harmony export */   "fetchStocks": () => (/* binding */ fetchStocks),
 /* harmony export */   "fetchAllStocksAPI": () => (/* binding */ fetchAllStocksAPI),
 /* harmony export */   "fetchStockCompanyProfileAPI": () => (/* binding */ fetchStockCompanyProfileAPI),
 /* harmony export */   "fetchStockCompanyNewsAPI": () => (/* binding */ fetchStockCompanyNewsAPI),
@@ -11844,6 +11848,11 @@ __webpack_require__.r(__webpack_exports__);
 var fetchStock = function fetchStock(stockSymbol) {
   return $.ajax({
     url: "/api/stocks/".concat(stockSymbol)
+  });
+};
+var fetchStocks = function fetchStocks() {
+  return $.ajax({
+    url: "/api/stocks"
   });
 };
 var fetchAllStocksAPI = function fetchAllStocksAPI(APIKey) {
@@ -87971,8 +87980,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _util_stocks_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/stocks_api_util */ "./frontend/util/stocks_api_util.js");
-
 
 
 

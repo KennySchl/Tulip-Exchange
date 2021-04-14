@@ -23,8 +23,8 @@ export const fetchStock = (stockSymbol) => (dispatch) =>
 //     dispatch(receiveStock(stock))
 //   );
 
-export const fetchAllStocksAPI = (APIKey) => (dispatch) =>
-  StocksUtil.fetchAllStocksAPI(APIKey).then((stocks) =>
+export const fetchStocks = () => (dispatch) =>
+  StocksUtil.fetchStocks().then((stocks) =>
     dispatch(receiveStocks(stocks))
   );
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-const LoginForm = ({ errors, login, clearErrors }) => {
+const LoginForm = ({ errors, login, clearErrors, fetchStocks }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -18,6 +18,7 @@ const LoginForm = ({ errors, login, clearErrors }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetchStocks()
     login(user);
     setUser({
       email: "",

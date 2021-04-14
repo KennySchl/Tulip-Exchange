@@ -31,6 +31,7 @@ gem 'jquery-rails'
 # gem 'mini_magick', '~> 4.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rest-client'
 
 
 # Reduces boot times through caching; required in config/boot.rb

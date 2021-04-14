@@ -5,8 +5,7 @@ const titleize = require("titleize");
 const StocksList = ({ filterStocks, stocks }) => {
   const filteredStocks = Object.values(stocks).filter((stock) => {
     return (
-      stock.description.toLowerCase().indexOf(filterStocks.toLowerCase()) !==
-        -1 ||
+      stock.name.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1 ||
       stock.symbol.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1
     );
   });
@@ -27,9 +26,7 @@ const StocksList = ({ filterStocks, stocks }) => {
             <Link to={`/stocks/${stock.symbol}`}>{stock.symbol}</Link>
           </td>
           <td className="search-list-description">
-            <Link to={`/stocks/${stock.symbol}`}>
-              {titleize(stock.description)}
-            </Link>
+            <Link to={`/stocks/${stock.symbol}`}>{titleize(stock.name)}</Link>
           </td>
         </tr>
       ))

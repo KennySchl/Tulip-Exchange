@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 import Loader from "react-loader-spinner";
 
-const ProtNavBar = ({ logout, fetchStocks, currentUser }) => {
-  const [loading, setLoading] = useState(true);
+const ProtNavBar = ({ logout, currentUser }) => {
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchStocks(window.finnhubAPIKey).then(() => setLoading(false));
     return () => {
       setLoading(true);
     };

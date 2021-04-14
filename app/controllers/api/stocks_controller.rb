@@ -1,5 +1,9 @@
 class Api::StocksController < ApplicationController
 
+  def index 
+    render json: Stock.all
+  end
+
   def show
     @stock = Stock.find_by(symbol: params[:symbol])
 
