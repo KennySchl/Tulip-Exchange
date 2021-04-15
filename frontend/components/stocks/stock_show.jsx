@@ -5,6 +5,7 @@ import CompanyAbout from "./stock_show_components/company_about";
 import ProtNavBarContainer from "../nav_bar/prot_nav_bar_container";
 import StockChart from "./stock_show_components/stock_chart";
 import Loader from "react-loader-spinner";
+import { Redirect } from "react-router";
 
 const StockShow = ({ stockSymbol }) => {
   const [currentPrice, setCurrentPrice] = useState({});
@@ -73,6 +74,8 @@ const StockShow = ({ stockSymbol }) => {
         <Loader type="Grid" color="rgb(0,200,5)" height={80} width={80} />
       </div>
     );
+  } else if (intraDayData.s === "no_data") {
+    return <Redirect to="/portfolio" />;
   } else {
     return (
       <div className="stock-show">

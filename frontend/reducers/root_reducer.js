@@ -18,5 +18,5 @@ const rootReducer = combineReducers({
   errors,
 });
 
-// export default rootReducer;
-export default persistReducer(persistConfig, rootReducer)
+
+export default persistReducer(persistConfig, rootReducer);

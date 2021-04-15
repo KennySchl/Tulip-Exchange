@@ -1,5 +1,4 @@
 require 'rest-client'
-require 'byebug'
 
 User.delete_all
 Stock.delete_all
@@ -12,10 +11,7 @@ test_user = User.create(
 )
 
 
-stocks_get = RestClient.get 'https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&securityType=Common%20Stock&token=c1nnrna37fkph7jrl7ag'
-# stocks_get = RestClient.get 'https://api.tiingo.com/tiingo/daily/AAPL/prices?startDate=04-13-2021&endDate=04-13-2021&token=bfcbb75eede09a5bde2137fca73bb4973adde2ad'
-
-# puts stocks_get
+stocks_get = RestClient.get "https://finnhub.io/api/v1/stock/symbol?exchange=US&securityType=Common%20Stock&token=#{Rails.application.credentials.finnhub[:api_key]}"
 
 all_stocks = JSON.parse(stocks_get) 
 

@@ -1,0 +1,41 @@
+.splash-page-header {
+  background-color: rgb(60, 245, 88);
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  height: 653px;
+}
+.auth-nav-box-shadow {
+  padding-top: 2px;
+  /* background-color: rgb(0, 180, 5); */
+  box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 20%);
+}
+.splash-page-contain {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-content: center;
+}
+.photo-gif-splash {
+  display: flex;
+  width: 653px;
+  height: 653px;
+}
+.splash-phone {
+  position: absolute;
+}
+.counting-money-gif {
+  margin-left: 120px;
+  margin-top: 21px;
+}
+.splash-page-hero {
+  width: 492px;
+  margin-top: 80px;
+}
+.splash-page-hero-h1 {
+  font-size: 52px;
+}
+.splash-page-hero-h2 {
+  font-size: 24px;
+}

@@ -10,11 +10,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript">
       window.finnhubAPIKey = "<%= Rails.application.credentials.finnhub[:api_key] %>"
+      window.splashphone = "<%= image_url('splashphone.png') %>"
     </script>
   </head>
-
   <body>
-
     <%= yield %>
   </body>
 </html>
