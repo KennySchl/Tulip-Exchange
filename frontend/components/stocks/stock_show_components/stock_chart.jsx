@@ -17,9 +17,7 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   useEffect(() => {
     currentLineColor();
   });
-
   //UNIX TIME CALCULATIONS
-  // const dateNow = Math.floor(Date.now() / 1000);
   const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
   const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
@@ -123,9 +121,9 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   return (
     <div>
       <div className="stocks-chart-price">
-        $<Odometer value={hoverPrice}  className="stock-chart-price-odometer"/>
+        $<Odometer value={hoverPrice} className="stock-chart-price-odometer" />
       </div>
-      
+
       {renderLineChart}
     </div>
   );

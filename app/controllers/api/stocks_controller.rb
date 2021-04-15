@@ -1,7 +1,8 @@
 class Api::StocksController < ApplicationController
 
   def index 
-    render json: Stock.all
+    @stocks = Stock.all
+    render "api/stocks/index"
   end
 
   def show
