@@ -1,0 +1,1 @@
+json.array! @watchlist_items, :id, :stock_id, :watchlist_id

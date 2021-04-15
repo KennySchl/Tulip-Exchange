@@ -1,0 +1,1 @@
+json.partial! "api/watchlists_items/watchlist_item/", watchlist_item: @watchlist_item

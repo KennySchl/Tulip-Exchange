@@ -5,17 +5,13 @@
   justify-content: center;
   height: 653px;
 }
-.auth-nav-box-shadow {
-  padding-top: 2px;
-  /* background-color: rgb(0, 180, 5); */
-  box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 20%);
-}
 .splash-page-contain {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
   align-content: center;
+  margin-top: 60px;
 }
 .photo-gif-splash {
   display: flex;

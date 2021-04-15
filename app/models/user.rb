@@ -3,6 +3,10 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :password, length: { minimum: 6 },allow_nil: true, confirmation: { case_sensitive: true}
 
+  has_many :watchlists,
+    foreign_key: :user_id,
+    class_name: :Watchlist
+  
   attr_reader :password
 
   after_initialize :ensure_session_token
