@@ -4,11 +4,12 @@ import {
   faChevronDown,
   faChevronUp,
   faEllipsisH,
-  faTh,
 } from "@fortawesome/free-solid-svg-icons";
 import WatchedStock from "./watched_stock";
 
-const WatchlistItem = ({ watchlist: { name, watchlistItems } }) => {
+import { editWatchListName } from "../../util/watchlists_api_util";
+
+const WatchlistItem = ({ watchlist: { id, userId, name, watchlistItems } }) => {
   const [listStatus, setListStatus] = useState("inactive");
   const [hoverStatus, setHoverStatus] = useState("inactive");
   const [editMode, setEditMode] = useState("inactive");
@@ -27,9 +28,16 @@ const WatchlistItem = ({ watchlist: { name, watchlistItems } }) => {
   const handleEditMode = () =>
     editMode === "inactive" ? setEditMode("active") : setEditMode("inactive");
 
-  const handleListNameChange = (e) =>
-    e.key === "Enter" ? setEditMode("inactive") : null;
+console.log(localStorage);
 
+  const handleListNameChange = (e) => {
+    const watchlist = {name: watchlistName}
+    if (e.key === "Enter") {
+
+      editWatchListName(userId, id, watchlist);
+      setEditMode("inactive");
+    }
+  };
   const editIcon =
     hoverStatus === "inactive" ? (
       <FontAwesomeIcon icon={faEllipsisH} className="invisible-ellipse" />
@@ -45,7 +53,7 @@ const WatchlistItem = ({ watchlist: { name, watchlistItems } }) => {
 
   const editInput =
     editMode === "inactive" ? (
-      <div>{name}</div>
+      <div>{watchlistName}</div>
     ) : (
       <input
         className="edit-watchlist-input"
@@ -55,8 +63,6 @@ const WatchlistItem = ({ watchlist: { name, watchlistItems } }) => {
         onKeyDown={handleListNameChange}
       />
     );
-
-  console.log(editMode);
 
   const watchedStocks = watchlistItems.map((items, i) => {
     return <WatchedStock items={items} listStatus={listStatus} key={i} />;

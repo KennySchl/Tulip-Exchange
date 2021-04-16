@@ -9,6 +9,4 @@ const mSTP = ({
   watchlists,
 });
 
-const mDTP = (dispatch) => {};
-
 export default connect(mSTP, null)(MainPageWatchlist);

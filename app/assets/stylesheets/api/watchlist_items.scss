@@ -85,7 +85,10 @@
 }
 .edit-watchlist-input {
   width: 50%;
-  border: gb(227, 233, 237);
+  border: solid 1px rgb(227, 233, 237);
+  height: 20px;
+  border-radius: 4px;
+  padding-left: 5px;
 }
 .edit-watchlist-input:focus {
   border: solid 0.5px rgb(60, 245, 88);

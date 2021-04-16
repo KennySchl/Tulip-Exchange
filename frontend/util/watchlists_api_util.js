@@ -8,3 +8,10 @@ export const createWatchlist = (userId) =>
     url: `api/users/${userId}/watchlists`,
     method: "POST",
   });
+
+export const editWatchListName = (userId, watchlistId, data) =>
+  $.ajax({
+    url: `api/users/${userId}/watchlists/${watchlistId}`,
+    method: "PATCH",
+    data: { watchlist: data },
+  });

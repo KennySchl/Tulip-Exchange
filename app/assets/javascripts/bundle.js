@@ -11564,8 +11564,6 @@ var mSTP = function mSTP(_ref) {
   };
 };
 
-var mDTP = function mDTP(dispatch) {};
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, null)(_main_page_watchlist__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
@@ -11658,8 +11656,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _watched_stock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./watched_stock */ "./frontend/components/watchlists/watched_stock.jsx");
+/* harmony import */ var _util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/watchlists_api_util */ "./frontend/util/watchlists_api_util.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -11677,8 +11676,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var WatchlistItem = function WatchlistItem(_ref) {
   var _ref$watchlist = _ref.watchlist,
+      id = _ref$watchlist.id,
+      userId = _ref$watchlist.userId,
       name = _ref$watchlist.name,
       watchlistItems = _ref$watchlist.watchlistItems;
 
@@ -11714,22 +11716,31 @@ var WatchlistItem = function WatchlistItem(_ref) {
     return editMode === "inactive" ? setEditMode("active") : setEditMode("inactive");
   };
 
+  console.log(localStorage);
+
   var handleListNameChange = function handleListNameChange(e) {
-    return e.key === "Enter" ? setEditMode("inactive") : null;
+    var watchlist = {
+      name: watchlistName
+    };
+
+    if (e.key === "Enter") {
+      (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.editWatchListName)(userId, id, watchlist);
+      setEditMode("inactive");
+    }
   };
 
   var editIcon = hoverStatus === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faEllipsisH,
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faEllipsisH,
     className: "invisible-ellipse"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faEllipsisH
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faEllipsisH
   });
   var faIcon = listStatus === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronDown
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faChevronDown
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronUp
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faChevronUp
   });
-  var editInput = editMode === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, name) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  var editInput = editMode === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, watchlistName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     className: "edit-watchlist-input",
     type: "text",
     value: watchlistName,
@@ -11738,7 +11749,6 @@ var WatchlistItem = function WatchlistItem(_ref) {
     },
     onKeyDown: handleListNameChange
   });
-  console.log(editMode);
   var watchedStocks = watchlistItems.map(function (items, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watched_stock__WEBPACK_IMPORTED_MODULE_2__.default, {
       items: items,
@@ -12203,6 +12213,42 @@ var fetchStockCurrentPriceAPI = function fetchStockCurrentPriceAPI(stockSymbol, 
 var fetchStockIntradayAPI = function fetchStockIntradayAPI(stockSymbol, from, to, APIKey) {
   return $.ajax({
     url: "https://finnhub.io/api/v1/stock/candle?symbol=".concat(stockSymbol, "&resolution=5&from=").concat(from, "&to=").concat(to, "&token=").concat(APIKey)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/watchlists_api_util.js":
+/*!**********************************************!*\
+  !*** ./frontend/util/watchlists_api_util.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchUserWatchlists": () => (/* binding */ fetchUserWatchlists),
+/* harmony export */   "createWatchlist": () => (/* binding */ createWatchlist),
+/* harmony export */   "editWatchListName": () => (/* binding */ editWatchListName)
+/* harmony export */ });
+var fetchUserWatchlists = function fetchUserWatchlists(userId) {
+  return $.ajax({
+    url: "api/users/".concat(userId, "/watchlists")
+  });
+};
+var createWatchlist = function createWatchlist(userId) {
+  return $.ajax({
+    url: "api/users/".concat(userId, "/watchlists"),
+    method: "POST"
+  });
+};
+var editWatchListName = function editWatchListName(userId, watchlistId, data) {
+  return $.ajax({
+    url: "api/users/".concat(userId, "/watchlists/").concat(watchlistId),
+    method: "PATCH",
+    data: {
+      watchlist: data
+    }
   });
 };
 
