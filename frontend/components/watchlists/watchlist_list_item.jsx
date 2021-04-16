@@ -22,7 +22,7 @@ const WatchlistItem = ({
   const [hoverStatus, setHoverStatus] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [watchlistName, setWatchlistName] = useState("");
-  console.log(setListLength);
+
   useEffect(() => {
     fetchUserWatchlist(userId, id).then((res) => setWatchlistName(res.name));
     return () => {};

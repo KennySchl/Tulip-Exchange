@@ -7,7 +7,7 @@ const ProtPage = () => {
     <div>
       <ProtNavBarContainer />
       <MainPageWatchlistContainer />
-      <img className="prot-page-bkg"src={window.protpagebkg} />    
+      {/* <img className="prot-page-bkg"src={window.protpagebkg} />     */}
     </div>
   );
 };

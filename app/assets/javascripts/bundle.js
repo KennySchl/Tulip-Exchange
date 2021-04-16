@@ -10443,10 +10443,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProtPage = function ProtPage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlists_main_page_watchlist_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    className: "prot-page-bkg",
-    src: window.protpagebkg
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlists_main_page_watchlist_container__WEBPACK_IMPORTED_MODULE_2__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProtPage);
@@ -11788,7 +11785,6 @@ var WatchlistList = function WatchlistList(_ref) {
   watchlists.sort(function (a, b) {
     return a.id - b.id;
   });
-  console.log(setListLength);
   var listItems = watchlists.map(function (watchlist, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list_item__WEBPACK_IMPORTED_MODULE_1__.default, {
       watchlist: watchlist,
@@ -11864,7 +11860,6 @@ var WatchlistItem = function WatchlistItem(_ref) {
       watchlistName = _useState8[0],
       setWatchlistName = _useState8[1];
 
-  console.log(setListLength);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.fetchUserWatchlist)(userId, id).then(function (res) {
       return setWatchlistName(res.name);

@@ -3,7 +3,7 @@ import WatchlistItem from "./watchlist_list_item";
 
 const WatchlistList = ({ watchlists, setListLength }) => {
   watchlists.sort((a, b) => a.id - b.id);
-console.log(setListLength);
+
   const listItems = watchlists.map((watchlist, i) => {
     return (
       <WatchlistItem
