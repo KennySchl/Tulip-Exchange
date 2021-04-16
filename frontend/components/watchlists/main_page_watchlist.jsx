@@ -11,22 +11,24 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
   const [createMode, setCreateMode] = useState(false);
   const [listName, setListName] = useState("");
   const [newWatchlist, setNewWatchlist] = useState(watchlists);
+  const [listLength, setListLength] = useState(newWatchlist.length);
 
   useEffect(() => {
     fetchAllUserWatchlists(currentUserId).then((res) => setNewWatchlist(res));
     return () => {};
-  }, [newWatchlist]);
+  }, [listLength]);
 
   const handleCreateMode = () =>
     createMode ? setCreateMode(false) : setCreateMode(true);
 
   const createList = (e) => {
     const list = { name: listName, userId: currentUserId };
-    console.log(e);
     if ((e.key === "Enter" || e.type === "click") && listName !== "") {
       createWatchlist(currentUserId, list);
       setCreateMode(false);
       setListName("");
+      //temp fix on memory leak
+      setListLength(listLength + 1);
     }
   };
 
@@ -52,7 +54,10 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
               <FontAwesomeIcon icon={faPlus} onClick={createList} />
             </div>
             <div className="watchlists">
-              <WatchlistList watchlists={newWatchlist} />
+              <WatchlistList
+                watchlists={newWatchlist}
+                setListLength={setListLength}
+              />
             </div>
           </div>
         </div>
@@ -70,7 +75,7 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
           </div>
           <div className="watchlists-contain">
             <div className="watchlists">
-              <WatchlistList watchlists={newWatchlist} />
+              <WatchlistList watchlists={newWatchlist} setListLength={setListLength}/>
             </div>
           </div>
         </div>

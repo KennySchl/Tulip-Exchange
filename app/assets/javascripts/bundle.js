@@ -10444,7 +10444,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProtPage = function ProtPage() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlists_main_page_watchlist_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    classname: "prot-page-bkg",
+    className: "prot-page-bkg",
     src: window.protpagebkg
   }));
 };
@@ -11598,12 +11598,17 @@ var MainPageWatchlist = function MainPageWatchlist(_ref) {
       newWatchlist = _useState6[0],
       setNewWatchlist = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(newWatchlist.length),
+      _useState8 = _slicedToArray(_useState7, 2),
+      listLength = _useState8[0],
+      setListLength = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.fetchAllUserWatchlists)(currentUserId).then(function (res) {
       return setNewWatchlist(res);
     });
     return function () {};
-  }, [newWatchlist]);
+  }, [listLength]);
 
   var handleCreateMode = function handleCreateMode() {
     return createMode ? setCreateMode(false) : setCreateMode(true);
@@ -11614,12 +11619,13 @@ var MainPageWatchlist = function MainPageWatchlist(_ref) {
       name: listName,
       userId: currentUserId
     };
-    console.log(e);
 
     if ((e.key === "Enter" || e.type === "click") && listName !== "") {
       (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.createWatchlist)(currentUserId, list);
       setCreateMode(false);
-      setListName("");
+      setListName(""); //temp fix on memory leak
+
+      setListLength(listLength + 1);
     }
   };
 
@@ -11655,7 +11661,8 @@ var MainPageWatchlist = function MainPageWatchlist(_ref) {
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "watchlists"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list__WEBPACK_IMPORTED_MODULE_1__.default, {
-      watchlists: newWatchlist
+      watchlists: newWatchlist,
+      setListLength: setListLength
     })))));
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -11676,7 +11683,8 @@ var MainPageWatchlist = function MainPageWatchlist(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "watchlists"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list__WEBPACK_IMPORTED_MODULE_1__.default, {
-      watchlists: newWatchlist
+      watchlists: newWatchlist,
+      setListLength: setListLength
     })))));
   }
 };
@@ -11775,13 +11783,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var WatchlistList = function WatchlistList(_ref) {
-  var watchlists = _ref.watchlists;
+  var watchlists = _ref.watchlists,
+      setListLength = _ref.setListLength;
   watchlists.sort(function (a, b) {
     return a.id - b.id;
   });
+  console.log(setListLength);
   var listItems = watchlists.map(function (watchlist, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list_item__WEBPACK_IMPORTED_MODULE_1__.default, {
       watchlist: watchlist,
+      setListLength: setListLength,
       key: i
     });
   });
@@ -11830,7 +11841,8 @@ var WatchlistItem = function WatchlistItem(_ref) {
   var _ref$watchlist = _ref.watchlist,
       id = _ref$watchlist.id,
       userId = _ref$watchlist.userId,
-      watchlistItems = _ref$watchlist.watchlistItems;
+      watchlistItems = _ref$watchlist.watchlistItems,
+      setListLength = _ref.setListLength;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -11852,6 +11864,7 @@ var WatchlistItem = function WatchlistItem(_ref) {
       watchlistName = _useState8[0],
       setWatchlistName = _useState8[1];
 
+  console.log(setListLength);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.fetchUserWatchlist)(userId, id).then(function (res) {
       return setWatchlistName(res.name);
@@ -11883,7 +11896,8 @@ var WatchlistItem = function WatchlistItem(_ref) {
   };
 
   var handleDeleteList = function handleDeleteList() {
-    return (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.deleteWatchlist)(userId, id);
+    (0,_util_watchlists_api_util__WEBPACK_IMPORTED_MODULE_3__.deleteWatchlist)(userId, id);
+    setListLength(1);
   };
 
   var editIcon = !hoverStatus ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {

@@ -273,7 +273,7 @@ a:visited {
 }
 .prot-page-bkg {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0;
+  bottom: 0px;
+  margin: auto;
+  z-index: -1;
 }

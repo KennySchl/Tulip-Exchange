@@ -14,12 +14,15 @@ import {
   deleteWatchlist,
 } from "../../util/watchlists_api_util";
 
-const WatchlistItem = ({ watchlist: { id, userId, watchlistItems } }) => {
+const WatchlistItem = ({
+  watchlist: { id, userId, watchlistItems },
+  setListLength,
+}) => {
   const [listStatus, setListStatus] = useState(false);
   const [hoverStatus, setHoverStatus] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [watchlistName, setWatchlistName] = useState("");
-
+  console.log(setListLength);
   useEffect(() => {
     fetchUserWatchlist(userId, id).then((res) => setWatchlistName(res.name));
     return () => {};
@@ -41,7 +44,10 @@ const WatchlistItem = ({ watchlist: { id, userId, watchlistItems } }) => {
       setEditMode(false);
     }
   };
-  const handleDeleteList = () => deleteWatchlist(userId, id);
+  const handleDeleteList = () => {
+    deleteWatchlist(userId, id);
+    setListLength(1);
+  }
 
   const editIcon = !hoverStatus ? (
     <FontAwesomeIcon icon={faEllipsisH} className="invisible-ellipse" />
