@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :watchlists,
     foreign_key: :user_id,
     class_name: :Watchlist
+
+    has_many :watchlist_items,
+     through: :watchlists
   
   attr_reader :password
 

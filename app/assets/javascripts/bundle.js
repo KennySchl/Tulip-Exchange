@@ -11885,7 +11885,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchStockCurrentPriceAPI": () => (/* binding */ fetchStockCurrentPriceAPI),
 /* harmony export */   "fetchStockIntradayAPI": () => (/* binding */ fetchStockIntradayAPI)
 /* harmony export */ });
-// import axios from 'axios'
 var fetchStock = function fetchStock(stockSymbol) {
   return $.ajax({
     url: "/api/stocks/".concat(stockSymbol)

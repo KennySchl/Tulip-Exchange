@@ -4,7 +4,7 @@ class Api::WatchlistsController < ApplicationController
 
   def index
     @watchlists = Watchlist.all
-    render json: @watchlists
+    render "api/watchlists/index"
   end
 
   def show
