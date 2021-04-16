@@ -3,6 +3,6 @@ Tulip Exchange, a Robinhood clone.  A financial application that allows you to g
 
 [Tulip Exchange](https://tulip-exchange.herokuapp.com/#/)
 
-![](https://media.giphy.com/media/VBJK1unlr0imJHYFYs/giphy.gif)
+![](https://media.giphy.com/media/XNq91o9po1gGx3u3cJ/giphy.gif)
 
 ## Features
