@@ -13,24 +13,22 @@ const WatchlistItem = ({ watchlist: { name, watchlistItems } }) => {
 
   const faIcon =
     listStatus === "inactive" ? (
-      <FontAwesomeIcon icon={faChevronDown} onClick={handleListStatus} />
+      <FontAwesomeIcon icon={faChevronDown} />
     ) : (
-      <FontAwesomeIcon icon={faChevronUp} onClick={handleListStatus} />
+      <FontAwesomeIcon icon={faChevronUp} />
     );
-  // console.log(name);
-  // console.log(watchlistItems);
 
   const watchedStocks = watchlistItems.map((items, i) => {
-    return <WatchedStock items={items} key={i} />;
+    return <WatchedStock items={items} listStatus={listStatus} key={i} />;
   });
 
   return (
     <div>
-      <div className="watchlist-item-contain">
-        <div>
+      <div className="watchlist-item-contain" onClick={handleListStatus}>
+        <div className="watchlist-item-inside">
           <p className="watchlist-name">{name}</p>
         </div>
-        <div>{faIcon}</div>
+        <div className="watchlist-chevron">{faIcon}</div>
       </div>
       <div className="watched-stock-contain">
         <div className="watched-stock">{watchedStocks}</div>

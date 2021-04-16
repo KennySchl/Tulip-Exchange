@@ -11506,31 +11506,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _watchlist_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./watchlist_list */ "./frontend/components/watchlists/watchlist_list.jsx");
-
-
+/* harmony import */ var _watchlist_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./watchlist_list */ "./frontend/components/watchlists/watchlist_list.jsx");
 
 
 
 var MainPageWatchlist = function MainPageWatchlist(_ref) {
   var watchlists = _ref.watchlists;
-  console.log(watchlists);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "watchlist-main-position"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-main-contain"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "lists-header"
-  }, "Lists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faPlusSquare,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "list-title"
+  }, "Lists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "create-watchlist-button"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "+")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlists-contain"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlists"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list__WEBPACK_IMPORTED_MODULE_2__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list__WEBPACK_IMPORTED_MODULE_1__.default, {
     watchlists: watchlists
-  }))));
+  })))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainPageWatchlist);
@@ -11584,9 +11582,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var WatchedStock = function WatchedStock(_ref) {
   var stocks = _ref.stocks,
+      listStatus = _ref.listStatus,
       stockId = _ref.items.stockId;
   var allStocksArr = Object.values(stocks);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, allStocksArr[stockId - 1].symbol);
+
+  if (listStatus === "inactive") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "watched-stock-name"
+    }, allStocksArr[stockId - 1].symbol);
+  }
 };
 
 var mSTP = function mSTP(_ref2) {
@@ -11621,7 +11627,6 @@ __webpack_require__.r(__webpack_exports__);
 var WatchlistList = function WatchlistList(_ref) {
   var watchlists = _ref.watchlists;
   var listItems = watchlists.map(function (watchlist, i) {
-    console.log(watchlist);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlist_list_item__WEBPACK_IMPORTED_MODULE_1__.default, {
       watchlist: watchlist,
       key: i
@@ -11681,25 +11686,27 @@ var WatchlistItem = function WatchlistItem(_ref) {
   };
 
   var faIcon = listStatus === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronDown,
-    onClick: handleListStatus
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronDown
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronUp,
-    onClick: handleListStatus
-  }); // console.log(name);
-  // console.log(watchlistItems);
-
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronUp
+  });
   var watchedStocks = watchlistItems.map(function (items, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watched_stock__WEBPACK_IMPORTED_MODULE_2__.default, {
       items: items,
+      listStatus: listStatus,
       key: i
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "watchlist-item-contain"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "watchlist-item-contain",
+    onClick: handleListStatus
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "watchlist-item-inside"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "watchlist-name"
-  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, faIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "watchlist-chevron"
+  }, faIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watched-stock-contain"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watched-stock"

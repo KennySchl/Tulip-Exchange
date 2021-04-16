@@ -1,3 +1,73 @@
 // Place all the styles related to the api/WatchlistItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.watchlist-main-position {
+  position: absolute;
+  right: 0;
+  top: 64px;
+  padding: 36px 24px 24px 0;
+  // display: flex;
+}
+.watchlist-main-contain {
+  display: flex;
+  position: sticky;
+  overflow-y: auto;
+  max-height: 552px;
+  width: 276px;
+  flex-flow: column nowrap;
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 20%);
+}
+.lists-header {
+  background-color: white;
+  border-bottom: solid 1px rgb(227, 233, 237);
+  display: flex;
+  height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 24px 0px 24px;
+  flex-flow: row nowrap;
+}
+.list-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.create-watchlist-button {
+  font-weight: 400;
+  font-size: 28px;
+  padding-bottom: 4px;
+}
+.watchlist-item-contain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  padding: 10px 24px 10px 24px;
+}
+.watchlist-name {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.watchlist-chevron {
+  font-size: 16px;
+}
+.watchlist-item-contain:hover{
+  background-color: rgb(242,242,242);
+}
+.watchlist-item-contain:hover .watchlist-chevron {
+  color: rgb(60, 245, 88);
+}
+.watched-stock{
+  padding: 0px 24px 0px 24px;
+}
+.watched-stock-name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 10px 0px 10px 0px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
