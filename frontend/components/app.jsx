@@ -8,14 +8,16 @@ import ProtNavBar from "./nav_bar/prot_nav_bar_container";
 import StockShowContainer from "./stocks/stock_show_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-
+import MainPageWatchlistContainer from "./watchlists/main_page_watchlist_container";
 export const App = () => {
   return (
     <div>
+       <ProtectedRoute path="/portfolio" component={MainPageWatchlistContainer} />
       <Switch>
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/" component={SplashPage} />
+       
         <ProtectedRoute path="/portfolio" component={ProtNavBar} />
         <ProtectedRoute
           exact

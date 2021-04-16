@@ -8,7 +8,7 @@ const stocksReducer = (state = {}, action) => {
     case RECEIVE_STOCK:
       return { ...newState, ...action.stock };
     case RECEIVE_STOCKS:
-      return action.stocks
+    return action.stocks
     default:
       return state;
   }

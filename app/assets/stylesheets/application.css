@@ -108,6 +108,7 @@ video {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-decoration: none;
   color: black;
+  list-style-type: none;
 }
 /* HTML5 display-role reset for older browsers */
 article,

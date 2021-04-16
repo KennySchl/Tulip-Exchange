@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 
 const ProtNavBar = ({ logout }) => {
-  console.log(localStorage);
+  // console.log(localStorage);
+
   const handleLogOut = () => {
     localStorage.clear();
     logout();
