@@ -167,7 +167,7 @@ a:visited {
   padding: 0px 24px;
   height: 64px;
   align-items: center;
-  position:sticky;
+  position: sticky;
   /* margin-bottom: 10px; */
 }
 .auth-navbar-links {
@@ -270,4 +270,10 @@ a:visited {
 }
 .search-list-item:hover {
   background-color: rgb(227, 233, 237);
+}
+.prot-page-bkg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
 }

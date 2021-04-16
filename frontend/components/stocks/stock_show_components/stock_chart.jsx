@@ -23,9 +23,9 @@ const StockChart = ({ currentPrice, intraDayData }) => {
 
   const currentLineColor = () => {
     if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
-      setLineColor("rgb(0,200,5)");
+      setLineColor("rgb(60, 245, 88)");
     } else {
-      setLineColor("rgb(255,80,0)");
+      setLineColor("rgb(255,158,255)");
     }
   };
 

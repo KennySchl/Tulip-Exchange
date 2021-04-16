@@ -10443,7 +10443,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProtPage = function ProtPage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlists_main_page_watchlist_container__WEBPACK_IMPORTED_MODULE_2__.default, null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_nav_bar_prot_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watchlists_main_page_watchlist_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    classname: "prot-page-bkg",
+    src: window.protpagebkg
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProtPage);
@@ -11245,9 +11248,9 @@ var StockChart = function StockChart(_ref) {
 
   var currentLineColor = function currentLineColor() {
     if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
-      setLineColor("rgb(0,200,5)");
+      setLineColor("rgb(60, 245, 88)");
     } else {
-      setLineColor("rgb(255,80,0)");
+      setLineColor("rgb(255,158,255)");
     }
   };
 
