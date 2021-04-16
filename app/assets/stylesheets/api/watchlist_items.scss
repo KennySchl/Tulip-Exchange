@@ -34,7 +34,7 @@
 }
 .create-watchlist-button {
   font-weight: 400;
-  font-size: 28px;
+  font-size: 15px;
   padding-bottom: 4px;
 }
 .watchlist-item-contain {
@@ -49,19 +49,31 @@
   font-weight: 400;
   line-height: 20px;
 }
+.watchlist-icons {
+  display: flex;
+}
+.edit-icon {
+  margin-right: 20px;
+  height: 20px;
+  width: 20px;
+}
+.edit-icon:hover {
+  color: rgb(60, 245, 88);
+}
 .watchlist-chevron {
   font-size: 16px;
 }
-.watchlist-item-contain:hover{
-  background-color: rgb(242,242,242);
+.watchlist-item-contain:hover {
+  background-color: rgb(242, 242, 242);
+  cursor: pointer;
 }
 .watchlist-item-contain:hover .watchlist-chevron {
   color: rgb(60, 245, 88);
 }
-.watched-stock{
+.watched-stock {
   padding: 0px 24px 0px 24px;
 }
-.watched-stock-name{
+.watched-stock-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,4 +82,16 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
+}
+.edit-watchlist-input {
+  width: 50%;
+  border: gb(227, 233, 237);
+}
+.edit-watchlist-input:focus {
+  border: solid 0.5px rgb(60, 245, 88);
+  border-radius: 4px;
+  outline: none;
+}
+.invisible-ellipse {
+  color: rgb(250, 250, 250);
 }

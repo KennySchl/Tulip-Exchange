@@ -11507,6 +11507,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _watchlist_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./watchlist_list */ "./frontend/components/watchlists/watchlist_list.jsx");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+
+
 
 
 
@@ -11522,7 +11526,9 @@ var MainPageWatchlist = function MainPageWatchlist(_ref) {
     className: "list-title"
   }, "Lists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "create-watchlist-button"
-  }, "+")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faPlus
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlists-contain"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlists"
@@ -11681,15 +11687,58 @@ var WatchlistItem = function WatchlistItem(_ref) {
       listStatus = _useState2[0],
       setListStatus = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("inactive"),
+      _useState4 = _slicedToArray(_useState3, 2),
+      hoverStatus = _useState4[0],
+      setHoverStatus = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("inactive"),
+      _useState6 = _slicedToArray(_useState5, 2),
+      editMode = _useState6[0],
+      setEditMode = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(name),
+      _useState8 = _slicedToArray(_useState7, 2),
+      watchlistName = _useState8[0],
+      setWatchlistName = _useState8[1];
+
   var handleListStatus = function handleListStatus() {
     return listStatus === "inactive" ? setListStatus("active") : setListStatus("inactive");
   };
 
+  var handleHoverStatus = function handleHoverStatus() {
+    return hoverStatus === "inactive" ? setHoverStatus("active") : setHoverStatus("inactive");
+  };
+
+  var handleEditMode = function handleEditMode() {
+    return editMode === "inactive" ? setEditMode("active") : setEditMode("inactive");
+  };
+
+  var handleListNameChange = function handleListNameChange(e) {
+    return e.key === "Enter" ? setEditMode("inactive") : null;
+  };
+
+  var editIcon = hoverStatus === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faEllipsisH,
+    className: "invisible-ellipse"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faEllipsisH
+  });
   var faIcon = listStatus === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronDown
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faChevronUp
   });
+  var editInput = editMode === "inactive" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, name) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    className: "edit-watchlist-input",
+    type: "text",
+    value: watchlistName,
+    onChange: function onChange(e) {
+      return setWatchlistName(e.target.value);
+    },
+    onKeyDown: handleListNameChange
+  });
+  console.log(editMode);
   var watchedStocks = watchlistItems.map(function (items, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_watched_stock__WEBPACK_IMPORTED_MODULE_2__.default, {
       items: items,
@@ -11697,16 +11746,24 @@ var WatchlistItem = function WatchlistItem(_ref) {
       key: i
     });
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    onMouseOver: handleHoverStatus,
+    onMouseOut: handleHoverStatus
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-item-contain",
     onClick: handleListStatus
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-item-inside"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-name"
-  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, editInput)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "watchlist-icons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "edit-icon",
+    onClick: handleEditMode
+  }, editIcon), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watchlist-chevron"
-  }, faIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, faIcon))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watched-stock-contain"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "watched-stock"
