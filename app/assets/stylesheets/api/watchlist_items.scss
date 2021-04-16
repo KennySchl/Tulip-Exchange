@@ -21,7 +21,7 @@
   background-color: white;
   border-bottom: solid 1px rgb(227, 233, 237);
   display: flex;
-  height: 52px;
+  min-height: 52px;
   align-items: center;
   justify-content: space-between;
   padding: 4px 24px 0px 24px;
@@ -56,6 +56,9 @@
   margin-right: 20px;
   height: 20px;
   width: 20px;
+}
+.delete-icon {
+  margin-left: 10px;
 }
 .edit-icon:hover {
   color: rgb(60, 245, 88);

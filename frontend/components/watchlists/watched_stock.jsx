@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const WatchedStock = ({ stocks, listStatus, items: { stockId } }) => {
   const allStocksArr = Object.values(stocks);
 
-  if (listStatus === "inactive") {
+  if (!listStatus) {
     return <div></div>;
   } else {
     return (

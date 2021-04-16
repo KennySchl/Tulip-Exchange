@@ -5,8 +5,10 @@ const mSTP = ({
   entities: {
     users: { watchlists },
   },
+  session: { currentUserId },
 }) => ({
   watchlists,
+  currentUserId,
 });
 
 export default connect(mSTP, null)(MainPageWatchlist);

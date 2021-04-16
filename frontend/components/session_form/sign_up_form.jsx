@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const SignUpForm = ({ errors, signUp, clearErrors, fetchStocks}) => {
+const SignUpForm = ({ errors, signUp, clearErrors }) => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -21,7 +21,6 @@ const SignUpForm = ({ errors, signUp, clearErrors, fetchStocks}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchStocks()
     signUp(user);
     setUser({
       firstName: "",
