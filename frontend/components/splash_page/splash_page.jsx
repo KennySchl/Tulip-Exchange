@@ -1,9 +1,9 @@
 import React from "react";
 import AuthNavBarContainer from "../nav_bar/auth_nav_bar_container";
 
-const SplashPage = () => {
+const SplashPage = ({ login }) => {
   return (
-    <div>
+    <div className="splash-page">
       <div>
         <AuthNavBarContainer />
         <div className="splash-page-header">
@@ -14,6 +14,15 @@ const SplashPage = () => {
                 Commission-free investing, plus the tools you need to put your
                 money in motion. Sign up and get your first stock for free.
                 Certain limitations apply.
+                <br />
+                <input
+                  type="button"
+                  value="Demo Login"
+                  onClick={() =>
+                    login({ email: "test@mail.com", password: "123456" })
+                  }
+                  className="demo-login-input-button"
+                />
               </h2>
             </div>
             <div className="photo-gif-splash">
@@ -30,6 +39,23 @@ const SplashPage = () => {
           </div>
         </div>
       </div>
+      {/* <div className="splash-second-flex">
+          <div className="video-splash">
+            <video
+              autoPlay
+              controlsList="nodownload nofullscreen noremoteplayback"
+              loop
+              muted
+              playsInline
+              preload="auto"
+              height="450px"
+            >
+              <source src="https://cdn.robinhood.com/assets/superbowl/superbowl.mp4" />
+            </video>
+          
+          </div>
+          <div className="github-link">GITHUB</div>
+        </div> */}
     </div>
   );
 };
