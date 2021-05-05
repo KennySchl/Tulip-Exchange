@@ -13,6 +13,8 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
   const [newWatchlist, setNewWatchlist] = useState(watchlists);
   const [listLength, setListLength] = useState(newWatchlist.length);
 
+  console.log(listLength);
+
   useEffect(() => {
     fetchAllUserWatchlists(currentUserId).then((res) => setNewWatchlist(res));
     return () => {};
@@ -28,7 +30,7 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
       setCreateMode(false);
       setListName("");
       //temp fix on memory leak
-      setListLength(listLength + 1);
+      setListLength((prevLength) => prevLength + 1);
     }
   };
 
@@ -75,7 +77,10 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
           </div>
           <div className="watchlists-contain">
             <div className="watchlists">
-              <WatchlistList watchlists={newWatchlist} setListLength={setListLength}/>
+              <WatchlistList
+                watchlists={newWatchlist}
+                setListLength={setListLength}
+              />
             </div>
           </div>
         </div>

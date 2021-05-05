@@ -46,8 +46,8 @@ const WatchlistItem = ({
   };
   const handleDeleteList = () => {
     deleteWatchlist(userId, id);
-    setListLength(1);
-  }
+    setListLength((prevLength) => prevLength - 1);
+  };
 
   const editIcon = !hoverStatus ? (
     <FontAwesomeIcon icon={faEllipsisH} className="invisible-ellipse" />
