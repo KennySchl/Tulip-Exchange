@@ -299,7 +299,9 @@ a:visited {
   left: 0;
 }
 .prot-page-bkg {
-  width: 600px;
+  width:600px;
+  margin-left: auto;
+  margin-right: auto;
   z-index: -1;
 }
 
