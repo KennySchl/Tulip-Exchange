@@ -13,10 +13,6 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
   const [newWatchlist, setNewWatchlist] = useState(watchlists);
   const [listLength, setListLength] = useState(newWatchlist.length);
 
-  console.log(listLength);
-  console.log(newWatchlist);
-  console.log(watchlists);
-
   useEffect(() => {
     fetchAllUserWatchlists(currentUserId)
       .then((res) => setNewWatchlist(res))
@@ -33,7 +29,6 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
       createWatchlist(currentUserId, list);
       setCreateMode(false);
       setListName("");
-      //temp fix on memory leak
       setListLength((prevLength) => prevLength + 1);
     }
   };
