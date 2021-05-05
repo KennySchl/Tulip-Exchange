@@ -43,7 +43,7 @@ const StockChart = ({ currentPrice, intraDayData }) => {
   };
 
   const handleHoverTime = () => {
-    console.log(hoverTime);
+    // console.log(hoverTime);
     return (
       <div className="hover-time">
         {new Date(hoverTime * 1000).toLocaleTimeString(["en-US"], {
