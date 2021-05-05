@@ -3,9 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .watchlist-main-position {
   position: absolute;
-  right: 0;
-  top: 64px;
-  padding: 36px 24px 24px 0;
+  // right: 0;
+  left: 100%;
+  // top: 64px;
+  // padding: 36px 24px 24px 0;
+  padding: 0px 24px 24px 0;
+  margin: 0 0 0 50px;
+  background-color: white;
   // display: flex;
 }
 .watchlist-main-contain {

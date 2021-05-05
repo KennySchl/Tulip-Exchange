@@ -279,9 +279,33 @@ a:visited {
 .search-list-item:hover {
   background-color: rgb(227, 233, 237);
 }
+.prot-page-container{
+  display: flex;
+  margin: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.prot-page-contain{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.welcome-to-prot{
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  text-decoration: unset;
+  
+  left: 0;
+}
 .prot-page-bkg {
-  position: absolute;
-  bottom: 0px;
-  margin: auto;
+  width: 600px;
   z-index: -1;
+}
+
+.graph-list{
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  position: relative;
 }
