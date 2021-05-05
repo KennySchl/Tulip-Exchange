@@ -6,7 +6,6 @@ import MainPageWatchlistContainer from "../watchlists/main_page_watchlist_contai
 
 const ProtPage = () => {
   const [companyNews, setCompanyNews] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAllMarketNewsAPI(window.finnhubAPIKey)
@@ -14,7 +13,6 @@ const ProtPage = () => {
       .then(() => setLoading(false));
   }, []);
 
-  console.log(companyNews);
 
   return (
     <div>
