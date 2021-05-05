@@ -4,6 +4,8 @@
   /* align-items: center; */
   justify-content: center;
   height: 653px;
+  position: relative;
+  border-bottom: 1px solid black;
 }
 .splash-page-contain {
   display: flex;
@@ -20,6 +22,8 @@
 }
 .splash-phone {
   position: absolute;
+  overflow: hidden;
+
 }
 .counting-money-gif {
   margin-left: 120px;
@@ -35,25 +39,32 @@
 .splash-page-hero-h2 {
   font-size: 24px;
 }
-.splash-phone{
+.splash-phone {
   max-width: 100%;
 }
-/* .splash-second-flex {
+.splash-page{
+  position: relative;
+  overflow: hidden;
+}
+.splash-second-flex {
+  background-color: black;
   display: flex;
-  width: 100%;
-  height: 100%;
-  border-top: 2px black solid;
-  border-bottom: 2px black solid;
-} 
-
-.video-splash {
-  width: 50%;
-  height: 100%;
-  border-top: 2px black solid;
-  border-right: 2px black solid;
+  overflow-y: hidden;
+  /* align-items: center; */
+  justify-content: center;
+  height: 45vh;
+  margin-top: 20px;
 }
 
 .github-link {
-  width: 50%;
-  height: 100%;
-}  */
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  width: 100%;
+  margin: 50px;
+  color: white;
+}
+.splash-icon{
+  color:white;
+  font-size: 84px;
+}

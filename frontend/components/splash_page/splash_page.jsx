@@ -1,5 +1,9 @@
 import React from "react";
 import AuthNavBarContainer from "../nav_bar/auth_nav_bar_container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
+
 
 const SplashPage = ({ login }) => {
   return (
@@ -38,24 +42,15 @@ const SplashPage = ({ login }) => {
             </div>
           </div>
         </div>
+        <div className="splash-second-flex">
+           {/* <img src={window.unsplash} className="splash-phone" height="500px"/> */}
+        <div className="github-link"><a href="https://github.com/KennySchl/Tulip-Exchange"><FontAwesomeIcon icon={faGithubSquare} className="splash-icon"/></a>
+        <a href="https://www.linkedin.com/in/kenneth-schlappkohl"><FontAwesomeIcon icon={faLinkedin} className="splash-icon"/></a>
+        <a href="mailto:kschlappkohl@gmail.com"><FontAwesomeIcon icon={faEnvelopeSquare} className="splash-icon"/></a>
+        </div>
       </div>
-      {/* <div className="splash-second-flex">
-          <div className="video-splash">
-            <video
-              autoPlay
-              controlsList="nodownload nofullscreen noremoteplayback"
-              loop
-              muted
-              playsInline
-              preload="auto"
-              height="450px"
-            >
-              <source src="https://cdn.robinhood.com/assets/superbowl/superbowl.mp4" />
-            </video>
-          
-          </div>
-          <div className="github-link">GITHUB</div>
-        </div> */}
+      </div>
+
     </div>
   );
 };
