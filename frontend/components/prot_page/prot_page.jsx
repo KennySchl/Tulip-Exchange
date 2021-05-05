@@ -8,11 +8,10 @@ const ProtPage = () => {
   const [companyNews, setCompanyNews] = useState([]);
 
   useEffect(() => {
-    fetchAllMarketNewsAPI(window.finnhubAPIKey)
-      .then((res) => setCompanyNews(res))
-      .then(() => setLoading(false));
+    fetchAllMarketNewsAPI(window.finnhubAPIKey).then((res) =>
+      setCompanyNews(res)
+    );
   }, []);
-
 
   return (
     <div>
