@@ -143,10 +143,11 @@ q:after {
   content: "";
   content: none;
 }
-html, body {
+html,
+body {
   /* width: 100%;
   height: 100%; */
- /* margin: 0;
+  /* margin: 0;
   box-sizing: border-box; */
   overflow-x: hidden;
 }
@@ -225,7 +226,6 @@ a:visited {
   border: solid 1px rgb(227, 233, 237);
   color: rgb(133, 140, 145);
   padding: 0 24px;
-
   height: 34px;
   align-items: center;
 }
@@ -233,6 +233,7 @@ a:visited {
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
+  min-width: 285px;
   width: 100%;
   outline: none;
   border: none;
@@ -256,19 +257,14 @@ a:visited {
 }
 .stock-search-list {
   position: absolute;
-  display: none;
-  /* top:60px;
-  left:50%; */
-  min-width: 200px;
+  left: 0;
+  top: 35px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 10%);
+  min-width: 350px;
   z-index: 1;
   border-radius: 4px;
 }
-
-.stocks-search-bar:hover .stock-search-list {
-  display: block;
-}
-/* .stock-search-list-items {
-} */
 .search-list-item {
   display: flex;
   padding: 15px 20px;
@@ -279,33 +275,33 @@ a:visited {
 .search-list-item:hover {
   background-color: rgb(227, 233, 237);
 }
-.prot-page-container{
+.prot-page-container {
   display: flex;
   margin: 30px;
   align-items: center;
   justify-content: center;
 }
-.prot-page-contain{
+.prot-page-contain {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-.welcome-to-prot{
+.welcome-to-prot {
   font-size: 32px;
   font-weight: 500;
   line-height: 40px;
   text-decoration: unset;
-  
+
   left: 0;
 }
 .prot-page-bkg {
-  width:600px;
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
   z-index: -1;
 }
 
-.graph-list{
+.graph-list {
   display: flex;
   justify-content: space-between;
   flex-flow: row nowrap;
