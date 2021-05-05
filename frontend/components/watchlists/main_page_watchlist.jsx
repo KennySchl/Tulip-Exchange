@@ -15,9 +15,12 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
 
   console.log(listLength);
   console.log(newWatchlist);
+  console.log(watchlists);
 
   useEffect(() => {
-    fetchAllUserWatchlists(currentUserId).then((res) => setNewWatchlist(res));
+    fetchAllUserWatchlists(currentUserId)
+      .then((res) => setNewWatchlist(res))
+      .then(() => setListLength(newWatchlist.length));
     return () => {};
   }, [listLength]);
 
