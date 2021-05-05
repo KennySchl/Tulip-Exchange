@@ -12,8 +12,10 @@ const StocksList = ({ filterStocks, stocks }) => {
 
   const stockSearchList =
     filteredStocks.length === 0 ? (
-      <tr>
-        <td>We were unable to find any results for your search.</td>
+      <tr className="search-list-item">
+        <td className="search-list-description">
+          We were unable to find any results for your search.
+        </td>
       </tr>
     ) : filteredStocks.length > 10 ? (
       <tr>
