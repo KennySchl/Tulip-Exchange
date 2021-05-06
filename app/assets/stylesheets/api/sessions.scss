@@ -224,11 +224,18 @@
 }
 .test-space {
   background-color: rgb(245, 248, 250);
-  padding-bottom: 100%;
+  // padding-bottom: 100%;
   flex: 1 1 50%;
   // height: 100%;
+  overflow: hidden;
+}
+
+.test-space img {
+  flex: 1 1 50%;
   object-fit: cover;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 .test-space-signup {
   background-color: rgb(245, 248, 250);
@@ -267,4 +274,10 @@
 }
 .demo-login-input-button:hover {
   background-color: rgba(38, 38, 38, 0.9);
+}
+
+@media screen and (max-width: 800px) {
+  .test-space {
+    display: none;
+  }
 }

@@ -45,7 +45,9 @@ const LoginForm = ({ errors, login, clearErrors }) => {
 
   return (
     <div className="login-form-container">
-      <div className="test-space"></div>
+      <div className="test-space">
+        <img src="https://cdn.robinhood.com/assets/generated_assets/1e23d6b90f0d905b425ea289de345ab1.jpg"/>
+      </div>
       <div className="login-contain">
         <form className="login-form" onSubmit={handleSubmit}>
           <h1 className="login-form-header">Welcome to Tulip Exchange</h1>
