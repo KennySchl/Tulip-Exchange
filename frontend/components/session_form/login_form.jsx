@@ -47,7 +47,7 @@ const LoginForm = ({ errors, login, clearErrors }) => {
   return (
     <div className="login-form-container">
       <div className="test-space">
-        <img src="https://cdn.robinhood.com/assets/generated_assets/1e23d6b90f0d905b425ea289de345ab1.jpg" />
+        <img src="https://cdn.robinhood.com/assets/generated_assets/1e23d6b90f0d905b425ea289de345ab1.jpg" object-fit="cover" />
       </div>
       <div className="login-contain">
         <form className="login-form" onSubmit={handleSubmit}>
