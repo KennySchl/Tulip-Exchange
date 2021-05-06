@@ -15,6 +15,8 @@
   align-content: center;
   margin-top: 60px;
 }
+
+
 .photo-gif-splash {
   display: flex;
   width: 653px;
@@ -23,7 +25,6 @@
 .splash-phone {
   position: absolute;
   overflow: hidden;
-
 }
 .counting-money-gif {
   margin-left: 120px;
@@ -40,11 +41,11 @@
   font-size: 24px;
 }
 .splash-phone {
+  min-width: 600px;
   max-width: 100%;
 }
-.splash-page{
+.splash-page {
   position: relative;
-  overflow: hidden;
 }
 .splash-second-flex {
   background-color: black;
@@ -64,7 +65,25 @@
   margin: 50px;
   color: white;
 }
-.splash-icon{
-  color:white;
+.splash-icon {
+  color: white;
   font-size: 84px;
+}
+@media screen and (max-width: 1360px) {
+  .splash-page-contain {
+    display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 60px;
+  }
+
+  .splash-page-header{
+    height: 100%;
+  }
+
+  .splash-second-flex{
+    height: 15vh;
+  }
 }

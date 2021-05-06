@@ -143,14 +143,6 @@ q:after {
   content: "";
   content: none;
 }
-html,
-body {
-  /* width: 100%;
-  height: 100%; */
-  /* margin: 0;
-  box-sizing: border-box; */
-  overflow-x: hidden;
-}
 table {
   border-collapse: collapse;
   border-spacing: 0;
