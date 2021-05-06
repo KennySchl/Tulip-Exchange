@@ -152,6 +152,9 @@ a:visited {
   background-color: transparent;
   text-decoration: none;
 }
+.website-name{
+  margin-top: 20px;
+}
 .website-name-nav {
   font-size: 25px;
   font-weight: 500;
