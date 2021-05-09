@@ -240,11 +240,8 @@
 .test-space-signup {
   background-color: rgb(245, 248, 250);
   padding-bottom: 100%;
-  // flex: 1 1 50%;
   height: 100%;
-  // object-fit: cover;
   overflow: hidden;
-  // order:2;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -280,7 +277,7 @@
   .test-space {
     display: none;
   }
-  .test-space-signup{
+  .test-space-signup {
     display: none;
   }
   .signup-form {
