@@ -11,8 +11,6 @@
 .signup-form {
   display: flex;
   flex-direction: column;
-  // flex-flow: row wrap;
-  // justify-content: flex-start;
   margin: 0 10%;
   width: 40%;
   justify-content: flex-start;
@@ -224,7 +222,6 @@
 }
 .test-space {
   background-color: rgb(245, 248, 250);
-  // padding-bottom: 100%;
   flex: 1 1 50%;
   height: 1319px;
   overflow: hidden;
