@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const WatchedStock = ({ stocks, listStatus, items: { stockId } }) => {
   const allStocksArr = Object.values(stocks);
@@ -8,9 +9,11 @@ const WatchedStock = ({ stocks, listStatus, items: { stockId } }) => {
     return <div></div>;
   } else {
     return (
-      <div className="watched-stock-name">
-        {allStocksArr[stockId - 1].symbol}
-      </div>
+      <Link to={`/stocks/${allStocksArr[stockId - 1].symbol}`}>
+        <div className="watched-stock-name">
+          {allStocksArr[stockId - 1].symbol}
+        </div>
+      </Link>
     );
   }
 };
