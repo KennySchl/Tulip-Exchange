@@ -126,7 +126,6 @@ section {
 }
 body {
   line-height: 1;
-  /* background-color: rgb(195,245,60); */
 }
 ol,
 ul {
@@ -172,7 +171,6 @@ a:visited {
   align-items: center;
   position: sticky;
   z-index: 1;
-  /* margin-bottom: 10px; */
 }
 .auth-navbar-links {
   line-height: 28px;
