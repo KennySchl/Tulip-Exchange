@@ -78,17 +78,20 @@
   color: rgb(60, 245, 88);
 }
 .watched-stock {
-  padding: 0px 24px 0px 24px;
+  // padding: 0px 24px 0px 24px;
 }
 .watched-stock-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 24px 10px 24px;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
+}
+.watched-stock-name:hover {
+  background-color: rgb(242, 242, 242);
 }
 .edit-watchlist-input {
   width: 50%;
