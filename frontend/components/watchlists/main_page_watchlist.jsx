@@ -34,9 +34,9 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
     }
   };
 
-  const watchlistItemCreate = () => {
-    const listItem = { stockId: 4, watchlistId: 1 };
-    createWatchlistItem(listItem);
+  const watchlistItemCreate = (currentUserId) => {
+    const listItem = { stockId: 5, watchlistId: 1 };
+    createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
   };
 
   if (createMode) {

@@ -20,6 +20,16 @@ class Api::WatchlistItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @watchlist_item = WatchlistItem.find_by(id: params[:id])
+
+    if @watchlist_item
+      @watchlist_item.destroy
+      render json: { status: 200 }, status: 200
+    else
+      render json: { error: "Watchlist does not exist." }, status: 404
+    end
+  end
 
   private
 

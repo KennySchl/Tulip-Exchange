@@ -28,9 +28,9 @@ export const deleteWatchlist = (userId, watchlistId) =>
     method: "DELETE",
   });
 
-export const createWatchlistItem = (data) =>
+export const createWatchlistItem = (userId, watchlistId, data) =>
   $.ajax({
-    url: `api/watchlist_items/`,
+    url: `api/users/${userId}/watchlists/${watchlistId}/watchlist_items/`,
     method: "POST",
     data: { watchlistItem: data },
   });
