@@ -32,5 +32,5 @@ export const createWatchlistItem = (data) =>
   $.ajax({
     url: `api/watchlist_items/`,
     method: "POST",
-    data: { watchlist_item: { data } },
+    data: { watchlistItem: data },
   });
