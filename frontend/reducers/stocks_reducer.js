@@ -1,6 +1,6 @@
 import { RECEIVE_STOCK, RECEIVE_STOCKS } from "../actions/stocks_actions";
 
-const stocksReducer = (state = {}, action) => {
+const stocksReducer = (state = [], action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
 

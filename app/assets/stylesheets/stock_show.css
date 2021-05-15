@@ -1,8 +1,8 @@
 .stock-show-contain {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: row;
   margin: 30px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 .stock-show-box {
@@ -112,4 +112,27 @@
 .company-news-item-img{
   margin: 24px 0;
   padding-right: 24px;
+}
+.chart-button-container{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 24px;
+}
+.add-stock-watchlist-button{
+  background: none;
+  border: 1px solid black;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  top: 0;
+  min-width: 120px;
+  max-width: 420px;
+  border-radius: 4px;
+  height: 48px;
+  font-size: 13px;
+}
+.add-stock-watchlist-button:hover{
+  background-color: rgba(0,0,0, .2);
 }

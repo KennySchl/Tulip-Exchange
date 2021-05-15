@@ -4,10 +4,11 @@ import CompanyNews from "./stock_show_components/company_news";
 import CompanyAbout from "./stock_show_components/company_about";
 import ProtNavBarContainer from "../nav_bar/prot_nav_bar_container";
 import StockChart from "./stock_show_components/stock_chart";
+import AddToLists from "./stock_show_components/add_to_lists";
 import Loader from "react-loader-spinner";
 import { Redirect } from "react-router";
 
-const StockShow = ({ stockSymbol }) => {
+const StockShow = ({ stockSymbol, stocks, watchlists }) => {
   const [currentPrice, setCurrentPrice] = useState({});
   const [companyProfile, setCompanyProfile] = useState({});
   const [companyNews, setCompanyNews] = useState({});
@@ -31,10 +32,9 @@ const StockShow = ({ stockSymbol }) => {
   const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
   useEffect(() => {
-    StockAPI.fetchStockCurrentPriceAPI(
-      stockSymbol,
-      window.finnhubAPIKey
-    ).then((res) => setCurrentPrice(res));
+    StockAPI.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(
+      (res) => setCurrentPrice(res)
+    );
     StockAPI.fetchStockCompanyProfileAPI(
       stockSymbol,
       window.finnhubAPIKey
@@ -91,6 +91,7 @@ const StockShow = ({ stockSymbol }) => {
             <CompanyAbout companyProfile={companyProfile} />
             <CompanyNews companyNews={companyNews} className="company-new" />
           </div>
+          <AddToLists stocks={stocks} watchlists={watchlists} stockSymbol={stockSymbol}/>
         </div>
       </div>
     );

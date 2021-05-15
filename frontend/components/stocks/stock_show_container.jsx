@@ -2,13 +2,20 @@ import { connect } from "react-redux";
 import StockShow from "./stock_show";
 
 const mSTP = (
-  state,
+  {
+    entities: {
+      stocks,
+      users: { watchlists },
+    },
+  },
   {
     match: {
       params: { stockSymbol },
     },
   }
 ) => ({
+  stocks,
+  watchlists,
   stockSymbol,
 });
 
