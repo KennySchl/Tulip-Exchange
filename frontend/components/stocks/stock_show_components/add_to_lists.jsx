@@ -5,27 +5,41 @@ import { createWatchlistItem } from "../../../util/watchlists_api_util";
 
 const AddToLists = ({ stocks, watchlists, stockSymbol }) => {
   const [stockId, setStockId] = useState(0);
-  const [checkedLists, setCheckedLists] = useState("");
-
+  const [checkedLists, setCheckedLists] = useState([]);
+  const [lists, setLists] = useState([]);
   useEffect(() => {
     stocks.forEach((stock) => {
       stockSymbol === stock.symbol ? setStockId(stock.id) : "";
     });
   });
-console.log(watchlists);
+
+  console.log(watchlists);
   console.log(stockId);
   console.log(checkedLists);
+  console.log(lists);
+
+  // useEffect(() => {
+  //   watchlistItemCreate();
+  // }, [checkedLists]);
 
   const watchlistItemCreate = (currentUserId) => {
-    const listItem = { stockId: stockId, watchlistId: 1 };
-    createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
+    if (checkedLists > 0) {
+      console.log("added");
+      // const listItem = { stockId: stockId, watchlistId: checkedLists };
+      // createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
+    } else if (checkedLists === 0) {
+      console.log("deleted");
+    }
   };
 
   const handleCheckedLists = (e) => {
-    const { id, name } = e.target;
-   
-    // setCheckedLists({ ...checkedLists, [id]: e.target.checked });
-    setCheckedLists(parseInt(id));
+    const { id, checked } = e.target;
+
+    if (!checkedLists.includes(parseInt(id)) && checked) {
+      setCheckedLists((oldArray) => [...oldArray, parseInt(id)]);
+    } else if (checkedLists.includes(parseInt(id)) && !checked) {
+      setCheckedLists(checkedLists.filter((item, j) => parseInt(id) !== item));
+    }
   };
 
   return (
@@ -37,15 +51,20 @@ console.log(watchlists);
       {watchlists.map((list, i) => (
         <div key={i}>
           <input
-            type="radio"
+            type="checkbox"
             name="lists"
             id={list.id}
+            checked={lists[list.id]}
             watchlistitems={list.watchlistItems}
-            onChange={handleCheckedLists}
+            onClick={handleCheckedLists}
           />
           {list.name}
         </div>
       ))}
+      {/* <div>
+        <input type="radio" name="lists" id="0" onChange={handleCheckedLists} />
+        Delete
+      </div> */}
     </div>
   );
 };
