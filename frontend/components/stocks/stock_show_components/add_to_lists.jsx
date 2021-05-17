@@ -38,7 +38,7 @@ const AddToLists = ({ stocks, watchlists, stockSymbol }) => {
     if (!checkedLists.includes(parseInt(id)) && checked) {
       setCheckedLists((oldArray) => [...oldArray, parseInt(id)]);
     } else if (checkedLists.includes(parseInt(id)) && !checked) {
-      setCheckedLists(checkedLists.filter((item, j) => parseInt(id) !== item));
+      setCheckedLists(checkedLists.filter((listId) => parseInt(id) !== listId));
     }
   };
 
