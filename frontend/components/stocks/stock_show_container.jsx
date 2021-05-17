@@ -7,6 +7,7 @@ const mSTP = (
       stocks,
       users: { watchlists },
     },
+    session: { currentUserId },
   },
   {
     match: {
@@ -17,6 +18,7 @@ const mSTP = (
   stocks,
   watchlists,
   stockSymbol,
+  currentUserId,
 });
 
 export default connect(mSTP, null)(StockShow);
