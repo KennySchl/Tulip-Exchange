@@ -3,16 +3,14 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const WatchedStock = ({ stocks, listStatus, items: { stockId } }) => {
-  const allStocksArr = Object.values(stocks);
+  const stock = Object.values(stocks).find((stock) => stockId === stock.id);
 
   if (!listStatus) {
     return <div></div>;
   } else {
     return (
-      <Link to={`/stocks/${allStocksArr[stockId - 1].symbol}`}>
-        <div className="watched-stock-name">
-          {allStocksArr[stockId - 1].symbol}
-        </div>
+      <Link to={`/stocks/${stock.symbol}`}>
+        <div className="watched-stock-name">{stock.symbol}</div>
       </Link>
     );
   }

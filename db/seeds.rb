@@ -1,5 +1,13 @@
 require 'rest-client'
 
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  next if table == 'schema_migrations'
+
+  # MySQL and PostgreSQL
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+end
+
 User.delete_all
 Stock.delete_all
 
