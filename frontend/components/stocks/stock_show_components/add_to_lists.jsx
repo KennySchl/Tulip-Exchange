@@ -1,44 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { createWatchlistItem } from "../../../util/watchlists_api_util";
+import {
+  createWatchlistItem,
+  deleteWatchlistItem,
+} from "../../../util/watchlists_api_util";
 
 const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
   const [stockId, setStockId] = useState(0);
   const [checkedLists, setCheckedLists] = useState([]);
-  const [lists, setLists] = useState([]);
-
+  // const [allWatchlists, setAllWatchlists] = useState([]);
   useEffect(() => {
     stocks.forEach((stock) => {
       stockSymbol === stock.symbol ? setStockId(stock.id) : "";
     });
-    // const stock = stocks.find(({ symbol }) => stockSymbol === symbol)
-    // setStockId(stock);
+
   });
 
-  // console.log(watchlists);
-  console.log(stockId);
-  console.log(checkedLists);
-  // useEffect(() => {
-  //   watchlistItemCreate();
-  // }, [checkedLists]);
+  // useEffect(()=>{
+  //   watchlists.forEach((watchlist) =>
+  //   setAllWatchlists((prevLists) => [...prevLists, watchlist])
+  // );
+  // },[])
 
-  const watchlistItemCreate = (currentUserId) => {
-    if (checkedLists > 0) {
-      console.log("added");
-      // const listItem = { stockId: stockId, watchlistId: checkedLists };
-      // createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
-    } else if (checkedLists === 0) {
-      console.log("deleted");
-    }
+  // console.log("test",allWatchlists);
+  // console.log(watchlists);
+  // console.log(stockId);
+  // console.log(checkedLists);
+
+  const watchlistItemCreate = (listId) => {
+    // console.log("added");
+    const listItem = { stockId: stockId, watchlistId: listId };
+    createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
+    location.reload()
+  };
+
+  const watchlistItemDelete = (listId, listItemId) => {
+    // console.log("deleted");
+    deleteWatchlistItem(currentUserId, listId, listItemId);
+    location.reload()
   };
 
   const handleCheckedLists = (e) => {
     const { id, checked } = e.target;
+    let watchlist = watchlists.find((list) => list.id === parseInt(id));
+
     if (!checkedLists.includes(parseInt(id)) && checked) {
       setCheckedLists((oldArray) => [...oldArray, parseInt(id)]);
+      watchlistItemCreate(id);
     } else if (checkedLists.includes(parseInt(id)) && !checked) {
       setCheckedLists(checkedLists.filter((listId) => parseInt(id) !== listId));
+    }
+
+    if (!checked) {
+      console.log("delete");
+      watchlistItemDelete(
+        parseInt(id),
+        watchlist.watchlistItems.find((item) => item.stockId === stockId).id
+      );
+      // console.log(parseInt(id));
     }
   };
 
@@ -49,20 +69,17 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
       <div>
         {watchlists.map((list, i) => {
           let defaultValue = false;
-          console.log(list);
           list.watchlistItems.forEach((item) => {
             if (item.stockId === stockId) {
-              return (defaultValue = true);
+              defaultValue = true;
             }
           });
-
           return (
             <div key={i}>
               <input
                 type="checkbox"
                 name="lists"
                 id={list.id}
-                checked={lists[list.id]}
                 watchlistitems={list.watchlistItems}
                 onChange={handleCheckedLists}
                 defaultChecked={defaultValue}
@@ -80,8 +97,8 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
       <div className="add-stock-watchlist-button">
         <FontAwesomeIcon icon={faCheck} />
         Add to Lists
+        {checkboxList}
       </div>
-      {checkboxList}
     </div>
   );
 };
