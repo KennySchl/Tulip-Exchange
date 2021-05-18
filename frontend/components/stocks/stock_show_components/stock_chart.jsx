@@ -53,15 +53,6 @@ const StockChart = ({ currentPrice, intraDayData }) => {
       </div>
     );
   };
-  // const oneDay = 86400;
-  // const d = dateNow - oneDay;
-  // const w = dateNow - oneDay * 7;
-  // const m = dateNow - oneDay * 30;
-  // const sixtyMin = dateNow - oneDay / 24;
-  // const thirtyMin = dateNow - oneDay / 48;
-  // const fifteenMin = dateNow - oneDay / 96;
-  // const fiveMin = dateNow - fifteenMin / 3;
-  // const oneMin = dateNow - fiveMin / 5;
 
   let data = [];
   let dataValueAVG = [];
