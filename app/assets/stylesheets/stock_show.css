@@ -124,15 +124,23 @@
   border: 1px solid black;
   display: inline-flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-evenly;
   cursor: pointer;
   top: 0;
   min-width: 120px;
   max-width: 420px;
   border-radius: 4px;
-  height: 48px;
+  /* height: 48px; */
   font-size: 13px;
+  padding-top: 10px;
 }
-.add-stock-watchlist-button:hover{
+/* .add-stock-watchlist-button:hover{
+  background-color: rgba(0,0,0, .2);
+} */
+.checkbox-list-name{
+  margin: 10px;
+}
+.checkbox-list-name:hover{
   background-color: rgba(0,0,0, .2);
 }

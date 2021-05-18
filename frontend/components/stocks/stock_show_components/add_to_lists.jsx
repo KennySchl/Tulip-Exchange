@@ -14,7 +14,6 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
     stocks.forEach((stock) => {
       stockSymbol === stock.symbol ? setStockId(stock.id) : "";
     });
-
   });
 
   // useEffect(()=>{
@@ -32,13 +31,13 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
     // console.log("added");
     const listItem = { stockId: stockId, watchlistId: listId };
     createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
-    location.reload()
+    location.reload();
   };
 
   const watchlistItemDelete = (listId, listItemId) => {
     // console.log("deleted");
     deleteWatchlistItem(currentUserId, listId, listItemId);
-    location.reload()
+    location.reload();
   };
 
   const handleCheckedLists = (e) => {
@@ -75,7 +74,7 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
             }
           });
           return (
-            <div key={i}>
+            <div key={i} className="checkbox-list-name">
               <input
                 type="checkbox"
                 name="lists"
