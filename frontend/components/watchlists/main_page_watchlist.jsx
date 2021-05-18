@@ -20,6 +20,9 @@ const MainPageWatchlist = ({ watchlists, currentUserId }) => {
     return () => {};
   }, [listLength]);
 
+  // console.log(currentUserId);
+  // console.log(watchlists);
+
   const handleCreateMode = () =>
     createMode ? setCreateMode(false) : setCreateMode(true);
 

@@ -1,4 +1,4 @@
-# json.array! @watchlists, :id, :user_id, :name 
+# # json.array! @watchlists, :id, :user_id, :name 
 json.array! @watchlists do |watchlist|
   json.id watchlist.id
   json.name watchlist.name

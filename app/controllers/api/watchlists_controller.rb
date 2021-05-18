@@ -3,10 +3,15 @@ class Api::WatchlistsController < ApplicationController
 ######################TESTING###################
 
   def index
-    @watchlists = Watchlist.all
-    render "api/watchlists/index"
+    @watchlists = Watchlist.where(user_id: params[:user_id])
+    if @watchlists
+      render "api/watchlists/index"
+    else
+      render json: { error: "User does not have any watchlists" }, status: 404
+  
+    end
   end
-
+  
   def show
     @watchlist = Watchlist.find_by(id: params[:id])
 
