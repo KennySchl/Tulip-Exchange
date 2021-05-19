@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 import Loader from "react-loader-spinner";
 
-const ProtNavBar = ({ logout, fetchStocks }) => {
+const ProtNavBar = ({ logout, fetchStocks, fetchWatchlists, currentUserId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchStocks()
-    .then(() => setLoading(false));
+    fetchWatchlists(currentUserId);
+    fetchStocks().then(() => setLoading(false));
     return () => {
-      setLoading(true)
+      setLoading(true);
     };
   }, []);
 
@@ -36,9 +36,9 @@ const ProtNavBar = ({ logout, fetchStocks }) => {
   } else {
     return (
       <div className="loader">
-      <Loader type="Grid" color="rgb(0,200,5)" height={80} width={80} />
-    </div>
-    )
+        <Loader type="Grid" color="rgb(0,200,5)" height={80} width={80} />
+      </div>
+    );
   }
 };
 export default ProtNavBar;

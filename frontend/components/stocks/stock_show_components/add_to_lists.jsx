@@ -21,6 +21,7 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
       setStockId(0);
     };
   }, []);
+
   // useEffect(()=>{
   //   watchlists.forEach((watchlist) =>
   //   setAllWatchlists((prevLists) => [...prevLists, watchlist])

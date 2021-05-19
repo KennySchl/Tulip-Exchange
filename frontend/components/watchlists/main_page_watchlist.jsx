@@ -7,7 +7,7 @@ import {
   fetchAllUserWatchlists,
 } from "../../util/watchlists_api_util";
 
-const MainPageWatchlist = ({ watchlists, currentUserId }) => {
+const MainPageWatchlist = ({ watchlists, currentUserId, fetchWatchlists }) => {
   const [createMode, setCreateMode] = useState(false);
   const [listName, setListName] = useState("");
   const [newWatchlist, setNewWatchlist] = useState(watchlists);

@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { fetchWatchlists } from "../../actions/watchlists_actions";
 import MainPageWatchlist from "./main_page_watchlist";
 
 const mSTP = ({
@@ -11,4 +12,8 @@ const mSTP = ({
   currentUserId,
 });
 
-export default connect(mSTP, null)(MainPageWatchlist);
+const mDTP = dispatch => ({
+  fetchWatchlists: (userId) => dispatch(fetchWatchlists(userId))
+})
+
+export default connect(mSTP, mDTP)(MainPageWatchlist);
