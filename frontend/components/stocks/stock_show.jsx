@@ -8,7 +8,15 @@ import AddToLists from "./stock_show_components/add_to_lists";
 import Loader from "react-loader-spinner";
 import { Redirect } from "react-router";
 
-const StockShow = ({ stockSymbol, stocks, watchlists, currentUserId }) => {
+const StockShow = ({
+  stockSymbol,
+  stocks,
+  watchlists,
+  currentUserId,
+  fetchWatchlists,
+  deleteWatchlistItem,
+  createWatchlistItem
+}) => {
   const [currentPrice, setCurrentPrice] = useState({});
   const [companyProfile, setCompanyProfile] = useState({});
   const [companyNews, setCompanyNews] = useState({});
@@ -96,6 +104,9 @@ const StockShow = ({ stockSymbol, stocks, watchlists, currentUserId }) => {
             watchlists={watchlists}
             stockSymbol={stockSymbol}
             currentUserId={currentUserId}
+            fetchWatchlists={fetchWatchlists}
+            deleteWatchlistItem={deleteWatchlistItem}
+            createWatchlistItem={createWatchlistItem}
           />
         </div>
       </div>

@@ -6,29 +6,32 @@ import {
   deleteWatchlistItem,
 } from "../../../util/watchlists_api_util";
 
-const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
+const AddToLists = ({
+  stocks,
+  watchlists,
+  stockSymbol,
+  currentUserId,
+  fetchWatchlists,
+  deleteWatchlistItem,
+  createWatchlistItem,
+}) => {
   const [stockId, setStockId] = useState(0);
   const [checkedLists, setCheckedLists] = useState([]);
-  // const [allWatchlists, setAllWatchlists] = useState([]);
   useEffect(() => {
     stocks.forEach((stock) => {
       stockSymbol === stock.symbol ? setStockId(stock.id) : "";
     });
-  });
-
-  useEffect(() => {
     return () => {
       setStockId(0);
     };
-  }, []);
+  });
 
-  // useEffect(()=>{
-  //   watchlists.forEach((watchlist) =>
-  //   setAllWatchlists((prevLists) => [...prevLists, watchlist])
-  // );
-  // },[])
+  // useEffect(() => {
+  //   return () => {
+  //     setStockId(0);
+  //   };
+  // }, []);
 
-  // console.log("test",allWatchlists);
   // console.log(stockSymbol);
   // console.log(watchlists);
   // console.log(stockId);
@@ -38,19 +41,17 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
     // console.log("added");
     const listItem = { stockId: stockId, watchlistId: listId };
     createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
-    location.reload();
   };
 
   const watchlistItemDelete = (listId, listItemId) => {
     // console.log("deleted");
     deleteWatchlistItem(currentUserId, listId, listItemId);
-    location.reload();
+    // fetchWatchlists(currentUserId);
   };
 
   const handleCheckedLists = (e) => {
-    const { id, checked } = e.target;
+    const { id, checked } = e.currentTarget;
     let watchlist = watchlists.find((list) => list.id === parseInt(id));
-    console.log(watchlist);
     if (!checkedLists.includes(parseInt(id)) && checked) {
       setCheckedLists((oldArray) => [...oldArray, parseInt(id)]);
       watchlistItemCreate(id);
@@ -64,7 +65,6 @@ const AddToLists = ({ stocks, watchlists, stockSymbol, currentUserId }) => {
         parseInt(id),
         watchlist.watchlistItems.find((item) => item.stockId === stockId).id
       );
-      // console.log(parseInt(id));
     }
   };
 

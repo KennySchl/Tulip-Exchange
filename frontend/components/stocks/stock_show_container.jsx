@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
+import {
+  createWatchlistItem,
+  deleteWatchlistItem,
+  fetchWatchlists,
+} from "../../actions/watchlists_actions";
 import StockShow from "./stock_show";
 
 const mSTP = (
-  {
-    entities: {
-      stocks,
-      users: { watchlists },
-    },
-    session: { currentUserId },
-  },
+  { entities: { stocks, watchlists }, session: { currentUserId } },
   {
     match: {
       params: { stockSymbol },
@@ -21,4 +20,12 @@ const mSTP = (
   currentUserId,
 });
 
-export default connect(mSTP, null)(StockShow);
+const mDTP = (dispatch) => ({
+  fetchWatchlists: (userId) => dispatch(fetchWatchlists(userId)),
+  deleteWatchlistItem: (userId, watchlistId, listItemId) =>
+    dispatch(deleteWatchlistItem(userId, watchlistId, listItemId)),
+  createWatchlistItem: (userId, watchlistId, data) =>
+    dispatch(createWatchlistItem(userId, watchlistId, data)),
+});
+
+export default connect(mSTP, mDTP)(StockShow);

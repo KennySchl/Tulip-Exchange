@@ -12,8 +12,8 @@ const mSTP = ({
   currentUserId,
 });
 
-const mDTP = dispatch => ({
-  fetchWatchlists: (userId) => dispatch(fetchWatchlists(userId))
-})
+const mDTP = (dispatch) => ({
+  fetchWatchlists: (userId) => dispatch(fetchWatchlists(userId)),
+});
 
 export default connect(mSTP, mDTP)(MainPageWatchlist);
