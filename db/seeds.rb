@@ -24,7 +24,7 @@ test_user = User.create(
 )
 
 
-stocks_get = RestClient.get "https://finnhub.io/api/v1/stock/symbol?exchange=US&securityType=Common%20Stock&token=#{Rails.application.credentials.finnhub[:api_key]}"
+stocks_get = RestClient.get "https://finnhub.io/api/v1/stock/symbol?exchange=US&mic=XNAS&securityType=Common%20Stock&token=#{Rails.application.credentials.finnhub[:api_key]}"
 
 all_stocks = JSON.parse(stocks_get) 
 
