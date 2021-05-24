@@ -3,7 +3,7 @@ import React from "react";
 const CompanyNewsItem = ({ url, source, headline, summary, image }) => {
   return (
     <div className="company-news-item-contain">
-      <a href={url} className="company-news-item-link">
+      <a href={url} className="company-news-item-link" target="_blank">
         <div className="company-news-item-box">
         <h3 className="company-news-item-source">{source}</h3>
         <h2 className="company-news-item-headline">{headline}</h2>

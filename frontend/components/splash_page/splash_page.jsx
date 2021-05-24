@@ -43,10 +43,9 @@ const SplashPage = ({ login }) => {
           </div>
         </div>
         <div className="splash-second-flex">
-           {/* <img src={window.unsplash} className="splash-phone" height="500px"/> */}
-        <div className="github-link"><a href="https://github.com/KennySchl/Tulip-Exchange"><FontAwesomeIcon icon={faGithubSquare} className="splash-icon"/></a>
-        <a href="https://www.linkedin.com/in/kenneth-schlappkohl"><FontAwesomeIcon icon={faLinkedin} className="splash-icon"/></a>
-        <a href="mailto:kschlappkohl@gmail.com"><FontAwesomeIcon icon={faEnvelopeSquare} className="splash-icon"/></a>
+        <div className="github-link"><a href="https://github.com/KennySchl/Tulip-Exchange" target="_blank"><FontAwesomeIcon icon={faGithubSquare} className="splash-icon"/></a>
+        <a href="https://www.linkedin.com/in/kenneth-schlappkohl" target="_blank"><FontAwesomeIcon icon={faLinkedin} className="splash-icon"/></a>
+        <a href="mailto:kschlappkohl@gmail.com" target="_blank"><FontAwesomeIcon icon={faEnvelopeSquare} className="splash-icon"/></a>
         </div>
       </div>
       </div>
