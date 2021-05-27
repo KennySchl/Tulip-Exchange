@@ -23,7 +23,7 @@ const StockShow = ({
   const [companyNews, setCompanyNews] = useState({});
   const [intraDayData, setIntraDayData] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log(DateTime.fromObject({ hour: 9, zone: "America/New_York" }));
+
   const today = new Date();
   const todayISO = today.toISOString().split("T")[0];
   const oneWeekAgoISO = new Date(
