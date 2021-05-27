@@ -14,17 +14,17 @@ const ProtPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="protected-main">
       <ProtNavBarContainer />
       <div className="prot-page-container">
         <div className="prot-page-contain">
           <h1 className="welcome-to-prot">Welcome to Tulip Exchange</h1>
           <div className="graph-list">
             <img className="prot-page-bkg" src={window.protpagebkg} />
-            <MainPageWatchlistContainer />
           </div>
           <CompanyNews companyNews={companyNews} />
         </div>
+        <MainPageWatchlistContainer />
       </div>
     </div>
   );

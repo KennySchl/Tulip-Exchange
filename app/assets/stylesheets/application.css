@@ -151,7 +151,7 @@ a:visited {
   background-color: transparent;
   text-decoration: none;
 }
-.website-name{
+.website-name {
   margin-top: 20px;
 }
 .website-name-nav {
@@ -270,33 +270,46 @@ a:visited {
 }
 .prot-page-container {
   display: flex;
-  margin: 30px;
-  align-items: center;
+  margin-top: 30px;
+  /* align-items: center; */
   justify-content: center;
+  width: 100%;
 }
 .prot-page-contain {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  padding: 0 36px;
 }
 .welcome-to-prot {
   font-size: 32px;
   font-weight: 500;
   line-height: 40px;
   text-decoration: unset;
-
   left: 0;
 }
 .prot-page-bkg {
-  width: 600px;
+  max-width: 600px;
+  min-width: 600px;
   margin-left: auto;
   margin-right: auto;
   z-index: -1;
+}
+
+@media only screen and (max-width: 600px) {
+  .prot-page-bkg {
+    display: none;
+  }
 }
 
 .graph-list {
   display: flex;
   justify-content: space-between;
   flex-flow: row nowrap;
-  position: relative;
+  /* position: relative; */
+}
+.protected-main {
+  min-width: 1024px;
+  width: 100%;
 }
