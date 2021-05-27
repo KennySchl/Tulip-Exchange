@@ -7,6 +7,7 @@ import StockChart from "./stock_show_components/stock_chart";
 import AddToLists from "./stock_show_components/add_to_lists";
 import Loader from "react-loader-spinner";
 import { Redirect } from "react-router";
+import { DateTime } from "luxon";
 
 const StockShow = ({
   stockSymbol,
@@ -15,14 +16,14 @@ const StockShow = ({
   currentUserId,
   fetchWatchlists,
   deleteWatchlistItem,
-  createWatchlistItem
+  createWatchlistItem,
 }) => {
   const [currentPrice, setCurrentPrice] = useState({});
   const [companyProfile, setCompanyProfile] = useState({});
   const [companyNews, setCompanyNews] = useState({});
   const [intraDayData, setIntraDayData] = useState({});
   const [loading, setLoading] = useState(true);
-
+  console.log(DateTime.fromObject({ hour: 9, zone: "America/New_York" }));
   const today = new Date();
   const todayISO = today.toISOString().split("T")[0];
   const oneWeekAgoISO = new Date(
@@ -36,8 +37,14 @@ const StockShow = ({
   // const d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
   // const oneDay = 86400
   // const w = new Date(dateNow - oneDay * 7).setHours(3,0,0,0)/1000;
-  const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
-  const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
+
+  const marketOpen =
+    DateTime.fromObject({ hour: 9, zone: "America/New_York" }) / 1000;
+  const marketClose =
+    DateTime.fromObject({ hour: 18, zone: "America/New_York" }) / 1000;
+
+  // const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
+  // const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
   useEffect(() => {
     StockAPI.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(

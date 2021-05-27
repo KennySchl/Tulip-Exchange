@@ -8,6 +8,7 @@ import {
   ReferenceLine,
 } from "recharts";
 import Odometer from "react-odometerjs";
+import { DateTime } from "luxon";
 
 const StockChart = ({ currentPrice, intraDayData }) => {
   const [lineColor, setLineColor] = useState("");
@@ -18,8 +19,12 @@ const StockChart = ({ currentPrice, intraDayData }) => {
     currentLineColor();
   });
   //UNIX TIME CALCULATIONS
-  const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
-  const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
+  const marketOpen =
+    DateTime.fromObject({ hour: 9, zone: "America/New_York" }) / 1000;
+  const marketClose =
+    DateTime.fromObject({ hour: 18, zone: "America/New_York" }) / 1000;
+  // const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
+  // const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
 
   const currentLineColor = () => {
     if (intraDayData.o[0] - intraDayData.o[data.length - 1] < 0) {
