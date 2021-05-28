@@ -25,10 +25,10 @@ const StocksList = ({ filterStocks, stocks }) => {
       filteredStocks.map((stock, i) => (
         <tr key={i} className="search-list-item">
           <td className="search-list-symbol">
-            <Link to={`/stocks/${stock.symbol}`}>{stock.symbol}</Link>
+            <Link to={`/stocks/${stock.symbol}`}><span className="stock-link">{stock.symbol}</span></Link>
           </td>
           <td className="search-list-description">
-            <Link to={`/stocks/${stock.symbol}`}>{titleize(stock.name)}</Link>
+            <Link to={`/stocks/${stock.symbol}`}><span className="stock-link">{titleize(stock.name)}</span></Link>
           </td>
         </tr>
       ))
