@@ -313,3 +313,7 @@ a:visited {
   min-width: 1024px;
   width: 100%;
 }
+
+html, body{
+  height: 100%;
+}
