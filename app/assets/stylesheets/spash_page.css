@@ -68,14 +68,14 @@
   color: white;
   font-size: 84px;
 }
-@media screen and (max-width: 1360px) {
+@media screen and (max-width: 1024px) {
   .splash-page-contain {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
     align-content: center;
-    margin-top: 60px;
+    margin-top: 0px;
   }
   .splash-page-header {
     height: 100%;
