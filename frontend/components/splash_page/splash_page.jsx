@@ -1,9 +1,8 @@
 import React from "react";
 import AuthNavBarContainer from "../nav_bar/auth_nav_bar_container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faGithubSquare, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
-
 
 const SplashPage = ({ login }) => {
   return (
@@ -43,13 +42,28 @@ const SplashPage = ({ login }) => {
           </div>
         </div>
         <div className="splash-second-flex">
-        <div className="github-link"><a href="https://github.com/KennySchl/Tulip-Exchange" target="_blank"><FontAwesomeIcon icon={faGithubSquare} className="splash-icon"/></a>
-        <a href="https://www.linkedin.com/in/kenneth-schlappkohl" target="_blank"><FontAwesomeIcon icon={faLinkedin} className="splash-icon"/></a>
-        <a href="mailto:kschlappkohl@gmail.com" target="_blank"><FontAwesomeIcon icon={faEnvelopeSquare} className="splash-icon"/></a>
+          <div className="github-link">
+            <a
+              href="https://github.com/KennySchl/Tulip-Exchange"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faGithubSquare} className="splash-icon" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/kenneth-schlappkohl"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faLinkedin} className="splash-icon" />
+            </a>
+            <a href="mailto:kschlappkohl@gmail.com" target="_blank">
+              <FontAwesomeIcon
+                icon={faEnvelopeSquare}
+                className="splash-icon"
+              />
+            </a>
+          </div>
         </div>
       </div>
-      </div>
-
     </div>
   );
 };
