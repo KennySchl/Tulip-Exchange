@@ -47,7 +47,10 @@ const LoginForm = ({ errors, login, clearErrors }) => {
   return (
     <div className="login-form-container">
       <div className="test-space">
-        <img src="https://cdn.robinhood.com/assets/generated_assets/1e23d6b90f0d905b425ea289de345ab1.jpg" object-fit="cover" />
+        <img
+          src="https://cdn.robinhood.com/assets/generated_assets/1e23d6b90f0d905b425ea289de345ab1.jpg"
+          object-fit="cover"
+        />
       </div>
       <div className="login-contain">
         <form className="login-form" onSubmit={handleSubmit}>
@@ -84,6 +87,14 @@ const LoginForm = ({ errors, login, clearErrors }) => {
             <div className="login-errors">{renderErrors()}</div>
           </div>
           <input type="submit" value="Sign In" className="login-input-button" />
+          <input
+            type="button"
+            value="Demo Login"
+            onClick={() =>
+              login({ email: "test@mail.com", password: "123456" })
+            }
+            className="login-input-button"
+          />
         </form>
       </div>
     </div>
