@@ -63,7 +63,7 @@
   flex-flow: row wrap;
   width: 100%;
   margin: 50px;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
   color: white;
   height: 100%;
 }
