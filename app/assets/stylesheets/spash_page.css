@@ -15,8 +15,6 @@
   align-content: center;
   margin-top: 60px;
 }
-
-
 .photo-gif-splash {
   display: flex;
   width: 653px;
@@ -53,7 +51,8 @@
   overflow-y: hidden;
   /* align-items: center; */
   justify-content: center;
-  height: 45vh;
+  height: 40vh;
+  min-height: 100%;
   margin-top: 20px;
 }
 
@@ -62,7 +61,7 @@
   justify-content: space-around;
   flex-flow: row wrap;
   width: 100%;
-  margin: 50px;
+  margin: 50px 50px 0 50px;
   color: white;
 }
 .splash-icon {
@@ -72,18 +71,17 @@
 @media screen and (max-width: 1360px) {
   .splash-page-contain {
     display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-content: center;
-  margin-top: 60px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: center;
+    margin-top: 60px;
   }
-
-  .splash-page-header{
+  .splash-page-header {
     height: 100%;
   }
-
-  .splash-second-flex{
+  .splash-second-flex {
     height: 15vh;
+    min-height: 100%;
   }
 }
