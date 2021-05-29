@@ -91,6 +91,13 @@
   }
 }
 
+@media screen and (max-width: 1029px) {
+
+  .splash-second-flex {
+    min-height: 100%;
+  }
+}
+
 @media screen and (min-width: 1030px) {
   .splash-second-flex {
     background-color: black;

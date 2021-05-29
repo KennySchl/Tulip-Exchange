@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 import StocksContainer from "../stocks/stocks_container";
 import Loader from "react-loader-spinner";
 
-const ProtNavBar = ({ logout, fetchStocks, fetchWatchlists, currentUserId }) => {
+const ProtNavBar = ({
+  logout,
+  fetchStocks,
+  fetchWatchlists,
+  currentUserId,
+}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,9 +33,9 @@ const ProtNavBar = ({ logout, fetchStocks, fetchWatchlists, currentUserId }) => 
           </h1>
         </Link>
         <StocksContainer />
-        <Link to="/" className="logout" onClick={handleLogOut}>
+        <div className="logout" onClick={handleLogOut}>
           Log Out
-        </Link>
+        </div>
       </div>
     );
   } else {

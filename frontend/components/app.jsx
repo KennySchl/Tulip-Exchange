@@ -19,7 +19,7 @@ export const App = () => {
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/" component={SplashPageContainer} />
        
-        <ProtectedRoute path="/portfolio" component={ProtPage} />
+        <ProtectedRoute exact path="/portfolio" component={ProtPage} />
         <ProtectedRoute
           exact
           path="/stocks/:stockSymbol"

@@ -11,6 +11,9 @@ const ProtPage = () => {
     fetchAllMarketNewsAPI(window.finnhubAPIKey).then((res) =>
       setCompanyNews(res)
     );
+    return () => {
+      setCompanyNews([]);
+    };
   }, []);
 
   return (

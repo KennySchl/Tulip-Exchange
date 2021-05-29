@@ -317,3 +317,6 @@ a:visited {
 html, body{
   height: 100%;
 }
+.logout:hover {
+  cursor: pointer;
+}
