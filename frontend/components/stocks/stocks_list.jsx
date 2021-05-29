@@ -13,7 +13,14 @@ const StocksList = ({ filterStocks, stocks }) => {
 
   const history = useHistory();
 
-  const stockRedirect = (stock) => history.push(`/stocks/${stock}`);
+  const stockRedirect = (stock) => {
+    let link = window.location.hash.split("#")[1];
+    if (link !== `/stocks/${stock}`) {
+      history.push(`/stocks/${stock}`);
+    } else {
+      location.reload();
+    }
+  };
 
   const stockSearchList =
     filteredStocks.length === 0 ? (
