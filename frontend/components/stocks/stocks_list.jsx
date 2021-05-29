@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const titleize = require("titleize");
 
 const StocksList = ({ filterStocks, stocks }) => {
@@ -9,6 +10,10 @@ const StocksList = ({ filterStocks, stocks }) => {
       stock.symbol.toLowerCase().indexOf(filterStocks.toLowerCase()) !== -1
     );
   });
+
+  const history = useHistory();
+
+  const stockRedirect = (stock) => history.push(`/stocks/${stock}`);
 
   const stockSearchList =
     filteredStocks.length === 0 ? (
@@ -23,12 +28,20 @@ const StocksList = ({ filterStocks, stocks }) => {
       </tr>
     ) : (
       filteredStocks.map((stock, i) => (
-        <tr key={i} className="search-list-item">
+        <tr
+          key={i}
+          className="search-list-item"
+          onClick={() => stockRedirect(stock.symbol)}
+        >
           <td className="search-list-symbol">
-            <Link to={`/stocks/${stock.symbol}`}><span className="stock-link">{stock.symbol}</span></Link>
+            {/* <Link to={`/stocks/${stock.symbol}`}> */}
+            {stock.symbol}
+            {/* </Link>*/}
           </td>
           <td className="search-list-description">
-            <Link to={`/stocks/${stock.symbol}`}><span className="stock-link">{titleize(stock.name)}</span></Link>
+            {/* <Link to={`/stocks/${stock.symbol}`}> */}
+            {titleize(stock.name)}
+            {/* </Link> */}
           </td>
         </tr>
       ))
