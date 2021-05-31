@@ -37,14 +37,64 @@ const StockShow = ({
   // const d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
   // const oneDay = 86400
   // const w = new Date(dateNow - oneDay * 7).setHours(3,0,0,0)/1000;
+  let marketOpen, marketClose;
 
-  const marketOpen =
-    DateTime.fromObject({ hour: 9, zone: "America/New_York" }) / 1000;
-  const marketClose =
-    DateTime.fromObject({ hour: 18, zone: "America/New_York" }) / 1000;
+  if (DateTime.now().weekday > 5) {
+    if (DateTime.now().weekday === 6) {
+      marketOpen =
+        DateTime.fromObject({
+          day: DateTime.now().day - 1,
+          hour: 9,
+          zone: "America/New_York",
+        }) / 1000;
+      marketClose =
+        DateTime.fromObject({
+          day: DateTime.now().day - 1,
+          hour: 18,
+          zone: "America/New_York",
+        }) / 1000;
+    } else if (DateTime.now().weekday === 7) {
+      marketOpen =
+        DateTime.fromObject({
+          day: DateTime.now().day - 2,
+          hour: 9,
+          zone: "America/New_York",
+        }) / 1000;
+      marketClose =
+        DateTime.fromObject({
+          day: DateTime.now().day - 2,
+          hour: 18,
+          zone: "America/New_York",
+        }) / 1000;
+    }
+  } else {
+    marketOpen =
+      DateTime.fromObject({
+        hour: 9,
+        zone: "America/New_York",
+      }) / 1000;
+    marketClose =
+      DateTime.fromObject({
+        hour: 18,
+        zone: "America/New_York",
+      }) / 1000;
+  }
+  // const marketOpen =
+  //   DateTime.fromObject({
+  //     hour: 9,
+  //     zone: "America/New_York",
+  //   }) / 1000;
+  // const marketClose =
+  //   DateTime.fromObject({
+  //     hour: 18,
+  //     zone: "America/New_York",
+  //   }) / 1000;
 
   // const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
   // const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
+  console.log(marketOpen);
+  console.log(marketClose);
+  console.log(DateTime.now().weekdayLong);
 
   useEffect(() => {
     StockAPI.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(
