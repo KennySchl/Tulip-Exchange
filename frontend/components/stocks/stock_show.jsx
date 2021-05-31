@@ -33,6 +33,7 @@ const StockShow = ({
   )
     .toISOString()
     .split("T")[0];
+    
   // const dateNow = Math.floor(Date.now() / 1000);
   // const d = new Date(dateNow - 86400).setHours(3, 0, 0, 0);
   // const oneDay = 86400
