@@ -93,10 +93,7 @@ const StockShow = ({
 
   // const marketOpen = new Date().setHours(3, 0, 0, 0) / 1000;
   // const marketClose = new Date().setHours(12, 0, 0, 0) / 1000;
-  console.log(marketOpen);
-  console.log(marketClose);
-  console.log(DateTime.now().weekdayLong);
-
+  
   useEffect(() => {
     StockAPI.fetchStockCurrentPriceAPI(stockSymbol, window.finnhubAPIKey).then(
       (res) => setCurrentPrice(res)
