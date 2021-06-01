@@ -63,7 +63,7 @@ const LoginForm = ({ errors, login, clearErrors }) => {
                 <span className="login-input-label">Email</span>
               </div>
               <input
-                type="text"
+                type="email"
                 className="login-input"
                 value={user.email}
                 onChange={handleChange}
