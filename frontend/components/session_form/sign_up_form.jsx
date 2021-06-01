@@ -88,7 +88,7 @@ const SignUpForm = ({ errors, signUp, clearErrors }) => {
             name="lastName"
           />
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             className="signup-input"
             value={user.email}
