@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import {
-  createWatchlistItem,
-  deleteWatchlistItem,
-} from "../../../util/watchlists_api_util";
 
 const AddToLists = ({
   stocks,
   watchlists,
   stockSymbol,
   currentUserId,
-  fetchWatchlists,
   deleteWatchlistItem,
   createWatchlistItem,
 }) => {
