@@ -21,12 +21,6 @@ const AddToLists = ({
     };
   });
 
-  // useEffect(() => {
-  //   return () => {
-  //     setStockId(0);
-  //   };
-  // }, []);
-
   // console.log(stockSymbol);
   // console.log(watchlists);
   // console.log(stockId);
