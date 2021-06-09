@@ -27,15 +27,12 @@ const AddToLists = ({
   // console.log(checkedLists);
 
   const watchlistItemCreate = (listId) => {
-    // console.log("added");
     const listItem = { stockId: stockId, watchlistId: listId };
     createWatchlistItem(currentUserId, listItem.watchlistId, listItem);
   };
 
   const watchlistItemDelete = (listId, listItemId) => {
-    // console.log("deleted");
     deleteWatchlistItem(currentUserId, listId, listItemId);
-    // fetchWatchlists(currentUserId);
   };
 
   const handleCheckedLists = (e) => {
