@@ -5,4 +5,7 @@ class Stock < ApplicationRecord
     foreign_key: :stock_id,
     class_name: :WatchlistItem
 
+  has_many :assets,
+    foreign_key: :stock_id,
+    class_name: :Asset
 end

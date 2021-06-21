@@ -7,9 +7,13 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Watchlist
 
-    has_many :watchlist_items,
+  has_many :watchlist_items,
      through: :watchlists
   
+  has_many :assets,
+    foreign_key: :user_id,
+    class_name: :Asset
+    
   attr_reader :password
 
   after_initialize :ensure_session_token

@@ -5,4 +5,9 @@ class Asset < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
+  belongs_to :stock,
+    foreign_key: :stock_id,
+    class_name: :Stock
+
+
 end
